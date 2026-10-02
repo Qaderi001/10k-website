@@ -13,10 +13,16 @@
 <meta property="og:url" content="https://example.com/">
 <meta property="og:image" content="https://example.com/assets/og-image.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111411'/%3E%3Cpath d='M14 50V14h7l11 15 11-15h7v36h-7V27l-11 15-11-15v23z' fill='%236DA227'/%3E%3Cpath d='M12 52 54 10' stroke='%23111411' stroke-width='6'/%3E%3Cpath d='M13 53 55 11' stroke='%236DA227' stroke-width='2.4'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/unbounded-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face{font-family:"Unbounded";font-weight:500;font-display:swap;src:url(assets/fonts/unbounded-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Unbounded";font-weight:700;font-display:swap;src:url(assets/fonts/unbounded-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Instrument Sans";font-weight:400;font-display:swap;src:url(assets/fonts/instrument-sans-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Instrument Sans";font-weight:500;font-display:swap;src:url(assets/fonts/instrument-sans-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Instrument Sans";font-weight:600;font-display:swap;src:url(assets/fonts/instrument-sans-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-weight:400;font-display:swap;src:url(assets/fonts/jetbrains-mono-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-weight:500;font-display:swap;src:url(assets/fonts/jetbrains-mono-latin-500-normal.woff2) format("woff2")}
 :root{
   --canvas:#F2F3EE; --panel:#FAFAF7; --ink:#111411; --text-secondary:#4A514A;
   --graphite:#0E110F; --graphite-2:#171B18; --on-dark:#EEF0EA; --on-dark-2:#B9C0B6;
@@ -528,7 +534,7 @@ body.pinned .thread i{transform:scaleY(1)}
         <div><label for="f-firma">Unternehmen</label><input id="f-firma" name="firma" autocomplete="organization" placeholder="Beispiel GmbH"></div>
         <div class="full"><label for="f-mail">E-Mail</label><input id="f-mail" name="email" type="email" autocomplete="email" placeholder="maria@beispiel.de" required></div>
         <div class="full"><label for="f-msg">Worum geht es?</label><textarea id="f-msg" name="nachricht" placeholder="Zum Beispiel: Wir sind ein Möbelhaus und möchten unsere Stücke in 3D zeigen."></textarea></div>
-        <div class="formrow"><small>Ihr E-Mail-Programm öffnet sich mit Ihrer Nachricht.</small><button class="btn" type="submit">Erstgespräch anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+        <div class="formrow"><small>Ihr E-Mail-Programm öffnet sich mit Ihrer Nachricht. Mehr dazu im <a href="datenschutz.html">Datenschutz</a>.</small><button class="btn" type="submit">Erstgespräch anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
         <p class="sent" role="status">Ihr E-Mail-Programm öffnet sich gleich. Ein Klick auf Senden, und wir melden uns innerhalb eines Werktags.</p>
       </form>
     </div>
@@ -541,7 +547,7 @@ body.pinned .thread i{transform:scaleY(1)}
       <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 50V14h7l11 15 11-15h7v36h-7V27l-11 15-11-15v23z" fill="#6DA227"/><path d="M12 52 54 10" stroke="#0E110F" stroke-width="6"/><path d="M13 53 55 11" stroke="#6DA227" stroke-width="2.4" stroke-linecap="round"/></svg>
       <span>MAGIE <b>STUDIO</b></span>
     </a>
-    <nav aria-label="Rechtliches"><a href="#impressum">Impressum</a><a href="#datenschutz">Datenschutz</a><a href="#kontakt">Kontakt</a></nav>
+    <nav aria-label="Rechtliches"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="mailto:info@magie-ki-marketing.de">info@magie-ki-marketing.de</a></nav>
     <span>© <span id="year">2026</span> Magie Studio</span>
   </div>
 </footer>
@@ -549,7 +555,7 @@ body.pinned .thread i{transform:scaleY(1)}
 <script>
 (() => {
 'use strict';
-const STUDIO_EMAIL = 'kontakt@example.com'; // TODO: replace with the studio's real address
+const STUDIO_EMAIL = 'info@magie-ki-marketing.de';
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
@@ -812,7 +818,7 @@ const lazy = new IntersectionObserver(es => { if (es[0].isIntersecting && !start
 lazy.observe(viewer);
 
 async function boot(){
-  const THREE = await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js');
+  const THREE = await import('./assets/vendor/three.module.min.js');
   const canvas = document.createElement('canvas');
   let renderer;
   try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true }); } catch { return; }
