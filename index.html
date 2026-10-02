@@ -578,7 +578,7 @@ $$('.split').forEach((el, i) => {
 /* ---------- hero scrub ---------- */
 const hero = $('.hero'), stage = $('.stage'), video = $('#hero'), ring = $('.ring'), posterLayer = $('.poster');
 const VIDEO_URL = 'assets/hero-scrub.mp4', POSTER_URL = 'assets/hero-poster.jpg';
-const VIDEO_BYTES = 6000000; // fallback when Content-Length is missing; set to real size after encode
+const VIDEO_BYTES = 2350263; // real encoded size, fallback when Content-Length is missing
 const bands = $$('.band').map((el, i) => ({ el, i, a: +el.dataset.a, b: +el.dataset.b, ramp: el.dataset.ramp ? +el.dataset.ramp : 0, op: -1, k: -1, on: null }));
 let target = 0, shown = 0, rafId = null, lastTick = 0, heroOnScreen = true, loadK = 0, loadStart = 0;
 
