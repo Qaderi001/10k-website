@@ -122,7 +122,7 @@ p{margin:0}
 
 /* static hero (5 gates) */
 .static-hero{display:none}
-@media (max-width:720px),(orientation:portrait) and (max-width:1024px),(orientation:portrait) and (pointer:coarse),(orientation:landscape) and (pointer:coarse) and (max-height:560px),(prefers-reduced-motion:reduce){
+@media (prefers-reduced-motion:reduce){
   .hero{height:auto}
   .stage{display:none}
   .static-hero{display:flex;position:relative;min-height:100vh;min-height:100svh;align-items:flex-start;justify-content:center;padding:clamp(120px,22vh,200px) var(--gutter) 120px;background:var(--canvas) url('assets/hero-ending.jpg') center 70%/cover no-repeat;color:var(--ink);text-align:center}
@@ -203,7 +203,7 @@ main:focus{outline:none}
 /* try it (3D) */
 .try{background:var(--canvas);overflow:hidden}
 .try .grid{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,5vw,72px);align-items:center}
-.viewer{position:relative;aspect-ratio:1/1;max-height:640px;width:100%;border-radius:28px;background:radial-gradient(ellipse 70% 60% at 50% 55%,#ffffff 0%,#e6e9e2 60%,#d6dad2 100%);border:1px solid rgba(17,20,17,.08);overflow:hidden;cursor:grab;touch-action:pan-y}
+.viewer{position:relative;aspect-ratio:1/1;max-height:640px;width:100%;border-radius:28px;background:radial-gradient(ellipse 70% 60% at 50% 55%,#ffffff 0%,#e6e9e2 60%,#d6dad2 100%);border:1px solid rgba(17,20,17,.08);overflow:hidden;cursor:grab;touch-action:none}
 .viewer:active{cursor:grabbing}
 .viewer canvas{width:100%!important;height:100%!important}
 .viewer .fallback{position:absolute;inset:18%;display:flex;align-items:center;justify-content:center}
@@ -224,6 +224,7 @@ main:focus{outline:none}
 .try.won .won-line{opacity:1;transform:none}
 .try.won .hint{opacity:0}
 @media (max-width:960px){.try .grid{grid-template-columns:1fr}.viewer{max-width:560px;margin:0 auto}}
+@media (max-width:640px){.viewer{width:84%}}
 
 /* process */
 .process{background:var(--panel);border-top:1px solid rgba(17,20,17,.06)}
@@ -244,23 +245,6 @@ main:focus{outline:none}
   .step .dot{left:23px}
 }
 
-/* speed band */
-.speed{background:var(--graphite);color:var(--on-dark);overflow:hidden}
-.speed .eyebrow{color:var(--accent)}
-.speed .eyebrow i{color:var(--on-dark-2)}
-.speed .lede{color:var(--on-dark-2)}
-.speed .split{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,90px);align-items:end}
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(238,240,234,.12);border-radius:22px;overflow:hidden}
-.stat{background:var(--graphite-2);padding:28px 26px 30px}
-.stat b{display:block;font:700 clamp(40px,5vw,64px)/1 var(--f-display);letter-spacing:-.03em;color:var(--on-dark)}
-.stat b em{font-style:normal;color:var(--accent)}
-.stat span{display:block;margin-top:12px;color:var(--on-dark-2)}
-.motes{position:absolute;inset:0;pointer-events:none}
-.motes i{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--accent);opacity:0;animation:mote 14s linear infinite}
-.speed.live .motes i{animation-play-state:running}
-.speed:not(.live) .motes i{animation-play-state:paused}
-@keyframes mote{0%{transform:translateY(0);opacity:0}15%{opacity:.5}85%{opacity:.35}100%{transform:translateY(-60vh);opacity:0}}
-@media (max-width:960px){.speed .split{grid-template-columns:1fr}}
 
 /* faq */
 .faq .grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,6vw,90px);align-items:start}
@@ -322,7 +306,6 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   .thread i{transform:scaleY(1)}
   .node{border-color:var(--accent);background:var(--accent)}
   .step .dot{background:var(--accent);border-color:var(--accent);color:#0B0E0B}
-  .motes{display:none}
 }
 body.pinned .rv .part{opacity:1;transform:none;transition:none}
 body.pinned .thread i{transform:scaleY(1)}
@@ -447,7 +430,7 @@ body.pinned .thread i{transform:scaleY(1)}
     <div class="wrap grid">
       <div class="viewer" id="viewer" role="img" aria-label="Das Magie-Studio-Logo als 3D-Objekt. Ziehen, um es zu drehen.">
         <div class="fallback" aria-hidden="true"><svg viewBox="0 0 64 64" width="260"><path d="M14 50V14h7l11 15 11-15h7v36h-7V27l-11 15-11-15v23z" fill="#6DA227"/><path d="M12 52 54 10" stroke="#ECEEE8" stroke-width="6"/><path d="M13 53 55 11" stroke="#6DA227" stroke-width="2.4" stroke-linecap="round"/></svg></div>
-        <span class="hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h16M8 8l-4 4 4 4M16 8l4 4-4 4"/></svg>Ziehen zum Drehen</span>
+        <span class="hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h16M8 8l-4 4 4 4M16 8l4 4-4 4"/></svg>Ziehen, in jede Richtung</span>
       </div>
       <div class="rv">
         <p class="eyebrow mono part"><span>03</span><i>Ausprobieren</i></p>
@@ -486,33 +469,17 @@ body.pinned .thread i{transform:scaleY(1)}
     </div>
   </section>
 
-  <section class="sec speed" aria-labelledby="speed-h">
-    <div class="motes" aria-hidden="true"></div>
-    <div class="wrap split">
-      <div class="rv">
-        <p class="eyebrow mono part"><span>05</span><i>Tempo</i></p>
-        <h2 class="h2 part" id="speed-h">Schön. Und trotzdem schnell.</h2>
-        <p class="lede part">Unsere Seiten bestehen aus einfachen Dateien. Kein schweres System, keine Plugins, nichts, das veraltet. Der Film lädt im Hintergrund, während Ihre Seite schon da ist.</p>
-      </div>
-      <div class="stats rv">
-        <div class="stat part"><b><em>&lt;</em><span data-count="1">1</span> s</b><span>Ladezeit der Seite</span></div>
-        <div class="stat part"><b data-count="0">0</b><span>Plugins, die veralten</span></div>
-        <div class="stat part"><b><span data-count="100">100</span><em> %</em></b><span>für das Handy gestaltet</span></div>
-        <div class="stat part"><b data-count="1">1</b><span>Ansprechpartner, immer derselbe</span></div>
-      </div>
-    </div>
-  </section>
 
   <section class="sec faq" id="fragen" aria-labelledby="fragen-h">
     <div class="wrap grid">
       <div class="side rv">
-        <p class="eyebrow mono part"><span>06</span><i>Fragen</i></p>
+        <p class="eyebrow mono part"><span>05</span><i>Fragen</i></p>
         <h2 class="h2 part" id="fragen-h">Was Kunden uns vorher fragen.</h2>
         <p class="lede part">Ihre Frage ist nicht dabei? Stellen Sie sie im Erstgespräch.</p>
       </div>
       <div class="rv">
         <div class="qa part"><button aria-expanded="false" aria-controls="a1" id="q1">Ist 3D nicht langsam?<span class="pm" aria-hidden="true"></span></button><div class="a" id="a1" role="region" aria-labelledby="q1"><div><p>Nein. Die Seite selbst ist in unter einer Sekunde da, weil sie aus einfachen Dateien besteht. Der Film lädt danach im Hintergrund, und Ihre Besucher können sofort lesen und klicken.</p></div></div></div>
-        <div class="qa part"><button aria-expanded="false" aria-controls="a2" id="q2">Wie sieht das auf dem Handy aus?<span class="pm" aria-hidden="true"></span></button><div class="a" id="a2" role="region" aria-labelledby="q2"><div><p>Auf dem Handy zeigen wir statt des Films ein gestaltetes Standbild. Das sieht genauso hochwertig aus, lädt sofort und schont das Datenvolumen Ihrer Kunden.</p></div></div></div>
+        <div class="qa part"><button aria-expanded="false" aria-controls="a2" id="q2">Wie sieht das auf dem Handy aus?<span class="pm" aria-hidden="true"></span></button><div class="a" id="a2" role="region" aria-labelledby="q2"><div><p>Genauso wie am Computer: Der Film läuft beim Scrollen mit. Für das Handy bekommt er einen eigenen, schmaleren Schnitt, der schnell lädt und das Datenvolumen Ihrer Kunden schont.</p></div></div></div>
         <div class="qa part"><button aria-expanded="false" aria-controls="a3" id="q3">Was kostet eine Website bei Ihnen?<span class="pm" aria-hidden="true"></span></button><div class="a" id="a3" role="region" aria-labelledby="q3"><div><p>Das hängt davon ab, was Ihre Seite können soll. Nach dem Erstgespräch bekommen Sie einen Festpreis, schriftlich. Was dort steht, zahlen Sie. Nicht mehr.</p></div></div></div>
         <div class="qa part"><button aria-expanded="false" aria-controls="a4" id="q4">Wie lange dauert es?<span class="pm" aria-hidden="true"></span></button><div class="a" id="a4" role="region" aria-labelledby="q4"><div><p>Meist zwei bis vier Wochen vom Konzept bis zum Start. Den Termin legen wir am Anfang fest.</p></div></div></div>
         <div class="qa part"><button aria-expanded="false" aria-controls="a5" id="q5">Werde ich bei Google gefunden?<span class="pm" aria-hidden="true"></span></button><div class="a" id="a5" role="region" aria-labelledby="q5"><div><p>Google mag schnelle Seiten mit klarer Struktur und echten Texten. Genau so bauen wir. Auf Wunsch richten wir auch Ihr Google-Unternehmensprofil mit ein.</p></div></div></div>
@@ -526,7 +493,7 @@ body.pinned .thread i{transform:scaleY(1)}
     <div class="halo" aria-hidden="true"></div>
     <div class="wrap rv">
       <div class="ringmark part" aria-hidden="true"></div>
-      <p class="eyebrow mono part"><span>07</span><i>Kontakt</i></p>
+      <p class="eyebrow mono part"><span>06</span><i>Kontakt</i></p>
       <h2 class="h2 part" id="kontakt-h">Lassen Sie uns 15 Minuten sprechen.</h2>
       <p class="lede part">Kostenlos und ohne Verpflichtung. Danach wissen Sie, ob 3D zu Ihrem Unternehmen passt und was es kostet.</p>
       <form id="form" class="part" novalidate>
@@ -583,8 +550,11 @@ $$('.split').forEach((el, i) => {
 
 /* ---------- hero scrub ---------- */
 const hero = $('.hero'), stage = $('.stage'), video = $('#hero'), ring = $('.ring'), posterLayer = $('.poster');
-const VIDEO_URL = 'assets/hero-scrub.mp4', POSTER_URL = 'assets/hero-poster.jpg';
-const VIDEO_BYTES = 2350263; // real encoded size, fallback when Content-Length is missing
+// Phones and portrait tablets get a center-cropped, lighter cut of the same film
+const NARROW = matchMedia('(orientation: portrait) and (max-width: 1024px)').matches;
+const VIDEO_URL = NARROW ? 'assets/hero-scrub-mobile.mp4' : 'assets/hero-scrub.mp4';
+const POSTER_URL = NARROW ? 'assets/hero-poster-mobile.jpg' : 'assets/hero-poster.jpg';
+const VIDEO_BYTES = NARROW ? 1013238 : 2350263; // real encoded sizes, fallback when Content-Length is missing
 const bands = $$('.band').map((el, i) => ({ el, i, a: +el.dataset.a, b: +el.dataset.b, ramp: el.dataset.ramp ? +el.dataset.ramp : 0, op: -1, k: -1, on: null }));
 let target = 0, shown = 0, rafId = null, lastTick = 0, heroOnScreen = true, loadK = 0, loadStart = 0;
 
@@ -665,7 +635,14 @@ async function loadHeroBlob(){
   ring.style.setProperty('--ld', 0);
   video.src = URL.createObjectURL(new Blob(chunks, { type: 'video/mp4' }));
   video.load();
-  video.addEventListener('canplay', () => { requestSeek(heroProgress() * video.duration); stage.classList.add('video-ready'); }, { once: true });
+  video.addEventListener('canplay', () => {
+    // iOS Safari only paints seeked frames after the video has played once; muted play is allowed
+    const p = video.play();
+    (p && p.then ? p : Promise.resolve()).then(() => video.pause()).catch(() => {}).finally(() => {
+      requestSeek(heroProgress() * video.duration);
+      stage.classList.add('video-ready');
+    });
+  }, { once: true });
 }
 function failVideo(){
   if (stage.classList.contains('video-failed')) return;
@@ -677,13 +654,7 @@ function failVideo(){
 }
 
 /* ---------- live static-hero gate ---------- */
-const GATES = [
-  '(max-width: 720px)',
-  '(orientation: portrait) and (max-width: 1024px)',
-  '(orientation: portrait) and (pointer: coarse)',
-  '(orientation: landscape) and (pointer: coarse) and (max-height: 560px)',
-  '(prefers-reduced-motion: reduce)'
-];
+const GATES = ['(prefers-reduced-motion: reduce)'];
 let scrubOn = false;
 function enableScrub(){
   if (scrubOn) return; scrubOn = true;
@@ -752,10 +723,6 @@ const cio = new IntersectionObserver(es => es.forEach(e => {
 }), { threshold: 0.5 });
 counters.forEach(c => cio.observe(c));
 
-/* ---------- motes (speed band) ---------- */
-const motes = $('.motes'), speed = $('.speed');
-{ const r = rng(42); for (let i = 0; i < 22; i++){ const m = document.createElement('i'); m.style.left = (r() * 100).toFixed(1) + '%'; m.style.top = (60 + r() * 45).toFixed(1) + '%'; m.style.animationDelay = (-r() * 14).toFixed(2) + 's'; m.style.animationDuration = (11 + r() * 8).toFixed(1) + 's'; motes.appendChild(m); } }
-new IntersectionObserver(es => speed.classList.toggle('live', es[0].isIntersecting)).observe(speed);
 
 /* ---------- FAQ ---------- */
 $$('.qa button').forEach(btn => btn.addEventListener('click', () => {
@@ -828,7 +795,7 @@ async function boot(){
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
-  camera.position.set(0, 0.2, 9.2);
+  camera.position.set(0, 0, 11.5);
 
   // M outline from the brand mark (64 grid, centered)
   const P = [[14,50],[14,14],[21,14],[32,29],[43,14],[50,14],[50,50],[43,50],[43,27],[32,42],[21,27],[21,50]];
@@ -848,7 +815,9 @@ async function boot(){
   scene.add(group);
   // floor ring, the hero's resting ring
   const floor = new THREE.Mesh(new THREE.RingGeometry(1.9, 2.0, 96), new THREE.MeshBasicMaterial({ color: 0x6DA227, transparent: true, opacity: 0.55, side: THREE.DoubleSide }));
-  floor.rotation.x = -Math.PI / 2; floor.position.y = -2.55; scene.add(floor);
+  floor.rotation.x = -Math.PI / 2; floor.position.y = -3.05; scene.add(floor);
+  group.scale.setScalar(0.72);   // small enough to tumble a full 360 in every direction without leaving the frame
+  group.rotation.set(0.12, -0.5, 0);
 
   scene.add(new THREE.HemisphereLight(0xffffff, 0xC9CEC4, 1.6));
   const key = new THREE.DirectionalLight(0xffffff, 2.6); key.position.set(4, 6, 6); scene.add(key);
@@ -857,24 +826,30 @@ async function boot(){
   function size(){ const w = viewer.clientWidth, h = viewer.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); }
   size(); new ResizeObserver(size).observe(viewer);
 
-  let rotY = -0.5, rotX = 0.08, vel = 0, dragging = false, lastX = 0, lastY = 0, total = 0, won = section.classList.contains('won'), visible = true, raf = null, lastT = 0, lastLabel = '';
+  // Trackball: drag turns the object around the screen's axes, so it tumbles freely in every direction
+  const AX = new THREE.Vector3(1, 0, 0), AY = new THREE.Vector3(0, 1, 0), q = new THREE.Quaternion();
+  let vx = 0, vy = 0, dragging = false, lastX = 0, lastY = 0, total = 0, won = section.classList.contains('won'), visible = true, raf = null, lastT = 0, lastLabel = '';
   const AUTO = 0.0016;
+  function turn(dx, dy){
+    if (dx){ q.setFromAxisAngle(AY, dx); group.quaternion.premultiply(q); }
+    if (dy){ q.setFromAxisAngle(AX, dy); group.quaternion.premultiply(q); }
+    if (!won) total += Math.hypot(dx, dy);
+  }
   function frame(t){
     const dt = Math.min(50, t - (lastT || t)); lastT = t;
     if (!dragging){
-      vel *= Math.pow(0.92, dt / 16.667);
-      const auto = RM.matches ? 0 : AUTO * dt / 16.667;
-      rotY += vel + auto;
-      if (!won) total += Math.abs(vel);
+      const decay = Math.pow(0.93, dt / 16.667);
+      vx *= decay; vy *= decay;
+      turn(vx, vy);
+      if (!RM.matches) { q.setFromAxisAngle(AY, AUTO * dt / 16.667); group.quaternion.premultiply(q); }
     }
-    group.rotation.set(rotX, rotY, 0);
     floor.material.opacity = 0.45 + 0.1 * Math.sin(t / 1600);
     renderer.render(scene, camera);
     if (!won){
       const frac = Math.min(1, total / (Math.PI * 2));
       meter.style.setProperty('--turn', frac.toFixed(3));
       const txt = Math.round(frac * 360) + '°';
-      if (txt !== lastLabel && t % 2 < 1 || frac === 1){ lastLabel = txt; label.textContent = txt; }
+      if (txt !== lastLabel){ lastLabel = txt; label.textContent = txt; }
       if (frac >= 1){ won = true; win(); }
     }
     raf = (visible && !document.hidden) ? requestAnimationFrame(frame) : null;
@@ -883,19 +858,22 @@ async function boot(){
   new IntersectionObserver(es => { visible = es[0].isIntersecting; go(); }).observe(viewer);
   document.addEventListener('visibilitychange', go);
 
-  viewer.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; lastY = e.clientY; vel = 0; viewer.setPointerCapture(e.pointerId); });
+  viewer.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; lastY = e.clientY; vx = vy = 0; viewer.setPointerCapture(e.pointerId); });
   viewer.addEventListener('pointermove', e => {
     if (!dragging) return;
-    const dx = (e.clientX - lastX) / viewer.clientWidth * 4.2, dy = (e.clientY - lastY) / viewer.clientHeight * 2;
+    const size = Math.min(viewer.clientWidth, viewer.clientHeight);
+    const dx = (e.clientX - lastX) / size * Math.PI * 1.4, dy = (e.clientY - lastY) / size * Math.PI * 1.4;
     lastX = e.clientX; lastY = e.clientY;
-    rotY += dx; vel = dx; rotX = Math.max(-0.5, Math.min(0.5, rotX + dy));
-    if (!won) total += Math.abs(dx);
+    turn(dx, dy); vx = dx; vy = dy;
   });
   const up = () => { dragging = false; };
   viewer.addEventListener('pointerup', up); viewer.addEventListener('pointercancel', up);
-  // keyboard: arrows turn it
+  // keyboard: arrow keys turn it in all four directions
   viewer.tabIndex = 0;
-  viewer.addEventListener('keydown', e => { if (e.key === 'ArrowLeft' || e.key === 'ArrowRight'){ e.preventDefault(); const d = e.key === 'ArrowRight' ? 0.35 : -0.35; vel = d * 0.25; if (!won) total += Math.abs(d); rotY += d; } });
+  viewer.addEventListener('keydown', e => {
+    const k = { ArrowLeft: [-0.35, 0], ArrowRight: [0.35, 0], ArrowUp: [0, -0.35], ArrowDown: [0, 0.35] }[e.key];
+    if (!k) return; e.preventDefault(); turn(k[0], k[1]); vx = k[0] * 0.2; vy = k[1] * 0.2;
+  });
   go();
 }
 </script>
