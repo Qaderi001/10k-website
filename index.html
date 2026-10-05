@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Magie Studio · 3D-Websites mit Tiefe</title>
-<meta name="description" content="Magie Studio baut 3D-Websites für Unternehmen: ein Film, der beim Scrollen spielt, Ladezeit unter einer Sekunde, Festpreis und ein fester Ansprechpartner.">
+<meta name="description" content="Magie Studio baut 3D-Websites für Unternehmen mit Produkten und Dienstleistungen: ein Film, der beim Scrollen spielt, Ladezeit unter einer Sekunde, Festpreis und ein fester Ansprechpartner.">
 <meta name="theme-color" content="#F2F3EE">
 <!-- DEPLOY STEP: patch og:url and og:image with the live absolute URL before zipping -->
 <meta property="og:type" content="website">
@@ -193,19 +193,21 @@ main:focus{outline:none}
 .card .img{aspect-ratio:4/3;position:relative;overflow:hidden}
 .demo{background:radial-gradient(ellipse 80% 70% at 50% 60%,#ffffff 0%,#e9ece5 62%,#dde1d8 100%);border-bottom:1px solid rgba(17,20,17,.06)}
 .demo-hint{position:absolute;left:14px;bottom:12px;font-size:11px;color:var(--text-secondary);opacity:.8;letter-spacing:.06em;pointer-events:none}
+.demo-3d{background:linear-gradient(160deg,#FAF0EC 0%,#EFD6CD 100%)}
+.demo-3d .demo-hint{color:#7A4B42}
+.nova{position:absolute;left:16px;top:14px;display:flex;flex-direction:column;font:400 20px/1 Georgia,"Times New Roman",serif;letter-spacing:.32em;color:#5E3A33;pointer-events:none}
+.nova small{margin-top:5px;font:500 9px var(--f-mono);letter-spacing:.24em;text-transform:uppercase;opacity:.7}
 /* demo 1: laptop with the mini scroll film */
 .laptop{position:absolute;left:50%;top:46%;width:78%;transform:translate(-50%,-50%) perspective(900px) rotateX(6deg);transition:transform .8s var(--ease-out)}
 .card:hover .laptop{transform:translate(-50%,-52%) perspective(900px) rotateX(2deg)}
 .laptop .screen{position:relative;aspect-ratio:16/10;border-radius:10px 10px 4px 4px;background:#0E110F;border:6px solid #111411;border-bottom-width:8px;overflow:hidden;box-shadow:0 18px 40px -18px rgba(17,20,17,.55)}
-.laptop .still,.laptop video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.laptop .still{background:url('assets/hero-poster.jpg') center/cover}
-.laptop video{opacity:0;transition:opacity .6s var(--ease-out)}
-.laptop.live video{opacity:1}
-.mini-nav{position:absolute;left:6%;right:6%;top:6%;height:9%;display:flex;align-items:center;gap:5%;padding:0 4%;border-radius:4px;background:rgba(242,243,238,.82)}
-.mini-nav i{width:7%;height:46%;border-radius:2px;background:var(--accent)}
-.mini-nav span{flex:none;width:9%;height:16%;border-radius:2px;background:#9aa197}
-.mini-nav b{margin-left:auto;width:16%;height:48%;border-radius:3px;background:var(--accent)}
-.mini-head{position:absolute;left:0;right:0;top:34%;text-align:center;font:700 clamp(12px,1.7vw,19px)/1.05 var(--f-display);letter-spacing:-.02em;color:var(--ink);text-shadow:0 1px 8px rgba(242,243,238,.9)}
+.hotel{background:#EDB98C}
+.hotel .scene{position:absolute;inset:0;width:100%;height:100%}
+.hotel .ly{transform:translateY(var(--y,0px));will-change:transform}
+.h-nav{position:absolute;left:5%;right:5%;top:6%;display:flex;align-items:baseline;gap:6%;font:600 clamp(7px,.8vw,10px) Georgia,"Times New Roman",serif;color:#22394A;letter-spacing:.04em}
+.h-nav b{font-size:1.35em;font-weight:700;letter-spacing:.08em;margin-right:auto}
+.h-nav i{font-style:normal;padding:.35em .8em;border:1px solid rgba(34,57,74,.7);border-radius:999px}
+.h-head{position:absolute;left:7%;bottom:12%;margin:0;font:400 clamp(14px,1.9vw,23px)/1.02 Georgia,"Times New Roman",serif;color:#FFF8EE;text-shadow:0 2px 12px rgba(31,52,66,.5)}
 .laptop .base{position:relative;height:9px;margin:0 -9%;border-radius:0 0 12px 12px;background:linear-gradient(#cfd3cb,#9da398);box-shadow:0 10px 20px -10px rgba(17,20,17,.5)}
 .laptop .base::after{content:"";position:absolute;left:50%;top:0;width:16%;height:4px;margin-left:-8%;border-radius:0 0 6px 6px;background:#8b9187}
 /* demo 2: live 3D product */
@@ -222,14 +224,13 @@ main:focus{outline:none}
 .o-img{flex:none;width:42%;aspect-ratio:4/3;display:grid;place-items:center;background:#ffffff;border:2px outset #ffffff;color:#888;font-size:12px}
 .o-row ul{margin:0;padding-left:16px;color:#0000ee;font-size:14px;line-height:1.6}
 .o-count{position:absolute;left:12px;bottom:12px;margin:0;font:11px Arial,sans-serif;background:#000;color:#0f0;padding:2px 6px}
-.ba-new{background:var(--canvas) url('assets/hero-ending.jpg') 40% 85%/cover;clip-path:inset(0 0 0 var(--pos));padding:0}
-.ba-new::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(242,243,238,0) 30%,rgba(242,243,238,.82) 75%)}
-.n-nav{z-index:1;position:absolute;left:5%;right:5%;top:6%;height:9%;display:flex;align-items:center;gap:4%;padding:0 4%;border-radius:6px;background:#ffffff;border:1px solid rgba(17,20,17,.08)}
-.n-nav i{width:6%;height:44%;border-radius:2px;background:var(--accent)}
-.n-nav span{width:9%;height:14%;border-radius:2px;background:#b7bdb3}
-.n-nav b{margin-left:auto;width:18%;height:50%;border-radius:4px;background:var(--accent)}
-.n-head{position:absolute;right:7%;top:28%;text-align:right;margin:0;font:700 clamp(15px,1.9vw,22px)/1.05 var(--f-display);letter-spacing:-.02em;color:var(--ink)}
-.n-btn{position:absolute;right:7%;top:60%;padding:5px 10px;border-radius:6px;background:var(--accent);color:#0B0E0B;font:600 11px var(--f-body)}
+.ba-new{background:#2B211B;clip-path:inset(0 0 0 var(--pos));padding:0}
+.n-nav{position:absolute;left:5%;right:5%;top:7%;display:flex;align-items:baseline;gap:6%;font:500 clamp(8px,.8vw,10px) var(--f-body);color:#E9DCC9}
+.n-nav b{margin-right:auto;font:700 1.25em Georgia,"Times New Roman",serif;letter-spacing:.24em}
+.n-nav i{font-style:normal;color:#C8915A}
+.n-head{position:absolute;right:7%;top:27%;margin:0;text-align:right;font:400 clamp(17px,2.1vw,25px)/1.02 Georgia,"Times New Roman",serif;color:#F3E9DA}
+.n-btn{position:absolute;right:7%;top:58%;padding:5px 10px;border-radius:2px;background:#C8915A;color:#2B211B;font:600 10px var(--f-body);letter-spacing:.04em}
+.n-wood{position:absolute;right:0;bottom:0;width:62%;height:22%;background:repeating-linear-gradient(176deg,#6B4A33 0 3px,#7A5539 3px 7px,#5E412D 7px 9px,#835C3E 9px 14px);opacity:.9}
 .ba-handle{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;margin-left:-1px;background:var(--accent);box-shadow:0 0 14px rgba(109,162,39,.6);pointer-events:none}
 .ba-handle span{position:absolute;top:50%;left:50%;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:var(--accent);box-shadow:0 4px 14px rgba(17,20,17,.3)}
 .ba-handle span::before,.ba-handle span::after{content:"";position:absolute;top:50%;width:0;height:0;margin-top:-5px;border:5px solid transparent}
@@ -242,7 +243,7 @@ main:focus{outline:none}
 .card .body{padding:24px 24px 28px}
 .card .num{color:var(--accent-ink)}
 .card h3{font-size:22px;margin:10px 0 10px;letter-spacing:-.01em}
-.card p{color:var(--text-secondary)}
+.card .body p{color:var(--text-secondary)}
 @media (max-width:960px){.services .top{grid-template-columns:1fr}.cards{grid-template-columns:1fr;max-width:560px}}
 
 /* try it (3D) */
@@ -450,31 +451,44 @@ body.pinned .thread i{transform:scaleY(1)}
       <div class="top rv">
         <div>
           <p class="eyebrow mono part"><span>02</span><i>Leistungen</i></p>
-          <h2 class="h2 part" id="leistungen-h">Drei Wege zu einem Auftritt, an den man sich erinnert.</h2>
+          <h2 class="h2 part" id="leistungen-h">Jede Branche. Ein eigener Auftritt.</h2>
         </div>
-        <p class="lede part">Jede Seite wird für Ihr Unternehmen gestaltet und von Hand gebaut. Ohne Baukasten, ohne Plugins, ohne monatliche Überraschungen.</p>
+        <p class="lede part">Ob Sie Produkte verkaufen oder Dienstleistungen anbieten: Jede Seite bekommt den Stil Ihrer Branche und wird von Hand gebaut. Ohne Baukasten, ohne Plugins, ohne monatliche Überraschungen.</p>
       </div>
       <div class="cards rv">
         <article class="card part">
           <div class="img demo demo-film" aria-hidden="true">
-            <div class="laptop"><div class="screen"><div class="still"></div><video muted playsinline preload="none" tabindex="-1"></video><div class="mini-nav"><i></i><span></span><span></span><span></span><b></b></div><p class="mini-head">Websites<br>mit Tiefe.</p></div><div class="base"></div></div>
-            <span class="demo-hint mono">Scrollen oder darüberfahren</span>
+            <div class="laptop"><div class="screen hotel">
+              <svg class="scene" viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+                <defs><linearGradient id="hsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7E6CF"/><stop offset=".7" stop-color="#EDB98C"/></linearGradient>
+                <linearGradient id="hlake" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3F6178"/><stop offset="1" stop-color="#22394A"/></linearGradient></defs>
+                <rect width="320" height="200" fill="url(#hsky)"/>
+                <g class="ly" data-d="34"><circle cx="214" cy="78" r="17" fill="#F4A259"/><circle cx="214" cy="78" r="28" fill="#F4A259" opacity=".18"/></g>
+                <g class="ly" data-d="8"><path d="M0 118 L48 82 L86 106 L132 70 L176 104 L222 76 L268 100 L320 84 L320 140 L0 140Z" fill="#8193A2"/></g>
+                <g class="ly" data-d="16"><path d="M0 128 L40 108 L92 124 L150 100 L206 122 L262 106 L320 120 L320 150 L0 150Z" fill="#5B7083"/></g>
+                <g class="ly" data-d="24"><rect y="132" width="320" height="80" fill="url(#hlake)"/><g fill="#F7E6CF" opacity=".35"><rect x="190" y="142" width="48" height="1.6" rx=".8"/><rect x="200" y="150" width="30" height="1.6" rx=".8"/><rect x="60" y="160" width="40" height="1.6" rx=".8"/><rect x="206" y="160" width="18" height="1.6" rx=".8"/></g></g>
+                <g class="ly" data-d="44"><path d="M0 200 L0 150 L14 150 L22 118 L30 150 L38 150 L46 112 L56 150 L70 150 L70 200Z M248 200 L256 150 L264 122 L272 150 L282 150 L292 108 L302 150 L320 150 L320 200Z" fill="#1F3442"/></g>
+              </svg>
+              <div class="h-nav"><b>Seeblick</b><span>Zimmer</span><span>Lage</span><i>Anfragen</i></div>
+              <p class="h-head">Ankommen<br>am See.</p>
+            </div><div class="base"></div></div>
+            <span class="demo-hint mono light">Scrollen oder darüberfahren</span>
           </div>
-          <div class="body"><span class="num mono">01</span><h3>3D-Startseite mit Film</h3><p>Ihr Produkt, Ihr Raum oder Ihre Idee als Film, der beim Scrollen spielt. Vorwärts und rückwärts, so schnell wie Ihr Besucher.</p></div>
+          <div class="body"><span class="num mono">01 · Beispiel: Hotel</span><h3>Startseite mit Tiefe</h3><p>Ihre Räume, Ihre Arbeit oder Ihr Produkt als Szene, die sich beim Scrollen bewegt. Als Film oder in Ebenen, wie hier für ein Hotel am See.</p></div>
         </article>
         <article class="card part">
-          <div class="img demo demo-3d" id="demo3d" aria-hidden="true"><span class="demo-hint mono">Ziehen zum Drehen</span></div>
-          <div class="body"><span class="num mono">02</span><h3>Interaktive 3D-Objekte</h3><p>Kunden drehen Ihr Produkt mit der Maus oder dem Finger. Wie im Laden, nur online und rund um die Uhr.</p></div>
+          <div class="img demo demo-3d" id="demo3d" aria-hidden="true"><span class="nova">NOVA<small>Skincare</small></span><span class="demo-hint mono">Ziehen zum Drehen</span></div>
+          <div class="body"><span class="num mono">02 · Beispiel: Kosmetik</span><h3>Interaktive 3D-Modelle</h3><p>Kunden drehen Ihr Produkt, Ihr Bauprojekt oder Ihr Werkstück mit Maus oder Finger. Wie hier bei einer Kosmetikmarke, rund um die Uhr.</p></div>
         </article>
         <article class="card part">
           <div class="img demo demo-ba" id="demo-ba" style="--pos:50%">
-            <div class="ba-old" aria-hidden="true"><div class="o-bar">www.ihre-firma.de/index_neu2.html</div><p class="o-title">Herzlich Willkommen auf unserer Homepage!!</p><div class="o-row"><div class="o-img">[Bild]</div><ul><li><u>Startseite</u></li><li><u>Über uns</u></li><li><u>Leistungen</u></li><li><u>Kontakt</u></li></ul></div><p class="o-count">Sie sind Besucher Nr. 004213</p></div>
-            <div class="ba-new" aria-hidden="true"><div class="n-nav"><i></i><span></span><span></span><b></b></div><p class="n-head">Ihr Auftritt.<br>In 3D.</p><span class="n-btn">Erstgespräch</span></div>
+            <div class="ba-old" aria-hidden="true"><div class="o-bar">www.tischlerei-brandt.de/index_neu2.html</div><p class="o-title">Herzlich Willkommen bei der Tischlerei Brandt!!</p><div class="o-row"><div class="o-img">[Bild]</div><ul><li><u>Startseite</u></li><li><u>Über uns</u></li><li><u>Leistungen</u></li><li><u>Kontakt</u></li></ul></div><p class="o-count">Sie sind Besucher Nr. 004213</p></div>
+            <div class="ba-new" aria-hidden="true"><div class="n-nav"><b>BRANDT</b><span>Möbel</span><span>Küchen</span><i>Projekt anfragen</i></div><p class="n-head">Holz,<br>das bleibt.</p><span class="n-btn">Projekt anfragen</span><div class="n-wood"></div></div>
             <div class="ba-handle" aria-hidden="true"><span></span></div>
             <span class="ba-tag l mono" aria-hidden="true">Vorher</span><span class="ba-tag r mono" aria-hidden="true">Nachher</span>
             <input class="sr ba-range" type="range" min="0" max="100" value="50" aria-label="Vorher und Nachher vergleichen">
           </div>
-          <div class="body"><span class="num mono">03</span><h3>Relaunch mit Tiefe</h3><p>Ihre alte Seite, neu gebaut. Klare Texte, schnelle Ladezeit, gut auf dem Handy und gut für Google.</p></div>
+          <div class="body"><span class="num mono">03 · Beispiel: Tischlerei</span><h3>Relaunch für Ihre Branche</h3><p>Ihre alte Seite, neu gebaut im Stil Ihres Handwerks. Klare Texte, schnelle Ladezeit, gut auf dem Handy und gut für Google.</p></div>
         </article>
       </div>
     </div>
@@ -489,7 +503,7 @@ body.pinned .thread i{transform:scaleY(1)}
       <div class="rv">
         <p class="eyebrow mono part"><span>03</span><i>Ausprobieren</i></p>
         <h2 class="h2 part" id="probieren-h">Drehen Sie es einmal ganz herum.</h2>
-        <p class="lede part">So fühlt sich Ihr Produkt auf Ihrer neuen Website an. Kein Video, kein Bild: ein echtes 3D-Objekt, direkt im Browser.</p>
+        <p class="lede part">So fühlt sich Ihr Angebot auf Ihrer neuen Website an, ob Produkt, Raum oder Werkstück. Kein Video, kein Bild: ein echtes 3D-Objekt, direkt im Browser.</p>
         <div class="part">
           <div class="meter" aria-hidden="true"><i></i></div>
           <p class="meter-label"><span>Einmal herum</span><span class="mono" id="turn-label" aria-live="polite">0°</span></p>
@@ -498,7 +512,7 @@ body.pinned .thread i{transform:scaleY(1)}
           <ul>
             <li>Lädt mit, ohne die Seite zu bremsen</li>
             <li>Funktioniert mit Maus und Finger</li>
-            <li>Ihr Produkt, Ihr Logo, Ihre Farben</li>
+            <li>Ihr Logo, Ihr Angebot, Ihre Farben</li>
           </ul>
           <p class="won-line">Genau das erleben Ihre Kunden.</p>
         </div>
@@ -533,6 +547,7 @@ body.pinned .thread i{transform:scaleY(1)}
       </div>
       <div class="rv">
         <div class="qa part"><button aria-expanded="false" aria-controls="a1" id="q1">Ist 3D nicht langsam?<span class="pm" aria-hidden="true"></span></button><div class="a" id="a1" role="region" aria-labelledby="q1"><div><p>Nein. Die Seite selbst ist in unter einer Sekunde da, weil sie aus einfachen Dateien besteht. Der Film lädt danach im Hintergrund, und Ihre Besucher können sofort lesen und klicken.</p></div></div></div>
+        <div class="qa part"><button aria-expanded="false" aria-controls="a7" id="q7">Ich verkaufe kein Produkt, sondern eine Dienstleistung. Passt das?<span class="pm" aria-hidden="true"></span></button><div class="a" id="a7" role="region" aria-labelledby="q7"><div><p>Ja. Ob Praxis, Kanzlei, Handwerk, Hotel oder Beratung: Wir zeigen Ihre Räume, Ihre Arbeit und Ihre Ergebnisse so, dass Besucher sofort verstehen, was Sie anbieten. 3D und Film setzen wir dort ein, wo sie Ihr Angebot greifbar machen.</p></div></div></div>
         <div class="qa part"><button aria-expanded="false" aria-controls="a2" id="q2">Wie sieht das auf dem Handy aus?<span class="pm" aria-hidden="true"></span></button><div class="a" id="a2" role="region" aria-labelledby="q2"><div><p>Genauso wie am Computer: Der Film läuft beim Scrollen mit. Für das Handy bekommt er einen eigenen, schmaleren Schnitt, der schnell lädt und das Datenvolumen Ihrer Kunden schont.</p></div></div></div>
         <div class="qa part"><button aria-expanded="false" aria-controls="a3" id="q3">Was kostet eine Website bei Ihnen?<span class="pm" aria-hidden="true"></span></button><div class="a" id="a3" role="region" aria-labelledby="q3"><div><p>Das hängt davon ab, was Ihre Seite können soll. Nach dem Erstgespräch bekommen Sie einen Festpreis, schriftlich. Was dort steht, zahlen Sie. Nicht mehr.</p></div></div></div>
         <div class="qa part"><button aria-expanded="false" aria-controls="a4" id="q4">Wie lange dauert es?<span class="pm" aria-hidden="true"></span></button><div class="a" id="a4" role="region" aria-labelledby="q4"><div><p>Meist zwei bis vier Wochen vom Konzept bis zum Start. Den Termin legen wir am Anfang fest.</p></div></div></div>
@@ -554,7 +569,7 @@ body.pinned .thread i{transform:scaleY(1)}
         <div><label for="f-name">Ihr Name</label><input id="f-name" name="name" autocomplete="name" placeholder="Maria Beispiel" required></div>
         <div><label for="f-firma">Unternehmen</label><input id="f-firma" name="firma" autocomplete="organization" placeholder="Beispiel GmbH"></div>
         <div class="full"><label for="f-mail">E-Mail</label><input id="f-mail" name="email" type="email" autocomplete="email" placeholder="maria@beispiel.de" required></div>
-        <div class="full"><label for="f-msg">Worum geht es?</label><textarea id="f-msg" name="nachricht" placeholder="Zum Beispiel: Wir sind ein Möbelhaus und möchten unsere Stücke in 3D zeigen."></textarea></div>
+        <div class="full"><label for="f-msg">Worum geht es?</label><textarea id="f-msg" name="nachricht" placeholder="Zum Beispiel: Wir sind eine Physiopraxis und möchten zeigen, wie eine Behandlung bei uns abläuft."></textarea></div>
         <div class="formrow"><small>Ihr E-Mail-Programm öffnet sich mit Ihrer Nachricht. Mehr dazu im <a href="datenschutz.html">Datenschutz</a>.</small><button class="btn" type="submit">Erstgespräch anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
         <p class="sent" role="status">Ihr E-Mail-Programm öffnet sich gleich. Ein Klick auf Senden, und wir melden uns innerhalb eines Werktags.</p>
       </form>
@@ -695,7 +710,6 @@ async function loadHeroBlob(){
     (p && p.then ? p : Promise.resolve()).then(() => video.pause()).catch(() => {}).finally(() => {
       requestSeek(heroProgress() * video.duration);
       stage.classList.add('video-ready');
-      window.dispatchEvent(new CustomEvent('magie:herovideo', { detail: video.src }));
     });
   }, { once: true });
 }
@@ -779,35 +793,25 @@ const cio = new IntersectionObserver(es => es.forEach(e => {
 counters.forEach(c => cio.observe(c));
 
 
-/* ---------- Leistungen demo 1: the hero film in a laptop, scrubbed by scroll or hover ---------- */
+/* ---------- Leistungen demo 1: a hotel homepage whose scene layers move with depth on scroll or hover ---------- */
 {
-  const card = $('.demo-film'), lap = $('.laptop'), mini = $('.laptop video');
-  let hoverP = null, busy = false, pend = null, raf = null, vis = false, last = -1;
-  const seek = t => { if (!mini.duration) return; if (busy){ pend = t; return; } busy = true; mini.currentTime = t; };
-  mini.addEventListener('seeked', () => { busy = false; if (pend !== null){ const t = pend; pend = null; seek(t); } });
-  mini.addEventListener('error', () => { busy = false; pend = null; lap.classList.remove('live'); });
+  const card = $('.demo-film'), layers = $$('.hotel .ly').map(el => ({ el, d: +el.dataset.d, v: null }));
+  let hoverP = null, raf = null, vis = false;
   const drive = () => {
     raf = null;
-    if (!mini.duration) return;
     const r = card.getBoundingClientRect();
     const p = hoverP !== null ? hoverP : clamp((innerHeight - r.top) / (innerHeight + r.height), 0, 1);
-    if (Math.abs(p - last) > 0.002){ last = p; seek(p * (mini.duration - 0.05)); }
+    for (const l of layers){
+      const y = ((0.5 - p) * l.d).toFixed(1);   // nearer layers travel further: depth through parallax
+      if (y !== l.v){ l.v = y; l.el.style.setProperty('--y', y + 'px'); }
+    }
   };
-  const queue = () => { if (raf === null && vis) raf = requestAnimationFrame(drive); };
+  const queue = () => { if (raf === null && vis && !pinned) raf = requestAnimationFrame(drive); };
   new IntersectionObserver(es => { vis = es[0].isIntersecting; queue(); }).observe(card);
   addEventListener('scroll', queue, { passive: true });
   card.addEventListener('pointermove', e => { if (e.pointerType !== 'mouse') return; const r = card.getBoundingClientRect(); hoverP = clamp((e.clientX - r.left) / r.width, 0, 1); queue(); });
   card.addEventListener('pointerleave', () => { hoverP = null; queue(); });
-  addEventListener('magie:herovideo', e => {
-    if (mini.src) return;
-    mini.src = e.detail; mini.load();
-    mini.addEventListener('canplay', () => {
-      const pl = mini.play();
-      (pl && pl.then ? pl : Promise.resolve()).then(() => mini.pause()).catch(() => {}).finally(() => { lap.classList.add('live'); last = -1; queue(); });
-    }, { once: true });
-  });
 }
-
 /* ---------- Leistungen demo 3: before / after slider ---------- */
 {
   const ba = $('#demo-ba'), range = $('.ba-range');
@@ -1002,21 +1006,21 @@ async function bootDemo(){
   const camera = new THREE.PerspectiveCamera(30, 4 / 3, 0.1, 100);
   camera.position.set(0, 0.5, 11);
   camera.lookAt(0, 0.15, 0);
-  // a product silhouette: a soft white bottle with a black cap and a leaf-green band
+  // example client: a cosmetics bottle in blush with a gold cap and band
   const prof = [[0,-1.6],[0.95,-1.6],[1.12,-1.45],[1.18,-1.1],[1.18,0.7],[1.05,1.05],[0.62,1.32],[0.42,1.42],[0.42,1.6],[0,1.6]].map(([x,y]) => new THREE.Vector2(x, y));
   const product = new THREE.Group();
-  product.add(new THREE.Mesh(new THREE.LatheGeometry(prof, 72), new THREE.MeshPhysicalMaterial({ color: 0xF4F5F0, roughness: 0.38, clearcoat: 0.6, clearcoatRoughness: 0.3 })));
-  const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.46, 0.46, 0.7, 48), new THREE.MeshStandardMaterial({ color: 0x111411, roughness: 0.35, metalness: 0.2 }));
+  product.add(new THREE.Mesh(new THREE.LatheGeometry(prof, 72), new THREE.MeshPhysicalMaterial({ color: 0xF2D3CA, roughness: 0.3, clearcoat: 0.8, clearcoatRoughness: 0.2 })));
+  const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.46, 0.46, 0.7, 48), new THREE.MeshStandardMaterial({ color: 0xC9A15B, roughness: 0.28, metalness: 0.85 }));
   cap.position.y = 1.95; product.add(cap);
-  const band = new THREE.Mesh(new THREE.TorusGeometry(1.2, 0.05, 16, 96), new THREE.MeshStandardMaterial({ color: 0xA6E05C, emissive: 0x6DA227, emissiveIntensity: 1.3 }));
+  const band = new THREE.Mesh(new THREE.TorusGeometry(1.2, 0.05, 16, 96), new THREE.MeshStandardMaterial({ color: 0xD9B678, roughness: 0.25, metalness: 0.9 }));
   band.rotation.x = Math.PI / 2; band.position.y = -0.2; product.add(band);
   product.scale.setScalar(0.8); product.rotation.x = 0.12;
   scene.add(product);
-  const ring = new THREE.Mesh(new THREE.RingGeometry(1.35, 1.42, 96), new THREE.MeshBasicMaterial({ color: 0x6DA227, transparent: true, opacity: 0.5, side: THREE.DoubleSide }));
+  const ring = new THREE.Mesh(new THREE.RingGeometry(1.35, 1.42, 96), new THREE.MeshBasicMaterial({ color: 0xB98F5A, transparent: true, opacity: 0.45, side: THREE.DoubleSide }));
   ring.rotation.x = -Math.PI / 2; ring.position.y = -1.45; scene.add(ring);
   scene.add(new THREE.HemisphereLight(0xffffff, 0xC9CEC4, 1.5));
   const key = new THREE.DirectionalLight(0xffffff, 2.4); key.position.set(4, 5, 6); scene.add(key);
-  const rim = new THREE.DirectionalLight(0xB8F07A, 2.4); rim.position.set(-6, 2, -4); scene.add(rim);
+  const rim = new THREE.DirectionalLight(0xFFD9C2, 2.4); rim.position.set(-6, 2, -4); scene.add(rim);
   const size = () => { const w = demo.clientWidth, h = demo.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); };
   size(); new ResizeObserver(size).observe(demo);
   let vel = 0, dragging = false, lastX = 0, visible = false, raf = null, lastT = 0;
