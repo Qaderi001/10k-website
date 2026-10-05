@@ -123,7 +123,10 @@ p{margin:0}
 .fx-drift .sub{opacity:clamp(0,(var(--k,0) - .45)*3,1)}
 .fx-blur .sub,.fx-depth .sub{opacity:clamp(0,(var(--k,0) - .5)*3,1)}
 .band-1 .copy{transform:translateY(-6vh)}
-.band-4 .copy{transform:translateY(-14vh)}
+/* the ink cloud fills the middle and lower frame, so later captions sit in the clear water above it */
+.band-2,.band-3,.band-4{align-items:flex-start;padding-top:max(108px,13vh)}
+.band-2,.band-3{--sa:.8!important}
+.band-4{--sa:.82!important}
 
 /* static hero (5 gates) */
 .static-hero{display:none}
@@ -400,8 +403,8 @@ body.pinned .thread i{transform:scaleY(1)}
     </div>
     <div class="band band-2 dark-ink fx-blur" data-a="0.23" data-b="0.46" data-ramp="0.036" style="--sa:.68">
       <div class="copy">
-        <h2><span class="sr">Schicht für Schicht gebaut.</span><span class="stack" aria-hidden="true"><span class="soft">Schicht für Schicht gebaut.</span><span class="sharp">Schicht für Schicht gebaut.</span></span></h2>
-        <p class="sub">Kein Baukasten. Kein Template. Jede Ebene für Ihre Marke gemacht.</p>
+        <h2><span class="sr">Aus einer Idee wird ein Auftritt.</span><span class="stack" aria-hidden="true"><span class="soft">Aus einer Idee wird ein Auftritt.</span><span class="sharp">Aus einer Idee wird ein Auftritt.</span></span></h2>
+        <p class="sub">Kein Baukasten. Kein Template. Jede Seite für Ihre Marke gemacht.</p>
       </div>
     </div>
     <div class="band band-3 dark-ink fx-depth" data-a="0.51" data-b="0.72" style="--sa:.7">
@@ -633,7 +636,7 @@ const hero = $('.hero'), stage = $('.stage'), canvas = $('#hero'), ctx2d = canva
 const NARROW = matchMedia('(orientation: portrait) and (max-width: 1024px)').matches;
 const FRAME_DIR = NARROW ? 'assets/hero/m/' : 'assets/hero/d/';
 const POSTER_URL = NARROW ? 'assets/hero-poster-mobile.jpg' : 'assets/hero-poster.jpg';
-const FRAMES = 97, START = 6;   // the first frames of the shot barely move, so the scroll starts a little way in
+const FRAMES = 94, START = 4;   // the first frames of the shot barely move, so the scroll starts a little way in
 const frames = new Array(FRAMES).fill(null);
 const bands = $$('.band').map((el, i) => ({ el, i, a: +el.dataset.a, b: +el.dataset.b, ramp: el.dataset.ramp ? +el.dataset.ramp : 0, op: -1, k: -1, on: null }));
 let target = 0, shown = 0, rafId = null, lastTick = 0, heroOnScreen = true, loadK = 0, loadStart = 0, drawn = -1;
