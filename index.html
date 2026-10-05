@@ -190,10 +190,55 @@ main:focus{outline:none}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .card{position:relative;border-radius:22px;overflow:hidden;background:var(--canvas);border:1px solid rgba(17,20,17,.08);transition:transform .5s var(--ease-out),box-shadow .5s var(--ease-out)}
 .card:hover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(17,20,17,.35)}
-.card .img{aspect-ratio:4/3;background:#d9dcd5 center/cover no-repeat;position:relative;overflow:hidden}
-.card .img img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease-out)}
-.card:hover .img img{transform:scale(1.04)}
-.card .img .ph{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%,rgba(109,162,39,.45),rgba(109,162,39,0) 55%),linear-gradient(180deg,#e9ebe5,#9aa096 70%,#262b27)}
+.card .img{aspect-ratio:4/3;position:relative;overflow:hidden}
+.demo{background:radial-gradient(ellipse 80% 70% at 50% 60%,#ffffff 0%,#e9ece5 62%,#dde1d8 100%);border-bottom:1px solid rgba(17,20,17,.06)}
+.demo-hint{position:absolute;left:14px;bottom:12px;font-size:11px;color:var(--text-secondary);opacity:.8;letter-spacing:.06em;pointer-events:none}
+/* demo 1: laptop with the mini scroll film */
+.laptop{position:absolute;left:50%;top:46%;width:78%;transform:translate(-50%,-50%) perspective(900px) rotateX(6deg);transition:transform .8s var(--ease-out)}
+.card:hover .laptop{transform:translate(-50%,-52%) perspective(900px) rotateX(2deg)}
+.laptop .screen{position:relative;aspect-ratio:16/10;border-radius:10px 10px 4px 4px;background:#0E110F;border:6px solid #111411;border-bottom-width:8px;overflow:hidden;box-shadow:0 18px 40px -18px rgba(17,20,17,.55)}
+.laptop .still,.laptop video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.laptop .still{background:url('assets/hero-poster.jpg') center/cover}
+.laptop video{opacity:0;transition:opacity .6s var(--ease-out)}
+.laptop.live video{opacity:1}
+.mini-nav{position:absolute;left:6%;right:6%;top:6%;height:9%;display:flex;align-items:center;gap:5%;padding:0 4%;border-radius:4px;background:rgba(242,243,238,.82)}
+.mini-nav i{width:7%;height:46%;border-radius:2px;background:var(--accent)}
+.mini-nav span{flex:none;width:9%;height:16%;border-radius:2px;background:#9aa197}
+.mini-nav b{margin-left:auto;width:16%;height:48%;border-radius:3px;background:var(--accent)}
+.mini-head{position:absolute;left:0;right:0;top:34%;text-align:center;font:700 clamp(12px,1.7vw,19px)/1.05 var(--f-display);letter-spacing:-.02em;color:var(--ink);text-shadow:0 1px 8px rgba(242,243,238,.9)}
+.laptop .base{position:relative;height:9px;margin:0 -9%;border-radius:0 0 12px 12px;background:linear-gradient(#cfd3cb,#9da398);box-shadow:0 10px 20px -10px rgba(17,20,17,.5)}
+.laptop .base::after{content:"";position:absolute;left:50%;top:0;width:16%;height:4px;margin-left:-8%;border-radius:0 0 6px 6px;background:#8b9187}
+/* demo 2: live 3D product */
+.demo-3d{cursor:grab;touch-action:pan-y}
+.demo-3d:active{cursor:grabbing}
+.demo-3d canvas{position:absolute;inset:0;width:100%!important;height:100%!important}
+/* demo 3: before / after */
+.demo-ba{cursor:ew-resize;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.ba-old,.ba-new{position:absolute;inset:0;overflow:hidden}
+.ba-old{background:#d4d0c8;font-family:"Times New Roman",Times,serif;color:#000;padding:10px 12px}
+.o-bar{font:11px/1.2 Arial,sans-serif;background:#ffffff;border:2px inset #ffffff;padding:3px 6px;margin-bottom:10px;color:#333;white-space:nowrap;overflow:hidden}
+.o-title{margin:0 0 10px;font-size:clamp(14px,1.5vw,18px);font-weight:700;color:#cc0000;text-decoration:underline}
+.o-row{display:flex;gap:10px}
+.o-img{flex:none;width:42%;aspect-ratio:4/3;display:grid;place-items:center;background:#ffffff;border:2px outset #ffffff;color:#888;font-size:12px}
+.o-row ul{margin:0;padding-left:16px;color:#0000ee;font-size:14px;line-height:1.6}
+.o-count{position:absolute;left:12px;bottom:12px;margin:0;font:11px Arial,sans-serif;background:#000;color:#0f0;padding:2px 6px}
+.ba-new{background:var(--canvas) url('assets/hero-ending.jpg') 40% 85%/cover;clip-path:inset(0 0 0 var(--pos));padding:0}
+.ba-new::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(242,243,238,0) 30%,rgba(242,243,238,.82) 75%)}
+.n-nav{z-index:1;position:absolute;left:5%;right:5%;top:6%;height:9%;display:flex;align-items:center;gap:4%;padding:0 4%;border-radius:6px;background:#ffffff;border:1px solid rgba(17,20,17,.08)}
+.n-nav i{width:6%;height:44%;border-radius:2px;background:var(--accent)}
+.n-nav span{width:9%;height:14%;border-radius:2px;background:#b7bdb3}
+.n-nav b{margin-left:auto;width:18%;height:50%;border-radius:4px;background:var(--accent)}
+.n-head{position:absolute;right:7%;top:28%;text-align:right;margin:0;font:700 clamp(15px,1.9vw,22px)/1.05 var(--f-display);letter-spacing:-.02em;color:var(--ink)}
+.n-btn{position:absolute;right:7%;top:60%;padding:5px 10px;border-radius:6px;background:var(--accent);color:#0B0E0B;font:600 11px var(--f-body)}
+.ba-handle{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;margin-left:-1px;background:var(--accent);box-shadow:0 0 14px rgba(109,162,39,.6);pointer-events:none}
+.ba-handle span{position:absolute;top:50%;left:50%;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:var(--accent);box-shadow:0 4px 14px rgba(17,20,17,.3)}
+.ba-handle span::before,.ba-handle span::after{content:"";position:absolute;top:50%;width:0;height:0;margin-top:-5px;border:5px solid transparent}
+.ba-handle span::before{left:4px;border-right-color:#0B0E0B}
+.ba-handle span::after{right:4px;border-left-color:#0B0E0B}
+.ba-tag{position:absolute;bottom:12px;padding:3px 8px;border-radius:999px;font-size:11px;background:rgba(17,20,17,.75);color:#EEF0EA;pointer-events:none}
+.ba-tag.l{left:12px}.ba-tag.r{right:12px;background:var(--accent);color:#0B0E0B}
+.demo-ba .o-count{bottom:40px}
+.demo-ba:focus-within{outline:2px solid var(--accent);outline-offset:-2px}
 .card .body{padding:24px 24px 28px}
 .card .num{color:var(--accent-ink)}
 .card h3{font-size:22px;margin:10px 0 10px;letter-spacing:-.01em}
@@ -411,15 +456,24 @@ body.pinned .thread i{transform:scaleY(1)}
       </div>
       <div class="cards rv">
         <article class="card part">
-          <div class="img"><div class="ph" aria-hidden="true"></div><img src="assets/service-film.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+          <div class="img demo demo-film" aria-hidden="true">
+            <div class="laptop"><div class="screen"><div class="still"></div><video muted playsinline preload="none" tabindex="-1"></video><div class="mini-nav"><i></i><span></span><span></span><span></span><b></b></div><p class="mini-head">Websites<br>mit Tiefe.</p></div><div class="base"></div></div>
+            <span class="demo-hint mono">Scrollen oder darüberfahren</span>
+          </div>
           <div class="body"><span class="num mono">01</span><h3>3D-Startseite mit Film</h3><p>Ihr Produkt, Ihr Raum oder Ihre Idee als Film, der beim Scrollen spielt. Vorwärts und rückwärts, so schnell wie Ihr Besucher.</p></div>
         </article>
         <article class="card part">
-          <div class="img"><div class="ph" aria-hidden="true"></div><img src="assets/service-objekt.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+          <div class="img demo demo-3d" id="demo3d" aria-hidden="true"><span class="demo-hint mono">Ziehen zum Drehen</span></div>
           <div class="body"><span class="num mono">02</span><h3>Interaktive 3D-Objekte</h3><p>Kunden drehen Ihr Produkt mit der Maus oder dem Finger. Wie im Laden, nur online und rund um die Uhr.</p></div>
         </article>
         <article class="card part">
-          <div class="img"><div class="ph" aria-hidden="true"></div><img src="assets/service-relaunch.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+          <div class="img demo demo-ba" id="demo-ba" style="--pos:50%">
+            <div class="ba-old" aria-hidden="true"><div class="o-bar">www.ihre-firma.de/index_neu2.html</div><p class="o-title">Herzlich Willkommen auf unserer Homepage!!</p><div class="o-row"><div class="o-img">[Bild]</div><ul><li><u>Startseite</u></li><li><u>Über uns</u></li><li><u>Leistungen</u></li><li><u>Kontakt</u></li></ul></div><p class="o-count">Sie sind Besucher Nr. 004213</p></div>
+            <div class="ba-new" aria-hidden="true"><div class="n-nav"><i></i><span></span><span></span><b></b></div><p class="n-head">Ihr Auftritt.<br>In 3D.</p><span class="n-btn">Erstgespräch</span></div>
+            <div class="ba-handle" aria-hidden="true"><span></span></div>
+            <span class="ba-tag l mono" aria-hidden="true">Vorher</span><span class="ba-tag r mono" aria-hidden="true">Nachher</span>
+            <input class="sr ba-range" type="range" min="0" max="100" value="50" aria-label="Vorher und Nachher vergleichen">
+          </div>
           <div class="body"><span class="num mono">03</span><h3>Relaunch mit Tiefe</h3><p>Ihre alte Seite, neu gebaut. Klare Texte, schnelle Ladezeit, gut auf dem Handy und gut für Google.</p></div>
         </article>
       </div>
@@ -641,6 +695,7 @@ async function loadHeroBlob(){
     (p && p.then ? p : Promise.resolve()).then(() => video.pause()).catch(() => {}).finally(() => {
       requestSeek(heroProgress() * video.duration);
       stage.classList.add('video-ready');
+      window.dispatchEvent(new CustomEvent('magie:herovideo', { detail: video.src }));
     });
   }, { once: true });
 }
@@ -724,6 +779,56 @@ const cio = new IntersectionObserver(es => es.forEach(e => {
 counters.forEach(c => cio.observe(c));
 
 
+/* ---------- Leistungen demo 1: the hero film in a laptop, scrubbed by scroll or hover ---------- */
+{
+  const card = $('.demo-film'), lap = $('.laptop'), mini = $('.laptop video');
+  let hoverP = null, busy = false, pend = null, raf = null, vis = false, last = -1;
+  const seek = t => { if (!mini.duration) return; if (busy){ pend = t; return; } busy = true; mini.currentTime = t; };
+  mini.addEventListener('seeked', () => { busy = false; if (pend !== null){ const t = pend; pend = null; seek(t); } });
+  mini.addEventListener('error', () => { busy = false; pend = null; lap.classList.remove('live'); });
+  const drive = () => {
+    raf = null;
+    if (!mini.duration) return;
+    const r = card.getBoundingClientRect();
+    const p = hoverP !== null ? hoverP : clamp((innerHeight - r.top) / (innerHeight + r.height), 0, 1);
+    if (Math.abs(p - last) > 0.002){ last = p; seek(p * (mini.duration - 0.05)); }
+  };
+  const queue = () => { if (raf === null && vis) raf = requestAnimationFrame(drive); };
+  new IntersectionObserver(es => { vis = es[0].isIntersecting; queue(); }).observe(card);
+  addEventListener('scroll', queue, { passive: true });
+  card.addEventListener('pointermove', e => { if (e.pointerType !== 'mouse') return; const r = card.getBoundingClientRect(); hoverP = clamp((e.clientX - r.left) / r.width, 0, 1); queue(); });
+  card.addEventListener('pointerleave', () => { hoverP = null; queue(); });
+  addEventListener('magie:herovideo', e => {
+    if (mini.src) return;
+    mini.src = e.detail; mini.load();
+    mini.addEventListener('canplay', () => {
+      const pl = mini.play();
+      (pl && pl.then ? pl : Promise.resolve()).then(() => mini.pause()).catch(() => {}).finally(() => { lap.classList.add('live'); last = -1; queue(); });
+    }, { once: true });
+  });
+}
+
+/* ---------- Leistungen demo 3: before / after slider ---------- */
+{
+  const ba = $('#demo-ba'), range = $('.ba-range');
+  let pos = 50, down = false, played = false;
+  const set = v => { pos = clamp(v, 0, 100); ba.style.setProperty('--pos', pos.toFixed(1) + '%'); range.value = Math.round(pos); };
+  const fromX = x => { const r = ba.getBoundingClientRect(); set((x - r.left) / r.width * 100); };
+  ba.addEventListener('pointerdown', e => { down = true; ba.setPointerCapture(e.pointerId); fromX(e.clientX); });
+  ba.addEventListener('pointermove', e => { if (down || e.pointerType === 'mouse') fromX(e.clientX); });
+  const up = () => { down = false; };
+  ba.addEventListener('pointerup', up); ba.addEventListener('pointercancel', up);
+  range.addEventListener('input', () => set(+range.value));
+  // one gentle sweep the first time it is seen, so visitors know it moves
+  new IntersectionObserver((es, o) => {
+    if (!es[0].isIntersecting || played) return; played = true; o.disconnect();
+    if (RM.matches || pinned) return;
+    const t0 = performance.now(), dur = 1800;
+    const step = now => { if (down) return; const k = clamp((now - t0) / dur, 0, 1); set(50 + Math.sin(k * Math.PI * 2) * 22 * (1 - k)); if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }, { threshold: 0.6 }).observe(ba);
+}
+
 /* ---------- FAQ ---------- */
 $$('.qa button').forEach(btn => btn.addEventListener('click', () => {
   const qa = btn.parentElement, open = !qa.classList.contains('open');
@@ -784,8 +889,10 @@ window.addEventListener('magie:pin', win);
 const lazy = new IntersectionObserver(es => { if (es[0].isIntersecting && !started){ started = true; lazy.disconnect(); boot().catch(() => {}); } }, { rootMargin: '300px' });
 lazy.observe(viewer);
 
+let threeP = null;
+const loadThree = () => threeP || (threeP = import('./assets/vendor/three.module.min.js'));
 async function boot(){
-  const THREE = await import('./assets/vendor/three.module.min.js');
+  const THREE = await loadThree();
   const canvas = document.createElement('canvas');
   let renderer;
   try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true }); } catch { return; }
@@ -874,6 +981,58 @@ async function boot(){
     const k = { ArrowLeft: [-0.35, 0], ArrowRight: [0.35, 0], ArrowUp: [0, -0.35], ArrowDown: [0, 0.35] }[e.key];
     if (!k) return; e.preventDefault(); turn(k[0], k[1]); vx = k[0] * 0.2; vy = k[1] * 0.2;
   });
+  go();
+}
+
+/* Leistungen demo 2: a small product turning live in 3D */
+const demo = document.getElementById('demo3d');
+let demoStarted = false;
+const demoLazy = new IntersectionObserver(es => { if (es[0].isIntersecting && !demoStarted){ demoStarted = true; demoLazy.disconnect(); bootDemo().catch(() => {}); } }, { rootMargin: '300px' });
+demoLazy.observe(demo);
+async function bootDemo(){
+  const THREE = await loadThree();
+  const canvas = document.createElement('canvas');
+  let renderer;
+  try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true }); } catch { return; }
+  demo.prepend(canvas);
+  renderer.setPixelRatio(Math.min(2, devicePixelRatio));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(30, 4 / 3, 0.1, 100);
+  camera.position.set(0, 0.5, 11);
+  camera.lookAt(0, 0.15, 0);
+  // a product silhouette: a soft white bottle with a black cap and a leaf-green band
+  const prof = [[0,-1.6],[0.95,-1.6],[1.12,-1.45],[1.18,-1.1],[1.18,0.7],[1.05,1.05],[0.62,1.32],[0.42,1.42],[0.42,1.6],[0,1.6]].map(([x,y]) => new THREE.Vector2(x, y));
+  const product = new THREE.Group();
+  product.add(new THREE.Mesh(new THREE.LatheGeometry(prof, 72), new THREE.MeshPhysicalMaterial({ color: 0xF4F5F0, roughness: 0.38, clearcoat: 0.6, clearcoatRoughness: 0.3 })));
+  const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.46, 0.46, 0.7, 48), new THREE.MeshStandardMaterial({ color: 0x111411, roughness: 0.35, metalness: 0.2 }));
+  cap.position.y = 1.95; product.add(cap);
+  const band = new THREE.Mesh(new THREE.TorusGeometry(1.2, 0.05, 16, 96), new THREE.MeshStandardMaterial({ color: 0xA6E05C, emissive: 0x6DA227, emissiveIntensity: 1.3 }));
+  band.rotation.x = Math.PI / 2; band.position.y = -0.2; product.add(band);
+  product.scale.setScalar(0.8); product.rotation.x = 0.12;
+  scene.add(product);
+  const ring = new THREE.Mesh(new THREE.RingGeometry(1.35, 1.42, 96), new THREE.MeshBasicMaterial({ color: 0x6DA227, transparent: true, opacity: 0.5, side: THREE.DoubleSide }));
+  ring.rotation.x = -Math.PI / 2; ring.position.y = -1.45; scene.add(ring);
+  scene.add(new THREE.HemisphereLight(0xffffff, 0xC9CEC4, 1.5));
+  const key = new THREE.DirectionalLight(0xffffff, 2.4); key.position.set(4, 5, 6); scene.add(key);
+  const rim = new THREE.DirectionalLight(0xB8F07A, 2.4); rim.position.set(-6, 2, -4); scene.add(rim);
+  const size = () => { const w = demo.clientWidth, h = demo.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); };
+  size(); new ResizeObserver(size).observe(demo);
+  let vel = 0, dragging = false, lastX = 0, visible = false, raf = null, lastT = 0;
+  const frame = t => {
+    const dt = Math.min(50, t - (lastT || t)); lastT = t;
+    if (!dragging){ vel *= Math.pow(0.93, dt / 16.667); product.rotation.y += vel + (RM.matches ? 0 : 0.006 * dt / 16.667); }
+    renderer.render(scene, camera);
+    raf = (visible && !document.hidden) ? requestAnimationFrame(frame) : null;
+  };
+  const go = () => { if (raf === null && visible && !document.hidden){ lastT = 0; raf = requestAnimationFrame(frame); } };
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; go(); }).observe(demo);
+  document.addEventListener('visibilitychange', go);
+  demo.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; vel = 0; demo.setPointerCapture(e.pointerId); });
+  demo.addEventListener('pointermove', e => { if (!dragging) return; const dx = (e.clientX - lastX) / demo.clientWidth * Math.PI * 1.6; lastX = e.clientX; product.rotation.y += dx; vel = dx; });
+  const up = () => { dragging = false; };
+  demo.addEventListener('pointerup', up); demo.addEventListener('pointercancel', up);
   go();
 }
 </script>
