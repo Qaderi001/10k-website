@@ -75,11 +75,11 @@ p{margin:0}
 @media (pointer:coarse){.btn{min-height:44px}.nav ul a{min-height:44px;display:flex;align-items:center}}
 
 /* ---------- HERO ---------- */
-.hero{position:relative;height:560vh;background:var(--canvas)}
+.hero{position:relative;height:520vh;background:var(--canvas)}
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#cfd2cc center/cover no-repeat}
 .stage .poster{position:absolute;inset:0;background:center/cover no-repeat}
-.stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s var(--ease-out);will-change:transform;transform:translateZ(0)}
-.stage.video-ready video{opacity:1}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .6s var(--ease-out)}
+.stage.video-ready canvas{opacity:1}
 .scrim{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 120% 90% at 50% 45%,rgba(242,243,238,.18) 30%,rgba(242,243,238,.5) 100%)}
 .ring{position:absolute;right:28px;bottom:28px;width:44px;height:44px;color:var(--accent);transition:opacity .6s var(--ease-out)}
 .ring circle.track{stroke:rgba(17,20,17,.15)}
@@ -378,29 +378,29 @@ body.pinned .thread i{transform:scaleY(1)}
 <header class="hero" id="top">
   <div class="stage" aria-label="Einleitung">
     <div class="poster" aria-hidden="true"></div>
-    <video id="hero" preload="none" muted playsinline aria-hidden="true" tabindex="-1"></video>
+    <canvas id="hero" aria-hidden="true"></canvas>
     <div class="scrim" aria-hidden="true"></div>
 
-    <div class="band band-1 dark-ink fx-drift" data-a="0" data-b="0.22" style="--sa:.72">
+    <div class="band band-1 dark-ink fx-drift" data-a="0" data-b="0.18" style="--sa:.72">
       <div class="copy">
         <span class="kicker mono">Magie Studio · 3D-Websites</span>
         <h1 class="split">Websites mit Tiefe.</h1>
         <p class="sub">Für Unternehmen, die nicht aussehen wollen wie alle anderen.</p>
       </div>
     </div>
-    <div class="band band-2 dark-ink fx-blur" data-a="0.27" data-b="0.48" data-ramp="0.036" style="--sa:.68">
+    <div class="band band-2 dark-ink fx-blur" data-a="0.23" data-b="0.46" data-ramp="0.036" style="--sa:.68">
       <div class="copy">
         <h2><span class="sr">Schicht für Schicht gebaut.</span><span class="stack" aria-hidden="true"><span class="soft">Schicht für Schicht gebaut.</span><span class="sharp">Schicht für Schicht gebaut.</span></span></h2>
         <p class="sub">Kein Baukasten. Kein Template. Jede Ebene für Ihre Marke gemacht.</p>
       </div>
     </div>
-    <div class="band band-3 dark-ink fx-depth" data-a="0.53" data-b="0.72" style="--sa:.7">
+    <div class="band band-3 dark-ink fx-depth" data-a="0.51" data-b="0.72" style="--sa:.7">
       <div class="copy">
         <h2><span class="sr">Tiefe, die nichts wiegt.</span><span class="vis" aria-hidden="true">Tiefe, die nichts wiegt.</span></h2>
         <p class="sub">3D, das in unter einer Sekunde lädt. Auch auf dem Handy.</p>
       </div>
     </div>
-    <div class="band band-4 dark-ink fx-settle" data-a="0.78" data-b="1" style="--sa:.72">
+    <div class="band band-4 dark-ink fx-settle" data-a="0.77" data-b="1" style="--sa:.72">
       <div class="copy">
         <h2 class="split">Ihr Auftritt. In&nbsp;3D.</h2>
         <p class="sub">Festpreis. Fester Termin. Ein Ansprechpartner.</p>
@@ -617,15 +617,16 @@ $$('.split').forEach((el, i) => {
   el.append(sr, vis);
 });
 
-/* ---------- hero scrub ---------- */
-const hero = $('.hero'), stage = $('.stage'), video = $('#hero'), ring = $('.ring'), posterLayer = $('.poster');
+/* ---------- hero scrub: a pre-loaded frame sequence drawn to canvas (no video seeking, so no lag) ---------- */
+const hero = $('.hero'), stage = $('.stage'), canvas = $('#hero'), ctx2d = canvas.getContext('2d'), ring = $('.ring'), posterLayer = $('.poster');
 // Phones and portrait tablets get a center-cropped, lighter cut of the same film
 const NARROW = matchMedia('(orientation: portrait) and (max-width: 1024px)').matches;
-const VIDEO_URL = NARROW ? 'assets/hero-scrub-mobile.mp4' : 'assets/hero-scrub.mp4';
+const FRAME_DIR = NARROW ? 'assets/hero/m/' : 'assets/hero/d/';
 const POSTER_URL = NARROW ? 'assets/hero-poster-mobile.jpg' : 'assets/hero-poster.jpg';
-const VIDEO_BYTES = NARROW ? 1013238 : 2350263; // real encoded sizes, fallback when Content-Length is missing
+const FRAMES = 97, START = 6;   // the first frames of the shot barely move, so the scroll starts a little way in
+const frames = new Array(FRAMES).fill(null);
 const bands = $$('.band').map((el, i) => ({ el, i, a: +el.dataset.a, b: +el.dataset.b, ramp: el.dataset.ramp ? +el.dataset.ramp : 0, op: -1, k: -1, on: null }));
-let target = 0, shown = 0, rafId = null, lastTick = 0, heroOnScreen = true, loadK = 0, loadStart = 0;
+let target = 0, shown = 0, rafId = null, lastTick = 0, heroOnScreen = true, loadK = 0, loadStart = 0, drawn = -1;
 
 function heroProgress(){
   const r = hero.getBoundingClientRect();
@@ -647,24 +648,39 @@ function updateCaptions(p){
     if (on !== b.on){ b.on = on; b.el.classList.toggle('on', on); }
   }
 }
-let seekBusy = false, pendingTime = null;
-function requestSeek(t){
-  if (!video.duration || !isFinite(video.duration)) return;
-  t = clamp(t, 0, video.duration - 0.04);
-  if (seekBusy){ pendingTime = t; return; }
-  seekBusy = true; video.currentTime = t;
+// canvas sized to the stage, cover-fit like object-fit: cover
+function sizeCanvas(){
+  const dpr = Math.min(1.5, devicePixelRatio || 1);
+  const w = Math.round(stage.clientWidth * dpr), h = Math.round(stage.clientHeight * dpr);
+  if (canvas.width !== w || canvas.height !== h){ canvas.width = w; canvas.height = h; drawn = -1; }
 }
-video.addEventListener('seeked', () => { seekBusy = false; if (pendingTime !== null){ const t = pendingTime; pendingTime = null; requestSeek(t); } });
-video.addEventListener('error', () => { seekBusy = false; pendingTime = null; failVideo(); });
+function nearestLoaded(i){
+  for (let d = 0; d < FRAMES; d++){
+    if (i - d >= 0 && frames[i - d]) return i - d;
+    if (i + d < FRAMES && frames[i + d]) return i + d;
+  }
+  return -1;
+}
+function drawFrame(p){
+  const want = Math.round(START + p * (FRAMES - 1 - START));
+  const i = nearestLoaded(want);
+  if (i < 0 || i === drawn) return;
+  const img = frames[i], cw = canvas.width, ch = canvas.height;
+  const sc = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+  const w = img.naturalWidth * sc, h = img.naturalHeight * sc;
+  ctx2d.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
+  drawn = i;
+  if (!stage.classList.contains('video-ready')) stage.classList.add('video-ready');
+}
 
 function tick(now){
   const dt = Math.min(100, now - (lastTick || now)); lastTick = now;
-  const k = 0.16;
+  const k = 0.24;   // smoothing per 60fps frame: enough to soften wheel steps, small enough to feel direct
   shown += (target - shown) * (1 - Math.pow(1 - k, dt / 16.667));
   let busy = false;
   if (Math.abs(target - shown) < 0.0005){ shown = target; } else busy = true;
-  if (loadK < 1){ loadK = clamp((now - loadStart) / 1400, 0, 1); loadK = 1 - Math.pow(1 - loadK, 3); busy = true; }
-  if (video.duration) requestSeek(shown * video.duration);
+  if (loadK < 1){ loadK = clamp((now - loadStart) / 1100, 0, 1); loadK = 1 - Math.pow(1 - loadK, 3); busy = true; }
+  drawFrame(shown);
   updateCaptions(shown);
   if (busy && scrubOn && heroOnScreen) rafId = requestAnimationFrame(tick);
   else { rafId = null; lastTick = 0; }
@@ -672,51 +688,47 @@ function tick(now){
 function kick(){ if (rafId === null && scrubOn && heroOnScreen) rafId = requestAnimationFrame(tick); }
 function onScroll(){ target = heroProgress(); kick(); }
 new IntersectionObserver(es => { heroOnScreen = es[0].isIntersecting; if (heroOnScreen) onScroll(); }, { threshold: 0 }).observe(hero);
+addEventListener('resize', () => { if (scrubOn){ sizeCanvas(); drawFrame(shown); } }, { passive: true });
 
-let heroInit = false, fetchStarted = false;
+let heroInit = false;
 function initHeroOnce(){
   if (heroInit) return; heroInit = true;
   loadStart = performance.now();
-  if (location.protocol === 'file:'){ posterLayer.style.backgroundImage = `url('${POSTER_URL}')`; failVideo(); return; }
   posterLayer.style.backgroundImage = `url('${POSTER_URL}')`;
-  const img = new Image();
-  img.onload = img.onerror = startBlobFetch;
-  img.src = POSTER_URL;
-  setTimeout(startBlobFetch, 4000);
+  sizeCanvas();
+  loadFrames();
 }
-function startBlobFetch(){ if (fetchStarted) return; fetchStarted = true; loadHeroBlob().catch(failVideo); }
-async function loadHeroBlob(){
-  const ctrl = new AbortController();
-  let watchdog = setTimeout(() => ctrl.abort(), 20000);
-  const res = await fetch(VIDEO_URL, { priority: 'low', signal: ctrl.signal });
-  if (!res.ok) throw new Error('video ' + res.status);
-  const total = Number(res.headers.get('Content-Length')) || VIDEO_BYTES;
-  const reader = res.body.getReader(); const chunks = []; let got = 0, lastRing = 0;
-  for (;;){
-    const { done, value } = await reader.read();
-    if (done) break;
-    clearTimeout(watchdog); watchdog = setTimeout(() => ctrl.abort(), 20000);
-    chunks.push(value); got += value.length;
-    const frac = Math.min(1, got / total), now = performance.now();
-    if (now - lastRing > 100 || frac === 1){ lastRing = now; ring.style.setProperty('--ld', Math.round(126 * (1 - frac))); }
-  }
-  clearTimeout(watchdog);
-  ring.style.setProperty('--ld', 0);
-  video.src = URL.createObjectURL(new Blob(chunks, { type: 'video/mp4' }));
-  video.load();
-  video.addEventListener('canplay', () => {
-    // iOS Safari only paints seeked frames after the video has played once; muted play is allowed
-    const p = video.play();
-    (p && p.then ? p : Promise.resolve()).then(() => video.pause()).catch(() => {}).finally(() => {
-      requestSeek(heroProgress() * video.duration);
-      stage.classList.add('video-ready');
-    });
-  }, { once: true });
+// coarse-to-fine loading: every 16th frame first, then 8th, 4th, 2nd, then the rest,
+// so the scroll works early and only gets finer while the rest streams in
+function loadFrames(){
+  const order = [], seen = new Set();
+  for (const step of [16, 8, 4, 2, 1]) for (let i = START; i < FRAMES; i += step) if (!seen.has(i)){ seen.add(i); order.push(i); }
+  for (let i = 0; i < START; i++) order.push(i);
+  let done = 0, failed = 0, next = 0, lastRing = 0;
+  const pump = () => {
+    if (next >= order.length) return;
+    const i = order[next++], img = new Image();
+    img.decoding = 'async';
+    img.onload = () => {
+      const fin = () => { frames[i] = img; settle(); };
+      img.decode ? img.decode().then(fin, fin) : fin();
+    };
+    img.onerror = () => { failed++; settle(); };
+    img.src = FRAME_DIR + 'f' + String(i + 1).padStart(3, '0') + '.webp';
+  };
+  const settle = () => {
+    done++;
+    const now = performance.now();
+    if (now - lastRing > 100 || done === order.length){ lastRing = now; ring.style.setProperty('--ld', Math.round(126 * (1 - done / order.length))); }
+    if (failed > 8 && !frames.some(Boolean)) return failVideo();
+    drawn = -1; drawFrame(shown);
+    pump();
+  };
+  for (let n = 0; n < 6; n++) pump();   // six requests in flight
 }
 function failVideo(){
   if (stage.classList.contains('video-failed')) return;
   stage.classList.add('video-failed');
-  video.removeAttribute('src');
   const cue = document.createElement('div'); cue.className = 'cue'; cue.setAttribute('aria-hidden', 'true');
   cue.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>';
   ring.replaceWith(cue);
