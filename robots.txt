@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://magie-studio.de/sitemap.xml
