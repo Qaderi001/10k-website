@@ -10,8 +10,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230C0E11'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='900' font-size='26' text-anchor='middle' fill='%23FFC21A'%3ER%26L%3C/text%3E%3C/svg%3E">
 <link rel="preload" href="../fonts/archivo-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="media/hi-start-d.webp" media="(min-width: 760px)" fetchpriority="high">
-<link rel="preload" as="image" href="media/hi-start-m.webp" media="(max-width: 759px)" fetchpriority="high">
+<link rel="preload" as="image" href="img-v5/hi-start-d.webp" media="(min-width: 760px)" fetchpriority="high">
+<link rel="preload" as="image" href="img-v5/hi-start-m.webp" media="(max-width: 759px)" fetchpriority="high">
 <script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__demoReady)document.documentElement.classList.remove('js')},3500)</script>
 <style>
 @font-face{font-family:"Archivo";font-weight:800;font-display:swap;src:url(../fonts/archivo-latin-800-normal.woff2) format("woff2")}
@@ -241,7 +241,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       </div>
       <div class="check" data-reveal>
         <div class="stage" id="stage">
-          <div class="pic" id="pic"><img src="media/side.webp" alt="Roter Kompaktwagen in der Seitenansicht in der Werkstatt" loading="lazy" decoding="async" width="1600" height="905"></div>
+          <div class="pic" id="pic"><img src="img-v5/side.webp" alt="Roter Kompaktwagen in der Seitenansicht in der Werkstatt" loading="lazy" decoding="async" width="1600" height="905"></div>
           <p class="hint">Punkte antippen</p>
         </div>
         <div class="order">
@@ -296,7 +296,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 <footer><div class="wrap"><span>© Richter u. Lange Kfz-Meisterfachbetrieb GmbH · Hermann-Löns-Weg 1 · 25462 Rellingen</span><span>Impressum · Datenschutz</span></div></footer>
 
 <script type="module">
-import { scrollProgress, reveals, clamp, lerp, range, frameLoader, stage, loadImg, drawFrame } from '../shared/frames.js?v=4';
+import { scrollProgress, reveals, clamp, lerp, range, frameLoader, stage, loadImg, drawFrame } from '../shared/frames-v5.js';
 reveals(); window.__demoReady = true;
 const nav = document.querySelector('.nav'), heroSec = document.getElementById('hero');
 const navSolid = () => nav.classList.toggle('solid', heroSec.getBoundingClientRect().bottom < innerHeight * .6);
@@ -313,9 +313,9 @@ addEventListener('scroll', navSolid, { passive: true }); navSolid();
   const load = () => {
     const nv = st.mobile ? 'm' : 'd'; if (nv === v) return; v = nv;
     const on = () => { dirty = true; kick(); };
-    hiStart = loadImg(`media/hi-start-${v}.webp`); hiStart.onload = on;
-    setTimeout(() => { get = frameLoader(N, i => `media/orbit/${v}/f${String(i).padStart(3, '0')}.webp`, [N - 1, 20], on); hiEnd = loadImg(`media/hi-end-${v}.webp`); hiEnd.onload = on; }, 200);
-    setTimeout(() => { stills = NAMES.map(n => { const im = loadImg(`media/${n}-${v}.webp`); im.onload = on; return im; }); }, 900);
+    hiStart = loadImg(`img-v5/hi-start-${v}.webp`); hiStart.onload = on;
+    setTimeout(() => { get = frameLoader(N, i => `img-v5/orbit/${v}/f${String(i).padStart(3, '0')}.webp`, [N - 1, 20], on); hiEnd = loadImg(`img-v5/hi-end-${v}.webp`); hiEnd.onload = on; }, 200);
+    setTimeout(() => { stills = NAMES.map(n => { const im = loadImg(`img-v5/${n}-${v}.webp`); im.onload = on; return im; }); }, 900);
   };
   let dirty = true, p = 0, lastP = -1;
   const render = () => {

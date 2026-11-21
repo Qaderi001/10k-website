@@ -11,8 +11,8 @@
 <link rel="preload" href="../fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/playfair-display-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="frames/hi/a-d.webp" media="(min-width: 760px)" fetchpriority="high">
-<link rel="preload" as="image" href="frames/hi/a-m.webp" media="(max-width: 759px)" fetchpriority="high">
+<link rel="preload" as="image" href="img-v5/hi/a-d.webp" media="(min-width: 760px)" fetchpriority="high">
+<link rel="preload" as="image" href="img-v5/hi/a-m.webp" media="(max-width: 759px)" fetchpriority="high">
 <script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__demoReady)document.documentElement.classList.remove('js')},3500)</script>
 <style>
 @font-face{font-family:"Playfair";font-weight:700;font-display:swap;src:url(../fonts/playfair-display-latin-700-normal.woff2) format("woff2")}
@@ -286,7 +286,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 <footer><div class="wrap"><span>© Trattoria Da Matteo · Hauptstraße 62 · 25462 Rellingen</span><span>Impressum · Datenschutz</span></div></footer>
 
 <script type="module">
-import { scrollProgress, reveals, clamp, lerp, range, frameLoader, stage, loadImg, drawFrame } from '../shared/frames.js?v=4';
+import { scrollProgress, reveals, clamp, lerp, range, frameLoader, stage, loadImg, drawFrame } from '../shared/frames-v5.js';
 reveals(); window.__demoReady = true;
 const nav = document.querySelector('.nav'), heroSec = document.getElementById('hero');
 const navSolid = () => nav.classList.toggle('solid', heroSec.getBoundingClientRect().bottom < innerHeight * .6);
@@ -393,10 +393,10 @@ paintStatus(); setInterval(paintStatus, 60000);
   const load = () => {
     const nv = st.mobile ? 'm' : 'd'; if (nv === v) return; v = nv;
     // sharp photos for every resting point; the first one comes first
-    hi = { a: loadImg(`frames/hi/a-${v}.webp`) };
+    hi = { a: loadImg(`img-v5/hi/a-${v}.webp`) };
     hi.a.onload = () => { dirty = true; kick(); };
-    setTimeout(() => { for (const k of 'bcde') { hi[k] = loadImg(`frames/hi/${k}-${v}.webp`); hi[k].onload = () => { dirty = true; kick(); }; } }, 150);
-    setTimeout(() => { get = frameLoader(N, i => `frames/${v}/f${String(i).padStart(3, '0')}.webp`, [BAKE[1], CUT[1]], () => { dirty = true; }); }, 400);
+    setTimeout(() => { for (const k of 'bcde') { hi[k] = loadImg(`img-v5/hi/${k}-${v}.webp`); hi[k].onload = () => { dirty = true; kick(); }; } }, 150);
+    setTimeout(() => { get = frameLoader(N, i => `img-v5/${v}/f${String(i).padStart(3, '0')}.webp`, [BAKE[1], CUT[1]], () => { dirty = true; }); }, 400);
   };
   const fx = () => st.mobile ? .486 : .62;
   const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
