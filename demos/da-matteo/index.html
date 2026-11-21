@@ -68,14 +68,14 @@ p{margin:0}
 .hero .shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#1A110Ce0 0%,#1A110C88 28%,#1A110C00 52%)}
 .hero .copy{position:absolute;left:var(--g);top:50%;transform:translateY(-50%);max-width:540px;transition:opacity .6s,transform .6s var(--ease)}
 .hero .copy.away{opacity:0;transform:translate(-24px,-50%);pointer-events:none}
-.hero h1{font-size:clamp(56px,8vw,128px)}
+.hero h1{font-size:clamp(40px,min(8vw,12vh),128px)}
 .hero h1 em{color:var(--gold);display:block}
 .hero .lead{margin-top:22px;font-size:clamp(17px,1.4vw,19.5px);color:var(--cream2);max-width:420px}
 .hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .step{position:absolute;left:var(--g);top:50%;transform:translateY(-50%);max-width:420px;opacity:0;transition:opacity .5s;pointer-events:none}
 .step.on{opacity:1}
 .step .it{font:400 italic 22px/1 var(--f-d);color:var(--gold)}
-.step h2{font-size:clamp(46px,5.6vw,88px);margin:12px 0 16px}
+.step h2{font-size:clamp(36px,min(5.6vw,9.5vh),88px);margin:12px 0 16px}
 .step p{color:var(--cream2);font-size:18px}
 .dots{position:absolute;right:var(--g);top:50%;transform:translateY(-50%);display:grid;gap:12px;list-style:none;margin:0;padding:0}
 .dots li{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--cream3);transition:all .3s}
@@ -171,6 +171,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 .badge{position:fixed;left:14px;bottom:14px;z-index:30;padding:8px 12px;border-radius:99px;background:#000c;color:#ddd;font:500 11.5px/1 var(--f-b);letter-spacing:.04em;text-decoration:none;border:1px solid #ffffff22}
 .badge b{color:var(--gold)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-reveal]{opacity:1;transform:none}}
+
+@media(min-width:761px) and (max-height:820px){.hero .lead{font-size:16px;margin-top:14px}.hero .cta{margin-top:18px}.btn{padding:12px 18px}}
 </style>
 </head>
 <body>
@@ -483,7 +485,7 @@ paintStatus(); setInterval(paintStatus, 60000);
   addEventListener('pointermove', e => { tmx = e.clientX / innerWidth - .5; }, { passive: true });
   autoSize(renderer, camera, stick, (w, h) => {
     camera.fov = w / h < .8 ? 48 : 32;
-    if (w > 1000) camera.setViewOffset(w, h, -w * .17, 0, w, h); else camera.clearViewOffset();
+    if (w > 760) camera.setViewOffset(w, h, -w * .17, 0, w, h); else camera.clearViewOffset();
     camera.updateProjectionMatrix();
   });
   const tmp = new THREE.Vector3(), tmp2 = new THREE.Vector3();

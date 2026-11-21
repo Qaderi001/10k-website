@@ -59,14 +59,14 @@ p{margin:0}
 .hero .shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#0C0E11e6 0%,#0C0E1180 28%,#0C0E1100 52%)}
 .hero .copy{position:absolute;left:var(--g);top:50%;transform:translateY(-50%);max-width:540px;transition:opacity .5s,transform .5s var(--ease)}
 .hero .copy.away{opacity:0;transform:translate(-30px,-50%);pointer-events:none}
-.hero h1{font-size:clamp(50px,7vw,108px)}
+.hero h1{font-size:clamp(38px,min(7vw,10.5vh),108px)}
 .hero h1 span{color:var(--y)}
 .hero .lead{margin-top:22px;font-size:clamp(17px,1.4vw,19px);color:var(--ink2);max-width:430px}
 .hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .svc{position:absolute;left:var(--g);top:50%;transform:translateY(-50%);width:min(440px,40vw);opacity:0;transition:opacity .5s;pointer-events:none}
 .svc.on{opacity:1}
 .svc .no{font:800 15px/1 var(--f-d);color:var(--y);letter-spacing:.04em}
-.svc h2{font-size:clamp(44px,5.4vw,84px);margin:14px 0 18px}
+.svc h2{font-size:clamp(34px,min(5.4vw,9vh),84px);margin:14px 0 18px}
 .svc p{color:var(--ink2);font-size:18px}
 .svc ul{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:10px}
 .svc li{display:flex;gap:12px;align-items:center;font-weight:500}
@@ -171,6 +171,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 .badge{position:fixed;left:14px;bottom:14px;z-index:30;padding:8px 12px;border-radius:99px;background:#000c;color:#ddd;font:500 11.5px/1 var(--f-b);letter-spacing:.04em;text-decoration:none;border:1px solid #ffffff22}
 .badge b{color:var(--y)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-reveal]{opacity:1;transform:none}}
+
+@media(min-width:761px) and (max-height:820px){.hero .lead{font-size:16px;margin-top:14px}.hero .cta{margin-top:18px}.btn{padding:12px 18px}}
 </style>
 </head>
 <body>
@@ -448,7 +450,7 @@ function buildCar(paintColor = '#B3121A') {
   addEventListener('pointermove', e => { tmx = e.clientX / innerWidth - .5; }, { passive: true });
   autoSize(renderer, camera, stick, (w, h) => {
     camera.fov = w / h < .8 ? 46 : 30;
-    if (w > 1000) camera.setViewOffset(w, h, -w * .17, 0, w, h); else camera.clearViewOffset();
+    if (w > 760) camera.setViewOffset(w, h, -w * .17, 0, w, h); else camera.clearViewOffset();
     camera.updateProjectionMatrix();
   });
   const fl = C.wheels.find(w => w.front && w.z > 0);
