@@ -11,8 +11,8 @@
 <link rel="preload" href="../fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/playfair-display-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="frames/d/f000.webp" media="(min-width: 760px)">
-<link rel="preload" as="image" href="frames/m/f000.webp" media="(max-width: 759px)">
+<link rel="preload" as="image" href="frames/hi/a-d.webp" media="(min-width: 760px)" fetchpriority="high">
+<link rel="preload" as="image" href="frames/hi/a-m.webp" media="(max-width: 759px)" fetchpriority="high">
 <style>
 @font-face{font-family:"Playfair";font-weight:700;font-display:swap;src:url(../fonts/playfair-display-latin-700-normal.woff2) format("woff2")}
 @font-face{font-family:"Playfair";font-weight:400;font-style:italic;font-display:swap;src:url(../fonts/playfair-display-latin-400-italic.woff2) format("woff2")}
@@ -60,7 +60,7 @@ p{margin:0}
 @media(max-width:980px){.nav ul{display:none}}
 @media(max-width:560px){.nav .status{display:none}}
 
-.hero{position:relative;height:500vh}
+.hero{position:relative;height:420vh}
 .hero .stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:
   radial-gradient(circle at 12% 18%,#E2B26A26 0,#E2B26A00 9%),radial-gradient(circle at 86% 12%,#E2B26A22 0,#E2B26A00 7%),radial-gradient(circle at 74% 30%,#F0904A1c 0,#F0904A00 6%),radial-gradient(circle at 30% 8%,#E2B26A18 0,#E2B26A00 5%),
   radial-gradient(ellipse 90% 70% at 60% 80%,#3A2416 0%,#1A110C 70%)}
@@ -73,7 +73,8 @@ p{margin:0}
 .hero h1 em{color:var(--gold);display:block}
 .hero .lead{margin-top:22px;font-size:clamp(17px,1.4vw,19.5px);color:var(--cream2);max-width:420px}
 .hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.step{position:absolute;left:var(--g);top:50%;transform:translateY(-50%);max-width:420px;opacity:0;transition:opacity .5s;pointer-events:none}
+.step{position:absolute;left:var(--g);top:50%;transform:translateY(calc(-50% + 14px));max-width:420px;opacity:0;transition:opacity .25s,transform .35s var(--ease);pointer-events:none}
+.step.on{transform:translateY(-50%)}
 .step.on{opacity:1}
 .step .it{font:400 italic 22px/1 var(--f-d);color:var(--gold)}
 .step h2{font-size:clamp(36px,min(5.6vw,9.5vh),88px);margin:12px 0 16px}
@@ -90,6 +91,7 @@ p{margin:0}
   .hero .lead{font-size:16px;margin-top:12px}
   .hero .cta{margin-top:18px}
   .step h2{font-size:42px;margin:8px 0 8px}
+  .step,.step.on{transform:none}
   .step p{font-size:15.5px}
   .dots{top:auto;bottom:70px;transform:none;left:50%;right:auto;translate:-50% 0;grid-auto-flow:column}
 }
@@ -283,7 +285,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 <footer><div class="wrap"><span>© Trattoria Da Matteo · Hauptstraße 62 · 25462 Rellingen</span><span>Impressum · Datenschutz</span></div></footer>
 
 <script type="module">
-import { scrollProgress, reveals, clamp, lerp, range, smooth, reduced, frameLoader } from '../shared/frames.js';
+import { scrollProgress, reveals, clamp, lerp, range, frameLoader, stage, loadImg, drawFrame } from '../shared/frames.js';
 reveals();
 const nav = document.querySelector('.nav'), heroSec = document.getElementById('hero');
 const navSolid = () => nav.classList.toggle('solid', heroSec.getBoundingClientRect().bottom < innerHeight * .6);
@@ -384,74 +386,59 @@ paintStatus(); setInterval(paintStatus, 60000);
 /* ---------------- Hero: a Margherita, frame by frame ---------------- */
 {
   const stick = heroSec.querySelector('.stick'), canvas = document.getElementById('heroCanvas'), ovenEl = document.getElementById('oven');
-  const ctx = canvas.getContext('2d', { alpha: false });
-  const COUNT = 93, MARKS = { sauce: [0, 18], cheese: [18, 30], bake: [30, 61], cut: [61, 92] };
-  const mobile = () => innerWidth < 760;
-  let set = null, get = null;
-  const pick = () => {
-    const s = mobile() ? 'm' : 'd';
-    if (s === set) return;
-    set = s; get = frameLoader(COUNT, i => `frames/${s}/f${String(i).padStart(3, '0')}.webp`, [18, 30, 45, 61, 76, 92], () => { last = -1; });
+  const st = stage(stick, canvas, '#1A110C');
+  const N = 52, BAKE = [0, 25], CUT = [26, 51];
+  let v = null, get = () => null, hi = {};
+  const load = () => {
+    const nv = st.mobile ? 'm' : 'd'; if (nv === v) return; v = nv;
+    // sharp photos for every resting point; the first one comes first
+    hi = { a: loadImg(`frames/hi/a-${v}.webp`) };
+    hi.a.onload = () => { dirty = true; kick(); };
+    setTimeout(() => { for (const k of 'bcde') { hi[k] = loadImg(`frames/hi/${k}-${v}.webp`); hi[k].onload = () => { dirty = true; kick(); }; } }, 150);
+    setTimeout(() => { get = frameLoader(N, i => `frames/${v}/f${String(i).padStart(3, '0')}.webp`, [BAKE[1], CUT[1]], () => { dirty = true; }); }, 400);
   };
-  // scroll position -> frame index (with holds between the stages)
-  const frameAt = p => {
-    const seg = (a, b, [f0, f1]) => lerp(f0, f1, smooth(range(p, a, b)));
-    if (p < .3) return seg(.12, .3, MARKS.sauce);
-    if (p < .48) return seg(.34, .48, MARKS.cheese);
-    if (p < .74) return seg(.52, .74, MARKS.bake);
-    return seg(.78, .96, MARKS.cut);
-  };
-  let W = 0, H = 0, dpr = 1, last = -1;
-  const size = () => {
-    dpr = Math.min(devicePixelRatio || 1, 2);
-    W = stick.clientWidth; H = stick.clientHeight;
-    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
-    pick(); last = -1;
-  };
-  const draw = img => {
-    const cw = canvas.width, ch = canvas.height, iw = img.naturalWidth, ih = img.naturalHeight;
-    ctx.fillStyle = '#1A110C'; ctx.fillRect(0, 0, cw, ch);
-    if (mobile()) {
-      // picture sits in the lower part, text above it
-      const w = cw * 1.08, h = w * ih / iw, x = (cw - w) / 2, y = Math.max(ch * .3, ch - h - ch * .1);
-      ctx.drawImage(img, x, y, w, h);
-      const g = ctx.createLinearGradient(0, y, 0, y + h * .3); g.addColorStop(0, '#1A110C'); g.addColorStop(1, 'rgba(26,17,12,0)');
-      ctx.fillStyle = g; ctx.fillRect(0, y - 1, cw, h * .3);
-      const g2 = ctx.createLinearGradient(0, y + h * .8, 0, y + h); g2.addColorStop(0, 'rgba(26,17,12,0)'); g2.addColorStop(1, '#1A110C');
-      ctx.fillStyle = g2; ctx.fillRect(0, y + h * .8, cw, h * .2 + 2);
+  const fx = () => st.mobile ? .486 : .62;
+  const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  let dirty = true, lastP = -1, p = 0;
+  const render = () => {
+    st.clear();
+    const sauce = range(p, .08, .24), cheese = range(p, .28, .40), bake = range(p, .44, .66), cut = range(p, .70, .90);
+    if (p < .44) {
+      st.draw(hi.a);
+      st.reveal(hi.b, ease(sauce), fx(), .53, st.mobile ? .56 : .34);
+      if (cheese > 0) st.draw(hi.c, ease(cheese));
     } else {
-      // full height, pushed to the right; the left edge melts into the page colour behind the headline
-      const s = Math.max(ch / ih, cw * 1.02 / iw), w = iw * s, h = ih * s, x = cw - w * .84, y = (ch - h) * .5;
-      ctx.drawImage(img, x, y, w, h);
-      if (x > 0) { ctx.fillStyle = '#1A110C'; ctx.fillRect(0, 0, x + 1, ch); }
-      const g = ctx.createLinearGradient(x, 0, x + w * .22, 0); g.addColorStop(0, '#1A110C'); g.addColorStop(1, 'rgba(26,17,12,0)');
-      ctx.fillStyle = g; ctx.fillRect(x, 0, w * .22, ch);
+      const f = p < .68 ? lerp(BAKE[0], BAKE[1], bake) : lerp(CUT[0], CUT[1], cut);
+      drawFrame(st, get, f);
+      // crisp photo at the resting points, blended into the moving frames
+      const fade = (x, at) => 1 - clamp(Math.abs(x - at) / 1.2);
+      if (p < .68) { st.draw(hi.c, fade(f, BAKE[0])); st.draw(hi.d, fade(f, BAKE[1])); }
+      else { st.draw(hi.d, fade(f, CUT[0])); st.draw(hi.e, fade(f, CUT[1])); }
+      if (!get(0)) st.draw(p < .68 ? hi.c : hi.d);   // frames still loading
     }
+    st.edges('26,17,12');
   };
-  size(); new ResizeObserver(size).observe(stick);
+  const resize = () => { st.fit(); load(); dirty = true; kick(); };
+  new ResizeObserver(resize).observe(stick);
 
   const copy = document.getElementById('copy'), steps = [...document.querySelectorAll('.step')], dots = [...document.querySelectorAll('#dots li')];
-  const SR = [[.05, .12], [.12, .32], [.32, .5], [.5, .76], [.76, 1.01]];
-  let p = 0, raf = 0;
+  const SR = [[.03, .08], [.08, .28], [.28, .44], [.44, .70], [.70, 1.01]];
+  let raf = 0;
   const tick = () => {
     raf = 0;
-    const target = scrollProgress(heroSec);
-    p += (target - p) * (reduced ? 1 : .22);
-    if (Math.abs(target - p) > .0005) raf = requestAnimationFrame(tick);
-    const f = Math.round(frameAt(p)), img = get(f);
-    if (img && (f !== last || img !== draw.img)) { draw(img); draw.img = img; last = f; }
-    const heat = Math.sin(Math.PI * clamp((p - .5) / .26));
-    ovenEl.style.setProperty('--oven', (Math.max(0, heat) * .32).toFixed(3));
-    copy.classList.toggle('away', p > .05);
+    p = scrollProgress(heroSec);
+    if (dirty || p !== lastP) { dirty = false; lastP = p; render(); }
+    const heat = Math.sin(Math.PI * clamp((p - .44) / .24));
+    ovenEl.style.setProperty('--oven', (Math.max(0, heat) * .3).toFixed(3));
+    copy.classList.toggle('away', p > .03);
     let active = -1; SR.forEach(([a, b], j) => { if (p >= a && p < b) active = j; });
     steps.forEach((s, j) => s.classList.toggle('on', j === active));
     dots.forEach((d, j) => d.classList.toggle('on', j === active));
   };
   const kick = () => { if (!raf) raf = requestAnimationFrame(tick); };
-  addEventListener('scroll', kick, { passive: true }); addEventListener('resize', () => { last = -1; kick(); });
-  // repaint while early frames arrive
-  const warm = setInterval(() => { last = -1; kick(); }, 250); setTimeout(() => clearInterval(warm), 8000);
-  kick();
+  addEventListener('scroll', kick, { passive: true });
+  const warm = setInterval(() => { dirty = true; kick(); }, 300); setTimeout(() => clearInterval(warm), 6000);
+  load(); kick();
 }
 </script>
 </body>

@@ -10,8 +10,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230C0E11'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='900' font-size='26' text-anchor='middle' fill='%23FFC21A'%3ER%26L%3C/text%3E%3C/svg%3E">
 <link rel="preload" href="../fonts/archivo-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="media/orbit/d/f000.webp" media="(min-width: 760px)">
-<link rel="preload" as="image" href="media/orbit/m/f000.webp" media="(max-width: 759px)">
+<link rel="preload" as="image" href="media/hi-start-d.webp" media="(min-width: 760px)" fetchpriority="high">
+<link rel="preload" as="image" href="media/hi-start-m.webp" media="(max-width: 759px)" fetchpriority="high">
 <style>
 @font-face{font-family:"Archivo";font-weight:800;font-display:swap;src:url(../fonts/archivo-latin-800-normal.woff2) format("woff2")}
 @font-face{font-family:"Archivo";font-weight:600;font-display:swap;src:url(../fonts/archivo-latin-600-normal.woff2) format("woff2")}
@@ -54,7 +54,7 @@ p{margin:0}
 @media(max-width:940px){.nav ul{display:none}}
 @media(max-width:520px){.nav .btn span{display:none}}
 
-.hero{position:relative;height:520vh}
+.hero{position:relative;height:420vh}
 .hero .stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:radial-gradient(ellipse 80% 60% at 60% 70%,#1A1E24 0%,#0C0E11 70%)}
 .hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .hero .shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#0C0E11e6 0%,#0C0E1180 28%,#0C0E1100 52%)}
@@ -64,8 +64,8 @@ p{margin:0}
 .hero h1 span{color:var(--y)}
 .hero .lead{margin-top:22px;font-size:clamp(17px,1.4vw,19px);color:var(--ink2);max-width:430px}
 .hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.svc{position:absolute;left:var(--g);top:50%;transform:translateY(-50%);width:min(440px,40vw);opacity:0;transition:opacity .5s;pointer-events:none}
-.svc.on{opacity:1}
+.svc{position:absolute;left:var(--g);top:50%;transform:translateY(calc(-50% + 14px));width:min(440px,40vw);opacity:0;transition:opacity .25s,transform .35s var(--ease);pointer-events:none}
+.svc.on{opacity:1;transform:translateY(-50%)}
 .svc .no{font:800 15px/1 var(--f-d);color:var(--y);letter-spacing:.04em}
 .svc h2{font-size:clamp(34px,min(5.4vw,9vh),84px);margin:14px 0 18px}
 .svc p{color:var(--ink2);font-size:18px}
@@ -86,6 +86,7 @@ p{margin:0}
   .hero .cta{margin-top:18px}
   .hero .cta .ghost{display:none}
   .svc h2{font-size:40px;margin:10px 0 10px}
+  .svc,.svc.on{transform:none}
   .svc p{font-size:15.5px}
   .svc ul{display:none}
   .track{bottom:62px;gap:4px}
@@ -294,7 +295,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 <footer><div class="wrap"><span>© Richter u. Lange Kfz-Meisterfachbetrieb GmbH · Hermann-Löns-Weg 1 · 25462 Rellingen</span><span>Impressum · Datenschutz</span></div></footer>
 
 <script type="module">
-import { scrollProgress, reveals, clamp, lerp, range, smooth, reduced, frameLoader } from '../shared/frames.js';
+import { scrollProgress, reveals, clamp, lerp, range, frameLoader, stage, loadImg, drawFrame } from '../shared/frames.js';
 reveals();
 const nav = document.querySelector('.nav'), heroSec = document.getElementById('hero');
 const navSolid = () => nav.classList.toggle('solid', heroSec.getBoundingClientRect().bottom < innerHeight * .6);
@@ -303,80 +304,55 @@ addEventListener('scroll', navSolid, { passive: true }); navSolid();
 /* ---------------- Hero: camera move around the car, then the work in detail ---------------- */
 {
   const stick = heroSec.querySelector('.stick'), canvas = document.getElementById('heroCanvas');
-  const ctx = canvas.getContext('2d', { alpha: false });
-  const COUNT = 42, mobile = () => innerWidth < 760;
-  const STILLS = ['tyre', 'brake', 'exhaust', 'paint'];
-  // [start, end] of each picture on the scroll path
-  const SHOTS = [[.3, .46], [.46, .62], [.62, .78], [.78, .93]];
-  let set = null, getFrame = null, stills = [];
-  const pick = () => {
-    const v = mobile() ? 'm' : 'd';
-    if (v === set) return; set = v;
-    getFrame = frameLoader(COUNT, i => `media/orbit/${v}/f${String(i).padStart(3, '0')}.webp`, [41, 20], () => { dirty = true; });
-    // detail pictures load after the first frames
-    stills = STILLS.map(n => { const im = new Image(); im.decoding = 'async'; setTimeout(() => { im.src = `media/${n}-${v}.webp`; }, 600); im.onload = () => { dirty = true; }; return im; });
+  const st = stage(stick, canvas, '#0C0E11');
+  const N = 42, NAMES = ['tyre', 'brake', 'exhaust', 'paint'];
+  // each detail picture wipes in at its start point
+  const AT = [.34, .5, .66, .82], WIPE = .035;
+  let v = null, get = () => null, hiStart, hiEnd, stills = [];
+  const load = () => {
+    const nv = st.mobile ? 'm' : 'd'; if (nv === v) return; v = nv;
+    const on = () => { dirty = true; kick(); };
+    hiStart = loadImg(`media/hi-start-${v}.webp`); hiStart.onload = on;
+    setTimeout(() => { get = frameLoader(N, i => `media/orbit/${v}/f${String(i).padStart(3, '0')}.webp`, [N - 1, 20], on); hiEnd = loadImg(`media/hi-end-${v}.webp`); hiEnd.onload = on; }, 200);
+    setTimeout(() => { stills = NAMES.map(n => { const im = loadImg(`media/${n}-${v}.webp`); im.onload = on; return im; }); }, 900);
   };
-  let dirty = true;
-  const size = () => {
-    const dpr = Math.min(devicePixelRatio || 1, 2);
-    canvas.width = Math.round(stick.clientWidth * dpr); canvas.height = Math.round(stick.clientHeight * dpr);
-    pick(); dirty = true;
+  let dirty = true, p = 0, lastP = -1;
+  const render = () => {
+    st.clear();
+    // camera move: sharp photo at both ends, blended video frames in between
+    const f = lerp(0, N - 1, range(p, .04, .28));
+    drawFrame(st, get, f);
+    if (!get(0)) st.draw(hiStart);
+    st.draw(hiStart, 1 - clamp(f / 1.2));
+    st.draw(hiEnd, 1 - clamp((N - 1 - f) / 1.2));
+    // detail pictures: crisp wipe from the right, slow push-in while they stay
+    AT.forEach((a, i) => {
+      if (i < AT.length - 1 && p > AT[i + 1] + WIPE) return;
+      const t = range(p, a - WIPE, a), z = 1 + .04 * range(p, a - WIPE, (AT[i + 1] || .95));
+      if (i === AT.length - 1 && p > .93) return;     // back to the car for the call to action
+      st.wipe(stills[i], t, z);
+    });
+    if (p > .9) st.wipe(hiEnd, range(p, .9, .93));
+    st.edges('12,14,17');
   };
-  const place = (img, zoom = 1) => {
-    const cw = canvas.width, ch = canvas.height, iw = img.naturalWidth, ih = img.naturalHeight;
-    if (mobile()) {
-      const w = cw * 1.04 * zoom, h = w * ih / iw;
-      return [(cw - w) / 2, Math.max(ch * .34, ch - h - ch * .12) - (zoom - 1) * h * .5, w, h];
-    }
-    const s = Math.max(ch / ih, cw * 1.02 / iw) * zoom, w = iw * s, h = ih * s;
-    return [cw - w * .86 - (zoom - 1) * w * .05, (ch - h) * .5, w, h];
-  };
-  const paint = (img, alpha, zoom) => { if (!img || !img.naturalWidth || alpha <= 0) return; const [x, y, w, h] = place(img, zoom); ctx.globalAlpha = alpha; ctx.drawImage(img, x, y, w, h); ctx.globalAlpha = 1; };
-  const fades = () => {
-    const cw = canvas.width, ch = canvas.height;
-    if (mobile()) {
-      const top = ch * .3, g = ctx.createLinearGradient(0, top, 0, top + ch * .16); g.addColorStop(0, '#0C0E11'); g.addColorStop(1, 'rgba(12,14,17,0)');
-      ctx.fillStyle = '#0C0E11'; ctx.fillRect(0, 0, cw, top); ctx.fillStyle = g; ctx.fillRect(0, top - 1, cw, ch * .16);
-      const g2 = ctx.createLinearGradient(0, ch * .8, 0, ch); g2.addColorStop(0, 'rgba(12,14,17,0)'); g2.addColorStop(1, '#0C0E11'); ctx.fillStyle = g2; ctx.fillRect(0, ch * .8, cw, ch * .2);
-    }
-  };
-  size(); new ResizeObserver(size).observe(stick);
+  new ResizeObserver(() => { st.fit(); load(); dirty = true; kick(); }).observe(stick);
 
   const copy = document.getElementById('copy'), cards = [...document.querySelectorAll('.svc')], track = [...document.querySelectorAll('#track li')];
-  const ranges = [...SHOTS, [.93, 1.01]];
-  let p = 0, raf = 0, lastP = -1;
+  const ranges = [[.31, .47], [.47, .63], [.63, .79], [.79, .9], [.9, 1.01]];
+  let raf = 0;
   const tick = () => {
     raf = 0;
-    const target = scrollProgress(heroSec);
-    p += (target - p) * (reduced ? 1 : .22);
-    if (Math.abs(target - p) > .0005) raf = requestAnimationFrame(tick);
-    if (dirty || Math.abs(p - lastP) > .00005) {
-      dirty = false; lastP = p;
-      const cw = canvas.width, ch = canvas.height;
-      ctx.fillStyle = '#0C0E11'; ctx.fillRect(0, 0, cw, ch);
-      // orbit: frames 0..41 while scrolling into the page; comes back at the end
-      const fi = Math.round(lerp(0, COUNT - 1, smooth(range(p, .04, .27))));
-      const orbit = getFrame(fi);
-      paint(orbit || getFrame(0), 1, 1);
-      // detail pictures fade in on top of each other; the last one fades back to the car at the end
-      SHOTS.forEach(([a, b], i) => {
-        const last = i === SHOTS.length - 1;
-        if (!last && p > SHOTS[i + 1][0]) return;          // fully covered by the next picture
-        const al = range(p, a - .03, a) * (last ? 1 - range(p, .93, .96) : 1);
-        if (al > 0) paint(stills[i], al, 1 + .07 * range(p, a - .03, b + .03));
-      });
-      fades();
-    }
-    copy.classList.toggle('away', p > .2);
+    p = scrollProgress(heroSec);
+    if (dirty || p !== lastP) { dirty = false; lastP = p; render(); }
+    copy.classList.toggle('away', p > .22);
     let active = -1;
     ranges.forEach(([a, b], j) => { if (p >= a && p < b) active = j; track[j].style.setProperty('--f', range(p, a, b)); });
     cards.forEach((c, j) => c.classList.toggle('on', j === active));
     track.forEach((t, j) => t.classList.toggle('on', j === active));
   };
   const kick = () => { if (!raf) raf = requestAnimationFrame(tick); };
-  addEventListener('scroll', kick, { passive: true }); addEventListener('resize', () => { dirty = true; kick(); });
-  const warm = setInterval(() => { if (dirty) kick(); }, 200); setTimeout(() => clearInterval(warm), 10000);
-  kick();
+  addEventListener('scroll', kick, { passive: true });
+  load(); kick();
 }
 
 /* ---------------- Werkstatt-Check ---------------- */
