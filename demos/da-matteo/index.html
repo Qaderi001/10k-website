@@ -11,7 +11,8 @@
 <link rel="preload" href="../fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/playfair-display-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="modulepreload" href="../vendor/three.module.min.js">
+<link rel="preload" as="image" href="frames/d/f000.webp" media="(min-width: 760px)">
+<link rel="preload" as="image" href="frames/m/f000.webp" media="(max-width: 759px)">
 <style>
 @font-face{font-family:"Playfair";font-weight:700;font-display:swap;src:url(../fonts/playfair-display-latin-700-normal.woff2) format("woff2")}
 @font-face{font-family:"Playfair";font-weight:400;font-style:italic;font-display:swap;src:url(../fonts/playfair-display-latin-400-italic.woff2) format("woff2")}
@@ -59,13 +60,13 @@ p{margin:0}
 @media(max-width:980px){.nav ul{display:none}}
 @media(max-width:560px){.nav .status{display:none}}
 
-.hero{position:relative;height:560vh}
+.hero{position:relative;height:500vh}
 .hero .stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:
   radial-gradient(circle at 12% 18%,#E2B26A26 0,#E2B26A00 9%),radial-gradient(circle at 86% 12%,#E2B26A22 0,#E2B26A00 7%),radial-gradient(circle at 74% 30%,#F0904A1c 0,#F0904A00 6%),radial-gradient(circle at 30% 8%,#E2B26A18 0,#E2B26A00 5%),
   radial-gradient(ellipse 90% 70% at 60% 80%,#3A2416 0%,#1A110C 70%)}
 .hero .oven{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 62% 60%,#FF7A2A 0%,#C8372D55 40%,#1A110C00 75%);opacity:var(--oven,0);mix-blend-mode:screen}
-.hero canvas{position:absolute;inset:0;width:100%;height:100%}
-.hero .shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#1A110Ce0 0%,#1A110C88 28%,#1A110C00 52%)}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero .shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#1A110Cf0 0%,#1A110Cb0 30%,#1A110C00 50%)}
 .hero .copy{position:absolute;left:var(--g);top:50%;transform:translateY(-50%);max-width:540px;transition:opacity .6s,transform .6s var(--ease)}
 .hero .copy.away{opacity:0;transform:translate(-24px,-50%);pointer-events:none}
 .hero h1{font-size:clamp(40px,min(8vw,12vh),128px)}
@@ -192,8 +193,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 <main id="top">
   <section class="hero" id="hero" aria-label="Eine Pizza entsteht">
     <div class="stick">
-      <div class="oven" id="oven"></div>
       <canvas id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="oven" id="oven"></div>
       <div class="shade"></div>
       <div class="copy" id="copy">
         <p class="eyebrow">Hauptstraße 62 · Rellingen</p>
@@ -203,11 +204,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       </div>
       <div class="step" data-i="0"><p class="it">l'impasto</p><h2>Der Teig.</h2><p>Von Hand ausgezogen, dünn in der Mitte, luftig am Rand.</p></div>
       <div class="step" data-i="1"><p class="it">il pomodoro</p><h2>Die Tomate.</h2><p>Eine einfache Sauce aus reifen Tomaten, Salz und gutem Olivenöl.</p></div>
-      <div class="step" data-i="2"><p class="it">la mozzarella</p><h2>Der Käse.</h2><p>Mozzarella, großzügig gezupft und verteilt.</p></div>
-      <div class="step" data-i="3"><p class="it">il basilico</p><h2>Basilikum.</h2><p>Frische Blätter, die Farbe Italiens auf einem Teller.</p></div>
-      <div class="step" data-i="4"><p class="it">il forno</p><h2>Ab in den Ofen.</h2><p>Große Hitze, wenige Minuten. Der Rand wird goldbraun, der Käse schmilzt.</p></div>
-      <div class="step" data-i="5"><p class="it">buon appetito</p><h2>Ecco!</h2><p>Frisch aus dem Ofen auf den Tisch. Wir freuen uns auf Sie.</p></div>
-      <ol class="dots" id="dots"><li></li><li></li><li></li><li></li><li></li><li></li></ol>
+      <div class="step" data-i="2"><p class="it">mozzarella &amp; basilico</p><h2>Käse und Basilikum.</h2><p>Mozzarella, großzügig gezupft. Dazu frische Blätter Basilikum.</p></div>
+      <div class="step" data-i="3"><p class="it">il forno</p><h2>Ab in den Ofen.</h2><p>Große Hitze, wenige Minuten. Der Rand wird goldbraun, der Käse schmilzt.</p></div>
+      <div class="step" data-i="4"><p class="it">buon appetito</p><h2>Ecco!</h2><p>Frisch aus dem Ofen auf den Tisch. Wir freuen uns auf Sie.</p></div>
+      <ol class="dots" id="dots"><li></li><li></li><li></li><li></li><li></li></ol>
     </div>
   </section>
 
@@ -283,7 +283,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 <footer><div class="wrap"><span>© Trattoria Da Matteo · Hauptstraße 62 · 25462 Rellingen</span><span>Impressum · Datenschutz</span></div></footer>
 
 <script type="module">
-import { THREE, makeRenderer, autoSize, loop, scrollProgress, reveals, clamp, lerp, range, ease, smooth, reduced } from '../shared/kit.js';
+import { scrollProgress, reveals, clamp, lerp, range, smooth, reduced, frameLoader } from '../shared/frames.js';
 reveals();
 const nav = document.querySelector('.nav'), heroSec = document.getElementById('hero');
 const navSolid = () => nav.classList.toggle('solid', heroSec.getBoundingClientRect().bottom < innerHeight * .6);
@@ -381,181 +381,77 @@ paintStatus(); setInterval(paintStatus, 60000);
   upd();
 }
 
-/* ---------------- Hero: a Margherita is made ---------------- */
+/* ---------------- Hero: a Margherita, frame by frame ---------------- */
 {
   const stick = heroSec.querySelector('.stick'), canvas = document.getElementById('heroCanvas'), ovenEl = document.getElementById('oven');
-  const renderer = makeRenderer(canvas, { alpha: true, exposure: 1.05 });
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(32, 1, .1, 60);
-  scene.add(new THREE.HemisphereLight('#ffe7c4', '#2a1408', .55));
-  const key = new THREE.SpotLight('#ffd9a3', 55, 20, .6, .8, 1.5); key.position.set(-2.5, 6, 3); key.castShadow = true; key.shadow.mapSize.set(2048, 2048); key.shadow.bias = -.0005; scene.add(key);
-  const fill = new THREE.DirectionalLight('#ffb38a', .8); fill.position.set(4, 2, -3); scene.add(fill);
-  const ovenLight = new THREE.PointLight('#ff6a1f', 0, 8, 1.4); ovenLight.position.set(0, 1.4, -1.6); scene.add(ovenLight);
-
-  let seed = 5; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-  const texFrom = (w, h, draw) => { const c = document.createElement('canvas'); c.width = w; c.height = h; draw(c.getContext('2d'), w, h); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; return t; };
-  // wooden table
-  const woodTex = texFrom(1024, 512, (g, w, h) => {
-    g.fillStyle = '#5a3720'; g.fillRect(0, 0, w, h);
-    for (let i = 0; i < 6; i++) { g.fillStyle = i % 2 ? '#62402a' : '#55331d'; g.fillRect(0, i * h / 6, w, h / 6 - 3); g.fillStyle = '#2e1b0f'; g.fillRect(0, (i + 1) * h / 6 - 3, w, 3); }
-    for (let i = 0; i < 900; i++) { g.strokeStyle = `rgba(${30 + rnd() * 40},${15 + rnd() * 20},8,${.08 + rnd() * .15})`; g.lineWidth = .5 + rnd() * 1.5; const y = rnd() * h; g.beginPath(); g.moveTo(0, y); for (let x = 0; x <= w; x += 64) g.lineTo(x, y + Math.sin(x * .01 + y) * 4); g.stroke(); }
-  });
-  woodTex.wrapS = woodTex.wrapT = THREE.RepeatWrapping; woodTex.repeat.set(2, 2);
-  const table = new THREE.Mesh(new THREE.PlaneGeometry(24, 24), new THREE.MeshStandardMaterial({ map: woodTex, roughness: .7 }));
-  table.rotation.x = -Math.PI / 2; table.receiveShadow = true; scene.add(table);
-  // peel / board
-  const boardMat = new THREE.MeshStandardMaterial({ color: '#C08A55', roughness: .65, map: woodTex });
-  const board = new THREE.Mesh(new THREE.CylinderGeometry(2.05, 2.05, .07, 64), boardMat); board.position.y = .035; board.castShadow = board.receiveShadow = true; scene.add(board);
-  const handle = new THREE.Mesh(new THREE.BoxGeometry(1.6, .07, .42), boardMat); handle.position.set(2.7, .035, 0); handle.castShadow = handle.receiveShadow = true; scene.add(handle);
-  // flour dust
-  const flour = new THREE.Mesh(new THREE.CircleGeometry(1.9, 48), new THREE.MeshBasicMaterial({ map: texFrom(256, 256, (g) => { for (let i = 0; i < 1600; i++) { g.fillStyle = `rgba(255,248,235,${rnd() * .5})`; g.fillRect(rnd() * 256, rnd() * 256, 1.5, 1.5); } }), transparent: true, depthWrite: false }));
-  flour.rotation.x = -Math.PI / 2; flour.position.y = .072; scene.add(flour);
-  // basil sprig and tomatoes on the table for atmosphere
-  const tomMat = new THREE.MeshStandardMaterial({ color: '#C8251B', roughness: .25 });
-  [[-2.9, 1.6, .3], [-3.3, 1.2, .26], [-2.7, 1.1, .28]].forEach(([x, z, r]) => { const t = new THREE.Mesh(new THREE.SphereGeometry(r, 24, 18), tomMat); t.position.set(x, r * .92, z); t.scale.y = .9; t.castShadow = true; scene.add(t); });
-
-  // pizza in 8 slices
-  const R = 1.62, SL = 8;
-  const pizza = new THREE.Group(); pizza.position.y = .075; scene.add(pizza);
-  const doughMat = new THREE.MeshStandardMaterial({ color: '#EFD9B0', roughness: .85 });
-  const crustMat = new THREE.MeshStandardMaterial({ color: '#EBCB97', roughness: .8 });
-  const sauceMat = new THREE.MeshStandardMaterial({ color: '#A32417', roughness: .55 });
-  const cheeseMat = new THREE.MeshStandardMaterial({ color: '#FBF6EA', roughness: .55 });
-  const basilMat = new THREE.MeshStandardMaterial({ color: '#2F7A2A', roughness: .4, side: THREE.DoubleSide });
-  const leafShape = new THREE.Shape(); leafShape.moveTo(0, 0); leafShape.quadraticCurveTo(.12, .1, 0, .3); leafShape.quadraticCurveTo(-.12, .1, 0, 0);
-  const leafG = new THREE.ShapeGeometry(leafShape, 8); leafG.rotateX(-Math.PI / 2);
-  const slices = [], cheeses = [], leaves = [];
-  const sauceDisc = [];
-  for (let i = 0; i < SL; i++) {
-    const a0 = i / SL * Math.PI * 2, da = Math.PI * 2 / SL, mid = a0 + da / 2;
-    const g = new THREE.Group(); g.userData = { mid }; pizza.add(g);
-    const base = new THREE.Mesh(new THREE.CylinderGeometry(R, R, .06, 14, 1, false, a0, da), doughMat); base.castShadow = base.receiveShadow = true; base.position.y = .03; g.add(base);
-    const rim = new THREE.Mesh(new THREE.TorusGeometry(R - .07, .1, 12, 14, da), crustMat); rim.position.y = .08; rim.castShadow = true; g.add(rim);
-    const sauce = new THREE.Mesh(new THREE.CylinderGeometry(R - .16, R - .16, .012, 14, 1, false, a0, da), sauceMat); sauce.position.y = .066; sauce.receiveShadow = true; g.add(sauce); sauceDisc.push(sauce);
-    slices.push(g);
-  }
-  // fix rim orientation: torus arcs start on +x; rotate each to start at a0 on the cylinder's convention
-  slices.forEach((g, i) => { const rim = g.children[1]; const a0 = i / SL * Math.PI * 2; rim.rotation.set(-Math.PI / 2, 0, a0 - Math.PI / 2); });
-  const sliceOf = (x, z) => { let a = Math.atan2(x, z); if (a < 0) a += Math.PI * 2; return Math.min(SL - 1, Math.floor(a / (Math.PI * 2 / SL))); };
-  const blobGeo = () => { const g = new THREE.IcosahedronGeometry(.13 + rnd() * .07, 2), a = g.attributes.position; for (let k = 0; k < a.count; k++) { const f = .8 + .35 * Math.sin(a.getX(k) * 19 + a.getZ(k) * 13 + seed % 7); a.setXYZ(k, a.getX(k) * f, a.getY(k), a.getZ(k) * f); } g.computeVertexNormals(); return g; };
-  for (let i = 0; i < 34; i++) {
-    const r = Math.sqrt(rnd()) * (R - .4), a = rnd() * Math.PI * 2, x = Math.sin(a) * r, z = Math.cos(a) * r;
-    const m = new THREE.Mesh(blobGeo(), cheeseMat.clone()); m.scale.y = .5; m.rotation.y = rnd() * 6; m.castShadow = true;
-    const s = slices[sliceOf(x, z)]; m.position.set(x, .1, z); s.add(m);
-    cheeses.push({ m, delay: rnd(), x, z, spot: rnd() });
-  }
-  for (let i = 0; i < 9; i++) {
-    const r = Math.sqrt(rnd()) * (R - .5), a = rnd() * Math.PI * 2, x = Math.sin(a) * r, z = Math.cos(a) * r;
-    const l = new THREE.Mesh(leafG, basilMat); l.position.set(x, .16, z); l.rotation.y = rnd() * 6.28; l.scale.setScalar(1.1 + rnd() * .5); l.castShadow = true;
-    slices[sliceOf(x, z)].add(l); leaves.push({ l, delay: rnd(), ry: l.rotation.y });
-  }
-  const ball = new THREE.Mesh(new THREE.SphereGeometry(.62, 40, 28), doughMat); ball.position.y = .07 + .62 * .62; ball.castShadow = true; ball.geometry.translate(0, 0, 0);
-  ball.onBeforeRender = () => { ball.position.y = .07 + .45 * ball.scale.y; }; ball.geometry.scale(1, .72, 1); scene.add(ball);
-  // a little cheese string when the slice is pulled
-  const stringMat = new THREE.MeshStandardMaterial({ color: '#F7E7BE', roughness: .5 });
-  const strings = Array.from({ length: 3 }, () => { const m = new THREE.Mesh(new THREE.CylinderGeometry(.012, .012, 1, 6), stringMat); scene.add(m); m.visible = false; return m; });
-
-  // steam
-  const NS = 60, sg = new THREE.BufferGeometry(), sp = new Float32Array(NS * 3), sv = new Float32Array(NS);
-  for (let i = 0; i < NS; i++) { sp.set([(rnd() - .5) * 2.4, rnd() * 2, (rnd() - .5) * 2.4], i * 3); sv[i] = .3 + rnd() * .5; }
-  sg.setAttribute('position', new THREE.BufferAttribute(sp, 3));
-  const puff = texFrom(64, 64, g => { const gr = g.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, 'rgba(255,255,255,.5)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, 64, 64); });
-  const steamMat = new THREE.PointsMaterial({ size: .9, map: puff, transparent: true, opacity: 0, depthWrite: false });
-  const steam = new THREE.Points(sg, steamMat); scene.add(steam);
-
-  const basilRaw = new THREE.Color('#2F7A2A'), basilBaked = new THREE.Color('#24521F');
-  const raw = { dough: new THREE.Color('#EFD9B0'), crust: new THREE.Color('#EBCB97'), cheese: new THREE.Color('#FBF6EA') };
-  const baked = { dough: new THREE.Color('#E2BE85'), crust: new THREE.Color('#B9773A'), cheese: new THREE.Color('#F6E2A8'), spot: new THREE.Color('#C9893F') };
-
-  const kf = [
-    [0,   [0, 4.4, 7.2],  [0, .2, 0]],
-    [.15, [2.2, 4.2, 6.0], [0, .1, 0]],
-    [.35, [-2.0, 5.0, 5.4], [0, .1, 0]],
-    [.5,  [0, 3.4, 6.6],  [0, .2, 0]],
-    [.68, [.9, 3.8, 6.2],  [0, .1, 0]],
-    [.8,  [0, 9.2, .4],  [0, 0, 0]],
-    [1,   [2.0, 4.4, 6.4], [0, .2, .8]],
-  ];
-  const cp = new THREE.Vector3(), lk = new THREE.Vector3();
-  const camAt = q => { let i = 0; while (i < kf.length - 2 && q > kf[i + 1][0]) i++; const [a, pa, la] = kf[i], [b, pb, lb] = kf[i + 1], t = smooth(clamp((q - a) / (b - a))); cp.set(lerp(pa[0], pb[0], t), lerp(pa[1], pb[1], t), lerp(pa[2], pb[2], t)); lk.set(lerp(la[0], lb[0], t), lerp(la[1], lb[1], t), lerp(la[2], lb[2], t)); };
+  const ctx = canvas.getContext('2d', { alpha: false });
+  const COUNT = 93, MARKS = { sauce: [0, 18], cheese: [18, 30], bake: [30, 61], cut: [61, 92] };
+  const mobile = () => innerWidth < 760;
+  let set = null, get = null;
+  const pick = () => {
+    const s = mobile() ? 'm' : 'd';
+    if (s === set) return;
+    set = s; get = frameLoader(COUNT, i => `frames/${s}/f${String(i).padStart(3, '0')}.webp`, [18, 30, 45, 61, 76, 92], () => { last = -1; });
+  };
+  // scroll position -> frame index (with holds between the stages)
+  const frameAt = p => {
+    const seg = (a, b, [f0, f1]) => lerp(f0, f1, smooth(range(p, a, b)));
+    if (p < .3) return seg(.12, .3, MARKS.sauce);
+    if (p < .48) return seg(.34, .48, MARKS.cheese);
+    if (p < .74) return seg(.52, .74, MARKS.bake);
+    return seg(.78, .96, MARKS.cut);
+  };
+  let W = 0, H = 0, dpr = 1, last = -1;
+  const size = () => {
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    W = stick.clientWidth; H = stick.clientHeight;
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+    pick(); last = -1;
+  };
+  const draw = img => {
+    const cw = canvas.width, ch = canvas.height, iw = img.naturalWidth, ih = img.naturalHeight;
+    ctx.fillStyle = '#1A110C'; ctx.fillRect(0, 0, cw, ch);
+    if (mobile()) {
+      // picture sits in the lower part, text above it
+      const w = cw * 1.08, h = w * ih / iw, x = (cw - w) / 2, y = Math.max(ch * .3, ch - h - ch * .1);
+      ctx.drawImage(img, x, y, w, h);
+      const g = ctx.createLinearGradient(0, y, 0, y + h * .3); g.addColorStop(0, '#1A110C'); g.addColorStop(1, 'rgba(26,17,12,0)');
+      ctx.fillStyle = g; ctx.fillRect(0, y - 1, cw, h * .3);
+      const g2 = ctx.createLinearGradient(0, y + h * .8, 0, y + h); g2.addColorStop(0, 'rgba(26,17,12,0)'); g2.addColorStop(1, '#1A110C');
+      ctx.fillStyle = g2; ctx.fillRect(0, y + h * .8, cw, h * .2 + 2);
+    } else {
+      // full height, pushed to the right; the left edge melts into the page colour behind the headline
+      const s = Math.max(ch / ih, cw * 1.02 / iw), w = iw * s, h = ih * s, x = cw - w * .84, y = (ch - h) * .5;
+      ctx.drawImage(img, x, y, w, h);
+      if (x > 0) { ctx.fillStyle = '#1A110C'; ctx.fillRect(0, 0, x + 1, ch); }
+      const g = ctx.createLinearGradient(x, 0, x + w * .22, 0); g.addColorStop(0, '#1A110C'); g.addColorStop(1, 'rgba(26,17,12,0)');
+      ctx.fillStyle = g; ctx.fillRect(x, 0, w * .22, ch);
+    }
+  };
+  size(); new ResizeObserver(size).observe(stick);
 
   const copy = document.getElementById('copy'), steps = [...document.querySelectorAll('.step')], dots = [...document.querySelectorAll('#dots li')];
-  const SR = [[.07, .2], [.2, .33], [.33, .46], [.46, .56], [.56, .74], [.74, 1.01]];
-  let p = 0, mx = 0, tmx = 0;
-  addEventListener('pointermove', e => { tmx = e.clientX / innerWidth - .5; }, { passive: true });
-  autoSize(renderer, camera, stick, (w, h) => {
-    camera.fov = w / h < .8 ? 48 : 32;
-    if (w > 760) camera.setViewOffset(w, h, -w * .17, 0, w, h); else camera.clearViewOffset();
-    camera.updateProjectionMatrix();
-  });
-  const tmp = new THREE.Vector3(), tmp2 = new THREE.Vector3();
-
-  loop(stick, (dt, time) => {
+  const SR = [[.05, .12], [.12, .32], [.32, .5], [.5, .76], [.76, 1.01]];
+  let p = 0, raf = 0;
+  const tick = () => {
+    raf = 0;
     const target = scrollProgress(heroSec);
-    p += (target - p) * (reduced ? 1 : Math.min(1, dt * 6));
-    mx += (tmx - mx) * .05;
-    const stretch = range(p, .05, .18), sauce = range(p, .2, .32), cheese = range(p, .33, .46), basil = range(p, .46, .56), bake = range(p, .58, .72), cut = range(p, .76, .84), pull = range(p, .86, .98);
-
-    // dough: a ball that is pressed and stretched out while spinning
-    const st = ease(stretch);
-    const ballK = range(st, 0, .45), discK = range(st, .3, 1);
-    ball.visible = ballK < 1; ball.scale.set(1 + ballK * 1.4, Math.max(.05, 1 - ballK * .9), 1 + ballK * 1.4);
-    pizza.visible = discK > 0; const dk = lerp(.5, 1, ease(discK)); pizza.scale.set(dk, 1, dk);
-    pizza.rotation.y = (1 - st) * 5 + p * .6;
-    flour.material.opacity = 1 - bake;
-    sauceDisc.forEach(s => { const k = Math.max(.001, ease(sauce)); s.scale.set(k, 1, k); s.visible = sauce > 0; });
-    cheeses.forEach(c => {
-      const k = range(cheese, c.delay * .7, c.delay * .7 + .3);
-      c.m.visible = k > 0;
-      c.m.position.y = .1 + (1 - ease(k)) * 2.2;
-      const melt = ease(bake);
-      c.m.scale.set(1 + melt * .35, .5 - melt * .32, 1 + melt * .35);
-      c.m.material.color.copy(raw.cheese).lerp(c.spot > .7 ? baked.spot : baked.cheese, melt * (c.spot > .7 ? .7 : 1));
-    });
-    leaves.forEach(o => {
-      const k = range(basil, o.delay * .6, o.delay * .6 + .4);
-      o.l.visible = k > 0;
-      o.l.position.y = .16 + (1 - ease(k)) * 1.8 - ease(bake) * .04;
-      o.l.rotation.y = o.ry + (1 - k) * 4; o.l.rotation.z = (1 - k) * .8;
-    });
-    doughMat.color.copy(raw.dough).lerp(baked.dough, bake); crustMat.color.copy(raw.crust).lerp(baked.crust, bake);
-    basilMat.color.copy(basilRaw).lerp(basilBaked, bake * .6);
-    const glow = Math.sin(Math.PI * clamp((p - .56) / .2));
-    ovenLight.intensity = Math.max(0, glow) * 14; ovenEl.style.setProperty('--oven', Math.max(0, glow) * .55);
-    steamMat.opacity = .35 * clamp(range(p, .64, .72) * (1 - range(p, .9, 1)) * 1.5);
-    for (let i = 0; i < NS; i++) { sp[i * 3 + 1] += sv[i] * dt; sp[i * 3] += Math.sin(time + i) * dt * .1; if (sp[i * 3 + 1] > 2.4) sp[i * 3 + 1] = .2; }
-    sg.attributes.position.needsUpdate = true;
-
-    // cut into slices and pull one out
-    const gap = ease(cut) * .1;
-    slices.forEach((g, i) => {
-      const m = g.userData.mid, out = gap + (i === 1 ? ease(pull) * 1.5 : 0);
-      g.position.set(Math.sin(m) * out, i === 1 ? ease(pull) * .35 : 0, Math.cos(m) * out);
-      g.rotation.x = i === 1 ? -ease(pull) * .12 : 0;
-    });
-    const ps = slices[1];
-    strings.forEach((s, j) => {
-      s.visible = pull > .02 && pull < .95;
-      if (!s.visible) return;
-      const m = ps.userData.mid + (j - 1) * .18;
-      tmp.set(Math.sin(m) * .5, .14, Math.cos(m) * .5); pizza.localToWorld(tmp);
-      tmp2.set(Math.sin(m) * .5, .12, Math.cos(m) * .5); ps.localToWorld(tmp2);
-      const len = tmp.distanceTo(tmp2); s.position.copy(tmp).add(tmp2).multiplyScalar(.5); s.scale.set(1 - pull * .7, len, 1 - pull * .7);
-      s.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), tmp2.clone().sub(tmp).normalize());
-    });
-
-    camAt(p);
-    const mob = innerWidth < 760;
-    if (mob) { cp.sub(lk).multiplyScalar(1.45).add(lk); lk.y += .9; lk.z -= .5; }
-    camera.position.set(cp.x + mx * .4, cp.y, cp.z);
-    camera.lookAt(lk);
-
-    copy.classList.toggle('away', p > .06);
+    p += (target - p) * (reduced ? 1 : .22);
+    if (Math.abs(target - p) > .0005) raf = requestAnimationFrame(tick);
+    const f = Math.round(frameAt(p)), img = get(f);
+    if (img && (f !== last || img !== draw.img)) { draw(img); draw.img = img; last = f; }
+    const heat = Math.sin(Math.PI * clamp((p - .5) / .26));
+    ovenEl.style.setProperty('--oven', (Math.max(0, heat) * .32).toFixed(3));
+    copy.classList.toggle('away', p > .05);
     let active = -1; SR.forEach(([a, b], j) => { if (p >= a && p < b) active = j; });
     steps.forEach((s, j) => s.classList.toggle('on', j === active));
     dots.forEach((d, j) => d.classList.toggle('on', j === active));
-    renderer.render(scene, camera);
-  });
+  };
+  const kick = () => { if (!raf) raf = requestAnimationFrame(tick); };
+  addEventListener('scroll', kick, { passive: true }); addEventListener('resize', () => { last = -1; kick(); });
+  // repaint while early frames arrive
+  const warm = setInterval(() => { last = -1; kick(); }, 250); setTimeout(() => clearInterval(warm), 8000);
+  kick();
 }
 </script>
 </body>

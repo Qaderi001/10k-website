@@ -10,7 +10,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230C0E11'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='900' font-size='26' text-anchor='middle' fill='%23FFC21A'%3ER%26L%3C/text%3E%3C/svg%3E">
 <link rel="preload" href="../fonts/archivo-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="modulepreload" href="../vendor/three.module.min.js">
+<link rel="preload" as="image" href="media/orbit/d/f000.webp" media="(min-width: 760px)">
+<link rel="preload" as="image" href="media/orbit/m/f000.webp" media="(max-width: 759px)">
 <style>
 @font-face{font-family:"Archivo";font-weight:800;font-display:swap;src:url(../fonts/archivo-latin-800-normal.woff2) format("woff2")}
 @font-face{font-family:"Archivo";font-weight:600;font-display:swap;src:url(../fonts/archivo-latin-600-normal.woff2) format("woff2")}
@@ -53,9 +54,9 @@ p{margin:0}
 @media(max-width:940px){.nav ul{display:none}}
 @media(max-width:520px){.nav .btn span{display:none}}
 
-.hero{position:relative;height:560vh}
+.hero{position:relative;height:520vh}
 .hero .stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:radial-gradient(ellipse 80% 60% at 60% 70%,#1A1E24 0%,#0C0E11 70%)}
-.hero canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .hero .shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#0C0E11e6 0%,#0C0E1180 28%,#0C0E1100 52%)}
 .hero .copy{position:absolute;left:var(--g);top:50%;transform:translateY(-50%);max-width:540px;transition:opacity .5s,transform .5s var(--ease)}
 .hero .copy.away{opacity:0;transform:translate(-30px,-50%);pointer-events:none}
@@ -108,15 +109,17 @@ p{margin:0}
 @media(max-width:520px){.svc-grid{grid-template-columns:1fr}.tile{min-height:0}}
 
 .check{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(300px,1fr);border:1px solid var(--line);border-radius:22px;overflow:hidden;background:var(--bg2)}
-.stage{position:relative;min-height:540px;background:radial-gradient(ellipse 70% 60% at 50% 60%,#232831 0%,#0F1215 75%);cursor:grab;touch-action:pan-y;overflow:hidden}
-.stage:active{cursor:grabbing}
-.stage canvas{position:absolute;inset:0;width:100%;height:100%}
+.stage{--x0:.29;position:relative;align-self:center;aspect-ratio:calc((1 - var(--x0)) * 1.768);background:#0F1215;overflow:hidden}
+.pic{position:absolute;top:0;bottom:0;width:calc(100% / (1 - var(--x0)));left:calc(-1 * var(--x0) * 100% / (1 - var(--x0)))}
+.pic img{display:block;width:100%;height:100%;object-fit:cover}
+.stage::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#0F1215 0%,#0F121500 12%)}
 .stage .hint{position:absolute;left:18px;bottom:16px;font:700 11px/1 var(--f-b);letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);pointer-events:none}
-.hs{position:absolute;left:0;top:0;transform:translate(-50%,-50%);display:flex;align-items:center;gap:8px;padding:0;border:0;background:none;color:var(--ink);font:600 13px/1 var(--f-b);cursor:pointer;transition:opacity .3s}
+.hs{position:absolute;z-index:2;transform:translate(-13px,-50%);display:flex;align-items:center;gap:8px;padding:0;border:0;background:none;color:var(--ink);font:600 13px/1 var(--f-b);cursor:pointer;transition:opacity .3s}
 .hs i{width:26px;height:26px;border-radius:50%;background:#0C0E11cc;border:2px solid var(--y);display:grid;place-items:center;position:relative}
 .hs i::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--y);transition:transform .2s}
 .hs i::after{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid var(--y);opacity:0;animation:ping 2s infinite}
 @keyframes ping{0%{transform:scale(.6);opacity:.8}100%{transform:scale(1.3);opacity:0}}
+.hs.flip{flex-direction:row-reverse;transform:translate(calc(-100% + 13px),-50%)}
 .hs span{padding:6px 10px;border-radius:8px;background:#0C0E11d9;border:1px solid var(--line2);white-space:nowrap}
 .hs[aria-pressed=true] i{background:var(--y)}
 .hs[aria-pressed=true] i::before{background:#141006;transform:scale(1.2)}
@@ -140,7 +143,7 @@ p{margin:0}
 .order textarea{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;resize:vertical}
 .order textarea:focus{outline:none;border-color:var(--y)}
 .order .small{font-size:13px;color:var(--ink3)}
-@media(max-width:980px){.check{grid-template-columns:1fr}.stage{min-height:min(100vw,440px)}.order{border-left:0;border-top:1px solid var(--line)}}
+@media(max-width:980px){.check{grid-template-columns:1fr}.stage{--x0:.27}.order{border-left:0;border-top:1px solid var(--line)}}
 
 .classic{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,90px);align-items:center}
 .classic .art{aspect-ratio:4/3;border-radius:22px;background:linear-gradient(160deg,#2A2116,#14110C);border:1px solid #3A2F20;position:relative;overflow:hidden}
@@ -236,8 +239,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       </div>
       <div class="check" data-reveal>
         <div class="stage" id="stage">
-          <canvas id="checkCanvas" aria-hidden="true"></canvas>
-          <p class="hint">Ziehen zum Drehen · Punkte antippen</p>
+          <div class="pic" id="pic"><img src="media/side.webp" alt="Roter Kompaktwagen in der Seitenansicht in der Werkstatt" loading="lazy" decoding="async" width="1600" height="905"></div>
+          <p class="hint">Punkte antippen</p>
         </div>
         <div class="order">
           <h3>Ihr Auftrag</h3>
@@ -291,239 +294,113 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 <footer><div class="wrap"><span>© Richter u. Lange Kfz-Meisterfachbetrieb GmbH · Hermann-Löns-Weg 1 · 25462 Rellingen</span><span>Impressum · Datenschutz</span></div></footer>
 
 <script type="module">
-import { THREE, makeRenderer, studioEnv, autoSize, loop, scrollProgress, dragRotate, reveals, clamp, lerp, range, ease, smooth, reduced } from '../shared/kit.js';
+import { scrollProgress, reveals, clamp, lerp, range, smooth, reduced, frameLoader } from '../shared/frames.js';
 reveals();
 const nav = document.querySelector('.nav'), heroSec = document.getElementById('hero');
 const navSolid = () => nav.classList.toggle('solid', heroSec.getBoundingClientRect().bottom < innerHeight * .6);
 addEventListener('scroll', navSolid, { passive: true }); navSolid();
 
-const garageEnv = r => studioEnv(r, { bg: '#0d0f12', panels: [
-  ...[-4.5, -2, .5, 3].map(z => ({ pos: [0, 9, z], size: [16, .7], color: '#ffffff', i: 5, rot: [Math.PI / 2, 0, 0] })),
-  { pos: [-9.5, 3, 0], size: [10, 3], color: '#dfe8ff', i: 1.6, rot: [0, Math.PI / 2, 0] },
-  { pos: [9.5, 2.5, 0], size: [10, 2], color: '#fff2d8', i: 1.3, rot: [0, -Math.PI / 2, 0] },
-  { pos: [0, 2, -9.5], size: [10, 2.4], color: '#ffe9b8', i: 1.4, rot: [0, 0, 0] },
-  { pos: [0, 1.6, 9.5], size: [12, 1.6], color: '#ffffff', i: 1.8, rot: [0, Math.PI, 0] },
-  { pos: [0, -2, 0], size: [14, 14], color: '#2a2e35', i: 1, rot: [-Math.PI / 2, 0, 0] },
-] });
-
-/* ---------------- Procedural car ---------------- */
-function buildCar(paintColor = '#B3121A') {
-  const car = new THREE.Group();
-  const paint = new THREE.MeshPhysicalMaterial({ color: paintColor, metalness: .55, roughness: .3, clearcoat: 1, clearcoatRoughness: .05, envMapIntensity: 1.2 });
-  const glass = new THREE.MeshPhysicalMaterial({ color: '#0a0d10', metalness: .3, roughness: .04, clearcoat: 1, envMapIntensity: 1.6 });
-  const black = new THREE.MeshStandardMaterial({ color: '#111315', roughness: .6 });
-  const chrome = new THREE.MeshStandardMaterial({ color: '#e6e9ec', metalness: 1, roughness: .16, envMapIntensity: 1.6 });
-  const rubber = new THREE.MeshStandardMaterial({ color: '#1b1c1e', roughness: .85 });
-  const steel = new THREE.MeshStandardMaterial({ color: '#9aa0a6', metalness: .9, roughness: .35, emissive: '#000000' });
-  const W = 1.72;
-  const sh = m => { m.castShadow = true; m.receiveShadow = true; return m; };
-
-  const s = new THREE.Shape();
-  s.moveTo(-2.15, .3); s.lineTo(-1.72, .3); s.absarc(-1.3, .32, .42, Math.PI, 0, true); s.lineTo(.93, .3);
-  s.absarc(1.35, .32, .42, Math.PI, 0, true); s.lineTo(2.08, .3);
-  s.quadraticCurveTo(2.25, .32, 2.24, .55); s.lineTo(2.18, .72); s.quadraticCurveTo(2.1, .8, 1.9, .83);
-  s.lineTo(.75, .98); s.lineTo(-1.6, 1.0); s.lineTo(-2.0, .98); s.quadraticCurveTo(-2.22, .95, -2.2, .7); s.lineTo(-2.17, .36); s.closePath();
-  const bodyG = new THREE.ExtrudeGeometry(s, { depth: W - .1, bevelEnabled: true, bevelThickness: .16, bevelSize: .07, bevelSegments: 6, curveSegments: 28 });
-  bodyG.translate(0, 0, -(W - .1) / 2);
-  // tumblehome and rounded corners seen from above
-  const bodyZ = (x, y) => (1 - .08 * clamp((y - .55) / .5)) * (1 - .2 * Math.pow(Math.abs(x + .05) / 2.3, 6));
-  const cabZ = (x, y) => (1 - .2 * clamp((y - .98) / .5)) * (1 - .12 * Math.pow(Math.abs(x + .5) / 1.35, 4));
-  const deform = (g, f) => { const a = g.attributes.position; for (let i = 0; i < a.count; i++) a.setZ(i, a.getZ(i) * f(a.getX(i), a.getY(i))); a.needsUpdate = true; };
-  deform(bodyG, bodyZ);
-  const body = sh(new THREE.Mesh(bodyG, paint)); car.add(body);
-
-  const c = new THREE.Shape();
-  c.moveTo(.8, .96); c.quadraticCurveTo(.2, 1.3, -.1, 1.42); c.lineTo(-1.15, 1.42); c.quadraticCurveTo(-1.55, 1.3, -1.8, .98); c.closePath();
-  const cabG = new THREE.ExtrudeGeometry(c, { depth: W - .3, bevelEnabled: true, bevelThickness: .08, bevelSize: .06, bevelSegments: 4, curveSegments: 16 });
-  cabG.translate(0, 0, -(W - .3) / 2); deform(cabG, cabZ);
-  const cabin = sh(new THREE.Mesh(cabG, glass)); car.add(cabin);
-  const roofS = new THREE.Shape(); roofS.moveTo(-.1, 1.4); roofS.lineTo(-1.12, 1.4); roofS.lineTo(-1.12, 1.445); roofS.lineTo(-.1, 1.445); roofS.closePath();
-  const roofG = new THREE.ExtrudeGeometry(roofS, { depth: W - .3, bevelEnabled: true, bevelThickness: .08, bevelSize: .03, bevelSegments: 3 }); roofG.translate(0, 0, -(W - .3) / 2); deform(roofG, cabZ);
-  car.add(sh(new THREE.Mesh(roofG, paint)));
-  for (const z of [-1, 1]) {
-    const bp = sh(new THREE.Mesh(new THREE.BoxGeometry(.12, .44, .02), paint)); bp.position.set(-.55, 1.2, z * ((W - .3) / 2 + .085) * cabZ(-.55, 1.2)); car.add(bp);
-    const mirror = sh(new THREE.Mesh(new THREE.BoxGeometry(.16, .1, .14), paint)); mirror.position.set(.62, 1.02, z * ((W / 2 + .06) * bodyZ(.62, 1.02) + .1)); car.add(mirror);
-    const handle = new THREE.Mesh(new THREE.BoxGeometry(.16, .03, .02), chrome); handle.position.set(-.2, .86, z * ((W / 2 + .06) * bodyZ(-.2, .86) + .012)); car.add(handle);
-  }
-  // lights, grille
-  const head = new THREE.MeshStandardMaterial({ color: '#ffffff', emissive: '#dfe9ff', emissiveIntensity: 2.2 });
-  const tail = new THREE.MeshStandardMaterial({ color: '#550000', emissive: '#ff2418', emissiveIntensity: 1.6 });
-  for (const z of [-1, 1]) {
-    const h = new THREE.Mesh(new THREE.BoxGeometry(.1, .07, .42), head); h.position.set(2.2, .68, z * .58); h.rotation.z = -.35; car.add(h);
-    const t = new THREE.Mesh(new THREE.BoxGeometry(.06, .07, .5), tail); t.position.set(-2.24, .83, z * .56); car.add(t);
-  }
-  const grille = new THREE.Mesh(new THREE.BoxGeometry(.06, .16, 1.0), black); grille.position.set(2.27, .45, 0); car.add(grille);
-  const sill = new THREE.Mesh(new THREE.BoxGeometry(2.1, .08, W + .18), black); sill.position.set(.02, .32, 0); car.add(sill);
-
-  // engine (seen in x-ray)
-  const engine = new THREE.Group(); engine.position.set(1.5, .6, 0); car.add(engine);
-  engine.add(sh(new THREE.Mesh(new THREE.BoxGeometry(.7, .36, .8), steel)));
-  for (let i = 0; i < 4; i++) { const cyl = new THREE.Mesh(new THREE.CylinderGeometry(.07, .07, .14, 12), steel); cyl.position.set(-.05, .25, -.3 + i * .2); engine.add(cyl); }
-  engine.visible = false;
-
-  // exhaust
-  const exMat = new THREE.MeshStandardMaterial({ color: '#8b8f94', metalness: .85, roughness: .4, emissive: '#000000' });
-  const exCurve = new THREE.CatmullRomCurve3([new THREE.Vector3(1.3, .42, .2), new THREE.Vector3(1.0, .18, .25), new THREE.Vector3(.2, .17, .3), new THREE.Vector3(-1.2, .17, .35), new THREE.Vector3(-1.8, .2, .45), new THREE.Vector3(-2.3, .22, .48)]);
-  const exhaust = new THREE.Group(); car.add(exhaust);
-  exhaust.add(sh(new THREE.Mesh(new THREE.TubeGeometry(exCurve, 60, .035, 10), exMat)));
-  const muff = sh(new THREE.Mesh(new THREE.CylinderGeometry(.11, .11, .5, 16), exMat)); muff.rotation.z = Math.PI / 2; muff.position.set(-1.55, .2, .42); exhaust.add(muff);
-  const cat = sh(new THREE.Mesh(new THREE.CylinderGeometry(.07, .07, .3, 14), exMat)); cat.rotation.z = Math.PI / 2; cat.position.set(.6, .17, .28); exhaust.add(cat);
-  const tip = new THREE.Mesh(new THREE.CylinderGeometry(.05, .045, .14, 16, 1, true), chrome); tip.rotation.z = Math.PI / 2; tip.position.set(-2.3, .22, .48); exhaust.add(tip);
-
-  // wheels: hub group (disc + caliper) and rolling wheel (tyre + rim) that can slide out
-  const wheels = [];
-  const tyreG = new THREE.TorusGeometry(.27, .095, 16, 40);
-  const rimG = new THREE.CylinderGeometry(.24, .24, .16, 32);
-  const discG = new THREE.CylinderGeometry(.2, .2, .028, 36);
-  for (const [x, front] of [[1.35, true], [-1.3, false]]) for (const z of [-1, 1]) {
-    const corner = new THREE.Group(); corner.position.set(x, .34, z * (W / 2 - .02)); car.add(corner);
-    const discMat = new THREE.MeshStandardMaterial({ color: '#7d8389', metalness: .9, roughness: .28, emissive: '#ff3a0a', emissiveIntensity: 0 });
-    const disc = sh(new THREE.Mesh(discG, discMat)); disc.rotation.x = Math.PI / 2; disc.position.z = z * .02; corner.add(disc);
-    const calMat = new THREE.MeshStandardMaterial({ color: '#E5352B', roughness: .4, emissive: '#FFC21A', emissiveIntensity: 0 });
-    const cal = sh(new THREE.Mesh(new THREE.BoxGeometry(.12, .16, .07), calMat)); cal.position.set(-.13, .1, z * .03); cal.rotation.z = .5; corner.add(cal);
-    const wheel = new THREE.Group(); wheel.position.z = z * .07; corner.add(wheel);
-    const tyre = sh(new THREE.Mesh(tyreG, rubber)); wheel.add(tyre);
-    const rim = new THREE.Group(); wheel.add(rim);
-    const rimDisk = sh(new THREE.Mesh(rimG, chrome)); rimDisk.rotation.x = Math.PI / 2; rimDisk.scale.set(1, .3, 1); rimDisk.position.z = z * -.06; rim.add(rimDisk);
-    for (let i = 0; i < 5; i++) { const sp = sh(new THREE.Mesh(new THREE.BoxGeometry(.045, .2, .04), chrome)); sp.position.set(Math.cos(i / 5 * 6.283) * .12, Math.sin(i / 5 * 6.283) * .12, z * .04); sp.rotation.z = i / 5 * 6.283 + Math.PI / 2; rim.add(sp); }
-    const hub = new THREE.Mesh(new THREE.CylinderGeometry(.05, .05, .1, 16), black); hub.rotation.x = Math.PI / 2; hub.position.z = z * .05; rim.add(hub);
-    const lip = new THREE.Mesh(new THREE.TorusGeometry(.235, .014, 8, 40), chrome); lip.position.z = z * .06; rim.add(lip);
-    wheels.push({ corner, wheel, disc, discMat, calMat, front, z, base: wheel.position.z });
-  }
-  // blob shadow
-  const sc = document.createElement('canvas'); sc.width = sc.height = 128; const g2 = sc.getContext('2d'); const gr = g2.createRadialGradient(64, 64, 0, 64, 64, 64); gr.addColorStop(0, 'rgba(0,0,0,.75)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); g2.fillStyle = gr; g2.fillRect(0, 0, 128, 128);
-  const blob = new THREE.Mesh(new THREE.PlaneGeometry(5.6, 2.8), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(sc), transparent: true, depthWrite: false }));
-  blob.rotation.x = -Math.PI / 2; blob.position.y = .005; car.add(blob);
-
-  // x-ray outline of the body
-  const edges = new THREE.LineSegments(new THREE.EdgesGeometry(bodyG, 28), new THREE.LineBasicMaterial({ color: '#FFC21A', transparent: true, opacity: 0 }));
-  const cabEdges = new THREE.LineSegments(new THREE.EdgesGeometry(cabG, 28), edges.material);
-  car.add(edges, cabEdges);
-
-  return { car, paint, glass, wheels, exhaust, exMat, engine, edges, body, cabin };
-}
-
-/* ---------------- Hero ---------------- */
+/* ---------------- Hero: camera move around the car, then the work in detail ---------------- */
 {
   const stick = heroSec.querySelector('.stick'), canvas = document.getElementById('heroCanvas');
-  const renderer = makeRenderer(canvas, { alpha: true, exposure: 1.0 });
-  const scene = new THREE.Scene();
-  scene.environment = garageEnv(renderer);
-  scene.fog = new THREE.Fog('#0C0E11', 14, 34);
-  const camera = new THREE.PerspectiveCamera(30, 1, .1, 100);
-  scene.add(new THREE.HemisphereLight('#c7d3e6', '#101214', .4));
-  const key = new THREE.SpotLight('#ffffff', 70, 30, .55, .9, 1.4); key.position.set(1, 9, 2); key.castShadow = true; key.shadow.mapSize.set(2048, 2048); key.shadow.bias = -.0004; scene.add(key);
-  const rimL = new THREE.DirectionalLight('#9db8ff', 1.2); rimL.position.set(-6, 3, -5); scene.add(rimL);
-  const floor = new THREE.Mesh(new THREE.CircleGeometry(60, 64), new THREE.MeshStandardMaterial({ color: '#16191d', roughness: .55, metalness: .15 }));
-  floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
-  // floor marking: a yellow line bay
-  const lineM = new THREE.MeshBasicMaterial({ color: '#FFC21A' });
-  for (const z of [-1.7, 1.7]) { const l = new THREE.Mesh(new THREE.PlaneGeometry(6.4, .05), lineM); l.rotation.x = -Math.PI / 2; l.position.set(0, .004, z); scene.add(l); }
-  // overhead light strips (visible above)
-
-  const C = buildCar('#B3121A'); scene.add(C.car);
-  const heat = new THREE.PointLight('#ff4a14', 0, 2.2, 2); scene.add(heat);
-  const exGlow = new THREE.PointLight('#FFC21A', 0, 3, 2); exGlow.position.set(-.4, .1, .6); scene.add(exGlow);
-  const PAINTS = ['#B3121A', '#1D4E89', '#D8D9DB', '#1C1F22', '#B3121A'].map(c => new THREE.Color(c));
-
-  const kf = [
-    [0,   [6.8, 2.1, 7.4],  [0, .6, 0]],
-    [.12, [7.0, 1.9, 7.6],  [0, .6, 0]],
-    [.2,  [4.6, 1.15, 5.8], [1.35, .45, .9]],
-    [.36, [4.5, 1.1, 5.6],  [1.35, .4, .9]],
-    [.48, [-4.8, 1.9, 5.4], [-.5, .4, .2]],
-    [.62, [-5.2, 1.6, 5.0], [-.6, .4, .2]],
-    [.72, [4.6, 3.2, -7.6], [0, .6, 0]],
-    [.86, [-2.4, 3.0, -8.2], [0, .6, 0]],
-    [1,   [8.4, 2.6, 8.6],  [0, .55, 0]],
-  ];
-  const cp = new THREE.Vector3(), lk = new THREE.Vector3();
-  const camAt = q => {
-    let i = 0; while (i < kf.length - 2 && q > kf[i + 1][0]) i++;
-    const [a, pa, la] = kf[i], [b, pb, lb] = kf[i + 1], t = smooth(clamp((q - a) / (b - a)));
-    cp.set(lerp(pa[0], pb[0], t), lerp(pa[1], pb[1], t), lerp(pa[2], pb[2], t)); lk.set(lerp(la[0], lb[0], t), lerp(la[1], lb[1], t), lerp(la[2], lb[2], t));
+  const ctx = canvas.getContext('2d', { alpha: false });
+  const COUNT = 42, mobile = () => innerWidth < 760;
+  const STILLS = ['tyre', 'brake', 'exhaust', 'paint'];
+  // [start, end] of each picture on the scroll path
+  const SHOTS = [[.3, .46], [.46, .62], [.62, .78], [.78, .93]];
+  let set = null, getFrame = null, stills = [];
+  const pick = () => {
+    const v = mobile() ? 'm' : 'd';
+    if (v === set) return; set = v;
+    getFrame = frameLoader(COUNT, i => `media/orbit/${v}/f${String(i).padStart(3, '0')}.webp`, [41, 20], () => { dirty = true; });
+    // detail pictures load after the first frames
+    stills = STILLS.map(n => { const im = new Image(); im.decoding = 'async'; setTimeout(() => { im.src = `media/${n}-${v}.webp`; }, 600); im.onload = () => { dirty = true; }; return im; });
   };
+  let dirty = true;
+  const size = () => {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    canvas.width = Math.round(stick.clientWidth * dpr); canvas.height = Math.round(stick.clientHeight * dpr);
+    pick(); dirty = true;
+  };
+  const place = (img, zoom = 1) => {
+    const cw = canvas.width, ch = canvas.height, iw = img.naturalWidth, ih = img.naturalHeight;
+    if (mobile()) {
+      const w = cw * 1.04 * zoom, h = w * ih / iw;
+      return [(cw - w) / 2, Math.max(ch * .34, ch - h - ch * .12) - (zoom - 1) * h * .5, w, h];
+    }
+    const s = Math.max(ch / ih, cw * 1.02 / iw) * zoom, w = iw * s, h = ih * s;
+    return [cw - w * .86 - (zoom - 1) * w * .05, (ch - h) * .5, w, h];
+  };
+  const paint = (img, alpha, zoom) => { if (!img || !img.naturalWidth || alpha <= 0) return; const [x, y, w, h] = place(img, zoom); ctx.globalAlpha = alpha; ctx.drawImage(img, x, y, w, h); ctx.globalAlpha = 1; };
+  const fades = () => {
+    const cw = canvas.width, ch = canvas.height;
+    if (mobile()) {
+      const top = ch * .3, g = ctx.createLinearGradient(0, top, 0, top + ch * .16); g.addColorStop(0, '#0C0E11'); g.addColorStop(1, 'rgba(12,14,17,0)');
+      ctx.fillStyle = '#0C0E11'; ctx.fillRect(0, 0, cw, top); ctx.fillStyle = g; ctx.fillRect(0, top - 1, cw, ch * .16);
+      const g2 = ctx.createLinearGradient(0, ch * .8, 0, ch); g2.addColorStop(0, 'rgba(12,14,17,0)'); g2.addColorStop(1, '#0C0E11'); ctx.fillStyle = g2; ctx.fillRect(0, ch * .8, cw, ch * .2);
+    }
+  };
+  size(); new ResizeObserver(size).observe(stick);
 
   const copy = document.getElementById('copy'), cards = [...document.querySelectorAll('.svc')], track = [...document.querySelectorAll('#track li')];
-  const ranges = [[.14, .3], [.3, .44], [.44, .64], [.64, .86], [.86, 1.01]];
-  let p = 0, mx = 0, tmx = 0, wheelSpin = 0;
-  addEventListener('pointermove', e => { tmx = e.clientX / innerWidth - .5; }, { passive: true });
-  autoSize(renderer, camera, stick, (w, h) => {
-    camera.fov = w / h < .8 ? 46 : 30;
-    if (w > 760) camera.setViewOffset(w, h, -w * .17, 0, w, h); else camera.clearViewOffset();
-    camera.updateProjectionMatrix();
-  });
-  const fl = C.wheels.find(w => w.front && w.z > 0);
-
-  loop(stick, (dt, time) => {
+  const ranges = [...SHOTS, [.93, 1.01]];
+  let p = 0, raf = 0, lastP = -1;
+  const tick = () => {
+    raf = 0;
     const target = scrollProgress(heroSec);
-    p += (target - p) * (reduced ? 1 : Math.min(1, dt * 6));
-    mx += (tmx - mx) * .05;
-    const tyre = range(p, .16, .26) * (1 - range(p, .3, .36));
-    const brake = range(p, .3, .38) * (1 - range(p, .43, .47));
-    const xray = range(p, .45, .5) * (1 - range(p, .6, .65));
-    const paintT = range(p, .66, .86);
-
-    // tyres slide out and spin
-    wheelSpin += dt * (tyre * 6 + (p < .1 ? 0 : 0));
-    C.wheels.forEach(w => {
-      const out = w === fl ? ease(tyre) * .45 + ease(brake) * .4 : 0;
-      w.wheel.position.z = w.base + w.z * out;
-      w.wheel.rotation.z = -wheelSpin;
-      const hot = w.front ? brake : 0;
-      w.discMat.emissiveIntensity = hot * (2.2 + Math.sin(time * 9) * .3);
-      w.calMat.emissiveIntensity = hot * .25;
-    });
-    heat.position.set(fl.corner.position.x, .34, fl.corner.position.z + .25); heat.intensity = brake * 5;
-
-    // x-ray: body fades to an outline, exhaust and engine glow
-    const op = 1 - xray * .93;
-    for (const m of [C.paint, C.glass]) { m.transparent = op < .999; m.opacity = op; m.depthWrite = op > .5; }
-    C.edges.material.opacity = xray * .7;
-    C.engine.visible = xray > .01;
-    C.exMat.emissive.set('#FFC21A'); C.exMat.emissiveIntensity = xray * 1.2;
-    exGlow.intensity = xray * 4;
-
-    // paint cycles through four colours
-    const k = paintT * 4, i = Math.min(3, Math.floor(k)), f = smooth(k - i);
-    C.paint.color.copy(PAINTS[i]).lerp(PAINTS[i + 1], f);
-
-    camAt(p);
-    const mob = innerWidth < 760;
-    if (mob) { cp.sub(lk).multiplyScalar(1.6).add(lk); lk.y += 1.1; }
-    camera.position.set(cp.x + mx * .4, cp.y, cp.z);
-    camera.lookAt(lk);
-
-    copy.classList.toggle('away', p > .12);
+    p += (target - p) * (reduced ? 1 : .22);
+    if (Math.abs(target - p) > .0005) raf = requestAnimationFrame(tick);
+    if (dirty || Math.abs(p - lastP) > .00005) {
+      dirty = false; lastP = p;
+      const cw = canvas.width, ch = canvas.height;
+      ctx.fillStyle = '#0C0E11'; ctx.fillRect(0, 0, cw, ch);
+      // orbit: frames 0..41 while scrolling into the page; comes back at the end
+      const fi = Math.round(lerp(0, COUNT - 1, smooth(range(p, .04, .27))));
+      const orbit = getFrame(fi);
+      paint(orbit || getFrame(0), 1, 1);
+      // detail pictures fade in on top of each other; the last one fades back to the car at the end
+      SHOTS.forEach(([a, b], i) => {
+        const last = i === SHOTS.length - 1;
+        if (!last && p > SHOTS[i + 1][0]) return;          // fully covered by the next picture
+        const al = range(p, a - .03, a) * (last ? 1 - range(p, .93, .96) : 1);
+        if (al > 0) paint(stills[i], al, 1 + .07 * range(p, a - .03, b + .03));
+      });
+      fades();
+    }
+    copy.classList.toggle('away', p > .2);
     let active = -1;
     ranges.forEach(([a, b], j) => { if (p >= a && p < b) active = j; track[j].style.setProperty('--f', range(p, a, b)); });
     cards.forEach((c, j) => c.classList.toggle('on', j === active));
     track.forEach((t, j) => t.classList.toggle('on', j === active));
-    renderer.render(scene, camera);
-  });
+  };
+  const kick = () => { if (!raf) raf = requestAnimationFrame(tick); };
+  addEventListener('scroll', kick, { passive: true }); addEventListener('resize', () => { dirty = true; kick(); });
+  const warm = setInterval(() => { if (dirty) kick(); }, 200); setTimeout(() => clearInterval(warm), 10000);
+  kick();
 }
 
 /* ---------------- Werkstatt-Check ---------------- */
 {
-  const stage = document.getElementById('stage'), canvas = document.getElementById('checkCanvas');
-  const list = document.getElementById('list'), empty = document.getElementById('empty'), note = document.getElementById('note');
+  const stage = document.getElementById('stage'), pic = document.getElementById('pic');
+  const list = document.getElementById('list'), empty = document.getElementById('empty');
+  // positions in % of the side photo
   const SPOTS = [
-    { id: 'motor', label: 'Motor / Inspektion', pos: [1.55, 1.0, 0], n: [0, 1, 0] },
-    { id: 'bremsen', label: 'Bremsen', pos: [1.35, .38, .98], n: [0, 0, 1] },
-    { id: 'reifen', label: 'Reifen & Räder', pos: [-1.3, .2, 1.0], n: [0, 0, 1] },
-    { id: 'auspuff', label: 'Auspuff', pos: [-2.3, .24, .5], n: [-1, 0, 0] },
-    { id: 'karosserie', label: 'Karosserie / Delle', pos: [.1, .7, .96], n: [0, 0, 1] },
-    { id: 'lack', label: 'Lack / Kratzer', pos: [-.6, 1.5, 0], n: [0, 1, 0] },
-    { id: 'licht', label: 'Licht', pos: [2.2, .68, -.58], n: [1, 0, 0] },
+    { id: 'motor', label: 'Motor / Inspektion', x: 79, y: 43 },
+    { id: 'licht', label: 'Licht', x: 89, y: 50 },
+    { id: 'bremsen', label: 'Bremsen', x: 80.3, y: 62 },
+    { id: 'reifen', label: 'Reifen & Räder', x: 39.2, y: 66 },
+    { id: 'auspuff', label: 'Auspuff', x: 30.8, y: 58 },
+    { id: 'karosserie', label: 'Karosserie / Delle', x: 52, y: 55 },
+    { id: 'lack', label: 'Lack / Kratzer', x: 58, y: 30 },
   ];
   const chosen = new Set();
   const quick = document.getElementById('quick');
   SPOTS.forEach(s => { const q = document.createElement('button'); q.type = 'button'; q.textContent = s.label; q.setAttribute('aria-pressed', 'false'); q.onclick = () => toggle(s.id); quick.appendChild(q); s.q = q; });
-  const btns = SPOTS.map(s => {
+  SPOTS.forEach(s => {
     const b = document.createElement('button'); b.type = 'button'; b.className = 'hs'; b.setAttribute('aria-pressed', 'false');
+    b.style.left = s.x + '%'; b.style.top = s.y + '%'; if (s.x > 70) b.classList.add('flip');
     b.innerHTML = `<i></i><span>${s.label}</span>`;
-    b.addEventListener('pointerdown', e => e.stopPropagation());
-    b.addEventListener('click', () => toggle(s.id)); stage.appendChild(b); s.btn = b; return b;
+    b.addEventListener('click', () => toggle(s.id)); pic.appendChild(b); s.btn = b;
   });
   const render = () => {
     [...list.querySelectorAll('li:not(#empty)')].forEach(li => li.remove());
@@ -535,37 +412,6 @@ function buildCar(paintColor = '#B3121A') {
     SPOTS.forEach(s => { s.btn.setAttribute('aria-pressed', chosen.has(s.id)); s.q.setAttribute('aria-pressed', chosen.has(s.id)); });
   };
   const toggle = id => { chosen.has(id) ? chosen.delete(id) : chosen.add(id); render(); };
-
-  let started = false;
-  const boot = () => {
-    const renderer = makeRenderer(canvas, { alpha: true, exposure: 1.05 });
-    const scene = new THREE.Scene(); scene.environment = garageEnv(renderer);
-    const camera = new THREE.PerspectiveCamera(30, 1, .1, 60);
-    scene.add(new THREE.HemisphereLight('#c7d3e6', '#101214', .6));
-    const key = new THREE.DirectionalLight('#ffffff', 2.4); key.position.set(3, 8, 4); key.castShadow = true; key.shadow.mapSize.set(1024, 1024); Object.assign(key.shadow.camera, { left: -4, right: 4, top: 4, bottom: -4 }); scene.add(key);
-    const holder = new THREE.Group(); holder.rotation.y = .6; scene.add(holder);
-    const C = buildCar('#1D4E89'); holder.add(C.car);
-    const ground = new THREE.Mesh(new THREE.PlaneGeometry(20, 20), new THREE.ShadowMaterial({ opacity: .5 })); ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; scene.add(ground);
-    const spin = dragRotate(stage, holder, { x: false, idle: .1 });
-    autoSize(renderer, camera, stage, (w, h) => { const narrow = w / h < 1.1; camera.fov = narrow ? 34 : 30; camera.updateProjectionMatrix(); const d = narrow ? 2.9 / (Math.tan(camera.fov * Math.PI / 360) * (w / h)) : 8.6; camera.position.set(0, d * .3, d); camera.lookAt(0, .55, 0); });
-    const v = new THREE.Vector3(), nrm = new THREE.Vector3(), toCam = new THREE.Vector3();
-    loop(stage, dt => {
-      spin(dt);
-      holder.updateMatrixWorld();
-      SPOTS.forEach(s => {
-        v.set(...s.pos).applyMatrix4(holder.matrixWorld);
-        nrm.set(...s.n).transformDirection(holder.matrixWorld);
-        toCam.copy(camera.position).sub(v).normalize();
-        const facing = nrm.dot(toCam) > -.05;
-        v.project(camera);
-        s.btn.style.left = (v.x * .5 + .5) * stage.clientWidth + 'px';
-        s.btn.style.top = (-v.y * .5 + .5) * stage.clientHeight + 'px';
-        s.btn.classList.toggle('back', !facing);
-      });
-      renderer.render(scene, camera);
-    });
-  };
-  new IntersectionObserver((es, io) => { if (es[0].isIntersecting && !started) { started = true; io.disconnect(); boot(); } }, { rootMargin: '400px' }).observe(stage);
   render();
 }
 </script>
