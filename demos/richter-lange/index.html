@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Richter &amp; Lange · Kfz-Meisterbetrieb in Rellingen</title>
+<meta name="description" content="Kfz-Meisterfachbetrieb in Rellingen: Inspektion, Bremsen, Reifen &amp; Räder, Auspuff, Karosserie, Lackierung, Oldtimer und Fahrzeughandel. Hermann-Löns-Weg 1, Telefon 04101 34480.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0C0E11">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230C0E11'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='900' font-size='26' text-anchor='middle' fill='%23FFC21A'%3ER%26L%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="../fonts/archivo-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="modulepreload" href="../../assets/vendor/three.module.min.js">
+<style>
+@font-face{font-family:"Archivo";font-weight:800;font-display:swap;src:url(../fonts/archivo-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:"Archivo";font-weight:600;font-display:swap;src:url(../fonts/archivo-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:400;font-display:swap;src:url(../fonts/dm-sans-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:500;font-display:swap;src:url(../fonts/dm-sans-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:700;font-display:swap;src:url(../fonts/dm-sans-latin-700-normal.woff2) format("woff2")}
+:root{
+  --bg:#0C0E11;--bg2:#13161A;--panel:#181C21;--line:#262B31;--line2:#3A4048;
+  --ink:#F1F2F4;--ink2:#A6ADB6;--ink3:#6F7780;--y:#FFC21A;--y2:#FFD45C;--red:#E5352B;
+  --f-d:"Archivo",system-ui,sans-serif;--f-b:"DM Sans",system-ui,sans-serif;
+  --g:clamp(18px,4.5vw,64px);--ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--f-b);-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit}
+img,svg,canvas{display:block;max-width:100%}
+h1,h2,h3{font-family:var(--f-d);font-weight:800;letter-spacing:-.025em;line-height:.98;margin:0}
+p{margin:0}
+:focus-visible{outline:2px solid var(--y);outline-offset:3px}
+.eyebrow{font:700 12px/1 var(--f-b);letter-spacing:.2em;text-transform:uppercase;color:var(--y)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 var(--g)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 22px;border-radius:10px;background:var(--y);color:#141006;font:700 15px/1 var(--f-b);text-decoration:none;border:0;cursor:pointer;transition:background .25s,transform .25s var(--ease)}
+.btn:hover{background:var(--y2);transform:translateY(-2px)}
+.btn.ghost{background:#ffffff0d;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line2)}
+.btn.ghost:hover{background:#ffffff1a}
+[data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+[data-reveal].in{opacity:1;transform:none}
+
+.nav{position:fixed;inset:0 0 auto;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px var(--g);background:linear-gradient(#0C0E11e0,#0C0E1100);transition:background .3s,padding .3s,box-shadow .3s}
+.nav.solid{background:#0C0E11f2;padding-top:10px;padding-bottom:10px;box-shadow:0 1px 0 var(--line)}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo .mk{width:42px;height:42px;border-radius:10px;background:var(--y);color:#141006;display:grid;place-items:center;font:800 15px/1 var(--f-d);letter-spacing:-.04em}
+.logo b{display:block;font:800 19px/1 var(--f-d);letter-spacing:-.02em}
+.logo small{display:block;font:500 11px/1.4 var(--f-b);letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);margin-top:3px}
+.nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:14.5px;font-weight:500}
+.nav ul a{text-decoration:none;color:var(--ink2)}
+.nav ul a:hover{color:var(--ink)}
+.nav .btn{padding:11px 16px;font-size:14px}
+@media(max-width:940px){.nav ul{display:none}}
+@media(max-width:520px){.nav .btn span{display:none}}
+
+.hero{position:relative;height:560vh}
+.hero .stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:radial-gradient(ellipse 80% 60% at 60% 70%,#1A1E24 0%,#0C0E11 70%)}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero .shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#0C0E11e6 0%,#0C0E1180 28%,#0C0E1100 52%)}
+.hero .copy{position:absolute;left:var(--g);top:50%;transform:translateY(-50%);max-width:540px;transition:opacity .5s,transform .5s var(--ease)}
+.hero .copy.away{opacity:0;transform:translate(-30px,-50%);pointer-events:none}
+.hero h1{font-size:clamp(50px,7vw,108px)}
+.hero h1 span{color:var(--y)}
+.hero .lead{margin-top:22px;font-size:clamp(17px,1.4vw,19px);color:var(--ink2);max-width:430px}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.svc{position:absolute;left:var(--g);top:50%;transform:translateY(-50%);width:min(440px,40vw);opacity:0;transition:opacity .5s;pointer-events:none}
+.svc.on{opacity:1}
+.svc .no{font:800 15px/1 var(--f-d);color:var(--y);letter-spacing:.04em}
+.svc h2{font-size:clamp(44px,5.4vw,84px);margin:14px 0 18px}
+.svc p{color:var(--ink2);font-size:18px}
+.svc ul{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:10px}
+.svc li{display:flex;gap:12px;align-items:center;font-weight:500}
+.svc li::before{content:"";width:18px;height:2px;background:var(--y)}
+.track{position:absolute;left:var(--g);right:var(--g);bottom:clamp(22px,5vh,48px);display:grid;grid-template-columns:repeat(5,1fr);gap:8px;list-style:none;margin:0;padding:0}
+.track li{font:600 12px/1.2 var(--f-d);letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);padding-top:12px;position:relative}
+.track li::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;border-radius:2px;background:var(--line2)}
+.track li::after{content:"";position:absolute;left:0;top:0;height:3px;border-radius:2px;background:var(--y);width:calc(var(--f,0) * 100%)}
+.track li.on{color:var(--ink)}
+@media(max-width:760px){
+  .hero .shade{background:linear-gradient(180deg,#0C0E11f0 0%,#0C0E1199 36%,#0C0E1100 56%)}
+  .hero .copy,.svc{top:96px;transform:none;right:var(--g);width:auto}
+  .hero .copy.away{transform:translateY(-20px)}
+  .hero h1{font-size:clamp(42px,12vw,60px)}
+  .hero .lead{font-size:16px;margin-top:14px}
+  .hero .cta{margin-top:18px}
+  .hero .cta .ghost{display:none}
+  .svc h2{font-size:40px;margin:10px 0 10px}
+  .svc p{font-size:15.5px}
+  .svc ul{display:none}
+  .track{bottom:62px;gap:4px}
+  .track li{font-size:9.5px;letter-spacing:.02em}
+}
+
+.sec{padding:clamp(90px,12vw,160px) 0}
+.sec-head{display:grid;grid-template-columns:1.1fr 1fr;gap:24px 60px;align-items:end;margin-bottom:clamp(40px,6vw,72px)}
+.sec-head h2{font-size:clamp(40px,5.6vw,84px)}
+.sec-head h2 span{color:var(--y)}
+.sec-head p{color:var(--ink2);max-width:470px}
+@media(max-width:820px){.sec-head{grid-template-columns:1fr}}
+
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px 24px 28px;display:flex;flex-direction:column;gap:12px;min-height:250px;transition:border-color .3s,transform .3s var(--ease)}
+.tile:hover{border-color:var(--y);transform:translateY(-4px)}
+.tile svg{width:44px;height:44px;stroke:var(--y);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.tile h3{font-size:22px;margin-top:auto}
+.tile p{color:var(--ink2);font-size:15px}
+@media(max-width:1000px){.svc-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.svc-grid{grid-template-columns:1fr}.tile{min-height:0}}
+
+.check{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(300px,1fr);border:1px solid var(--line);border-radius:22px;overflow:hidden;background:var(--bg2)}
+.stage{position:relative;min-height:540px;background:radial-gradient(ellipse 70% 60% at 50% 60%,#232831 0%,#0F1215 75%);cursor:grab;touch-action:pan-y;overflow:hidden}
+.stage:active{cursor:grabbing}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%}
+.stage .hint{position:absolute;left:18px;bottom:16px;font:700 11px/1 var(--f-b);letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);pointer-events:none}
+.hs{position:absolute;left:0;top:0;transform:translate(-50%,-50%);display:flex;align-items:center;gap:8px;padding:0;border:0;background:none;color:var(--ink);font:600 13px/1 var(--f-b);cursor:pointer;transition:opacity .3s}
+.hs i{width:26px;height:26px;border-radius:50%;background:#0C0E11cc;border:2px solid var(--y);display:grid;place-items:center;position:relative}
+.hs i::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--y);transition:transform .2s}
+.hs i::after{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid var(--y);opacity:0;animation:ping 2s infinite}
+@keyframes ping{0%{transform:scale(.6);opacity:.8}100%{transform:scale(1.3);opacity:0}}
+.hs span{padding:6px 10px;border-radius:8px;background:#0C0E11d9;border:1px solid var(--line2);white-space:nowrap}
+.hs[aria-pressed=true] i{background:var(--y)}
+.hs[aria-pressed=true] i::before{background:#141006;transform:scale(1.2)}
+.hs[aria-pressed=true] span{border-color:var(--y)}
+.hs.back{opacity:0;pointer-events:none}
+@media(max-width:600px){.hs span{display:none}.hs[aria-pressed=true] span{display:block}}
+.quick{display:flex;flex-wrap:wrap;gap:6px}
+.quick button{font:500 13.5px/1 var(--f-b);color:var(--ink2);background:none;border:1px solid var(--line2);border-radius:99px;padding:9px 12px;cursor:pointer;transition:all .2s}
+.quick button:hover{color:var(--ink);border-color:var(--ink3)}
+.quick button[aria-pressed=true]{background:var(--y);border-color:var(--y);color:#141006}
+.order{padding:30px;display:flex;flex-direction:column;gap:18px;border-left:1px solid var(--line)}
+.order h3{font-size:26px}
+.order ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;min-height:60px;align-content:start}
+.order li{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 14px;border-radius:10px;background:var(--panel);border:1px solid var(--line);font-weight:500;animation:in .35s var(--ease)}
+.order li button{background:none;border:0;color:var(--ink3);cursor:pointer;font-size:20px;line-height:1;padding:0 4px}
+.order li button:hover{color:var(--red)}
+@keyframes in{from{opacity:0;transform:translateX(12px)}}
+.order li.emptyli{all:unset;display:block}
+.order li.emptyli[hidden]{display:none}
+.order .empty{display:block;color:var(--ink3);font-size:15px;border:1px dashed var(--line2);border-radius:10px;padding:18px;text-align:center}
+.order textarea{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;resize:vertical}
+.order textarea:focus{outline:none;border-color:var(--y)}
+.order .small{font-size:13px;color:var(--ink3)}
+@media(max-width:980px){.check{grid-template-columns:1fr}.stage{min-height:min(100vw,440px)}.order{border-left:0;border-top:1px solid var(--line)}}
+
+.classic{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,90px);align-items:center}
+.classic .art{aspect-ratio:4/3;border-radius:22px;background:linear-gradient(160deg,#2A2116,#14110C);border:1px solid #3A2F20;position:relative;overflow:hidden}
+.classic .art svg{position:absolute;inset:auto 0 12% 0;width:100%}
+.classic .art .tag{position:absolute;left:22px;top:20px;font:800 13px/1 var(--f-d);letter-spacing:.2em;text-transform:uppercase;color:#E2B868}
+.classic h2{font-size:clamp(40px,5vw,72px)}
+.classic p{color:var(--ink2);margin-top:18px;max-width:480px}
+.classic ul{list-style:none;padding:0;margin:26px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:10px 24px}
+.classic li{border-top:1px solid var(--line2);padding-top:10px;font-weight:500}
+@media(max-width:860px){.classic{grid-template-columns:1fr}}
+
+.contact{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(30px,6vw,90px);align-items:center}
+.contact h2{font-size:clamp(48px,7vw,110px)}
+.contact h2 span{color:var(--y)}
+.contact .lead{color:var(--ink2);margin-top:18px;max-width:460px}
+.contact .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.card{border:1px solid var(--line);border-radius:22px;background:var(--panel);padding:8px}
+.card div{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:18px 20px;border-bottom:1px solid var(--line)}
+.card div:last-child{border:0}
+.card dt{font:700 12px/1.6 var(--f-b);letter-spacing:.16em;text-transform:uppercase;color:var(--ink3)}
+.card dd{margin:0;font-weight:500}
+.card a{text-decoration:none}
+.card a:hover{color:var(--y)}
+@media(max-width:860px){.contact{grid-template-columns:1fr}.card div{grid-template-columns:1fr;gap:4px}}
+
+footer{border-top:1px solid var(--line);padding:30px 0 90px;color:var(--ink3);font-size:13px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+.badge{position:fixed;left:14px;bottom:14px;z-index:30;padding:8px 12px;border-radius:99px;background:#000c;color:#ddd;font:500 11.5px/1 var(--f-b);letter-spacing:.04em;text-decoration:none;border:1px solid #ffffff22}
+.badge b{color:var(--y)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-reveal]{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<a class="badge" href="https://magie-studio.de" target="_blank" rel="noopener">Entwurf · <b>Magie Studio</b></a>
+
+<header class="nav">
+  <a class="logo" href="#top" aria-label="Richter und Lange, zum Seitenanfang"><span class="mk">R&amp;L</span><span><b>Richter &amp; Lange</b><small>Kfz-Meisterfachbetrieb</small></span></a>
+  <ul>
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#check">Werkstatt-Check</a></li>
+    <li><a href="#oldtimer">Oldtimer</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a class="btn" href="tel:+49410134480"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span>04101 34480</span></a>
+</header>
+
+<main id="top">
+  <section class="hero" id="hero" aria-label="Rundgang durch die Werkstatt">
+    <div class="stick">
+      <canvas id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="shade"></div>
+      <div class="copy" id="copy">
+        <p class="eyebrow">Meisterwerkstatt · Rellingen</p>
+        <h1 style="margin-top:16px">Wir kennen Ihr Auto <span>bis ins Detail.</span></h1>
+        <p class="lead">Inspektion, Bremsen, Reifen, Auspuff, Karosserie und Lack. Alles unter einem Dach am Hermann-Löns-Weg, vom Alltagsauto bis zum Oldtimer.</p>
+        <div class="cta"><a class="btn" href="tel:+49410134480">Termin: 04101 34480</a><a class="btn ghost" href="#check">Werkstatt-Check</a></div>
+      </div>
+      <div class="svc" data-i="0"><p class="no">01 / Reifen &amp; Räder</p><h2>Grip, der hält.</h2><p>Reifenwechsel, Auswuchten und Montage. Sommer, Winter oder Ganzjahr, wir beraten Sie ehrlich.</p><ul><li>Reifenwechsel &amp; Montage</li><li>Auswuchten</li><li>Felgen &amp; Kompletträder</li></ul></div>
+      <div class="svc" data-i="1"><p class="no">02 / Bremsen</p><h2>Sicher zum Stehen.</h2><p>Scheiben, Beläge, Bremsflüssigkeit. Wir prüfen, messen und tauschen, bevor es quietscht.</p><ul><li>Bremsscheiben &amp; Beläge</li><li>Bremsflüssigkeit</li><li>Handbremse</li></ul></div>
+      <div class="svc" data-i="2"><p class="no">03 / Auspuff</p><h2>Alles dicht.</h2><p>Vom Krümmer bis zum Endrohr. Wir finden Lecks, tauschen Schalldämpfer und Halter.</p><ul><li>Schalldämpfer &amp; Rohre</li><li>Halter &amp; Dichtungen</li><li>Katalysator</li></ul></div>
+      <div class="svc" data-i="3"><p class="no">04 / Karosserie &amp; Lack</p><h2>Wie neu.</h2><p>Unfallschaden, Rost oder Kratzer. Wir richten, spachteln und lackieren im Farbton Ihres Autos.</p><ul><li>Unfallinstandsetzung</li><li>Smart Repair &amp; Kratzer</li><li>Teil- und Ganzlackierung</li></ul></div>
+      <div class="svc" data-i="4"><p class="no">05 / Termin</p><h2>Rufen Sie an.</h2><p>Kurz schildern, was los ist. Wir sagen Ihnen ehrlich, was nötig ist und was es kostet.</p><ul><li>Kostenvoranschlag vorab</li><li>Meisterbetrieb</li><li>Kurze Wege in Rellingen</li></ul></div>
+      <ol class="track" id="track"><li>Reifen</li><li>Bremsen</li><li>Auspuff</li><li>Karosserie</li><li>Termin</li></ol>
+    </div>
+  </section>
+
+  <section class="sec" id="leistungen">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <div><p class="eyebrow">Leistungen</p><h2 style="margin-top:14px">Eine Werkstatt. <span>Alle Arbeiten.</span></h2></div>
+        <p>Als Kfz-Meisterfachbetrieb reparieren und warten wir Fahrzeuge aller Marken. Sie bekommen vorher einen klaren Preis und nachher Ihr Auto zurück, wie vereinbart.</p>
+      </div>
+      <div class="svc-grid">
+        <article class="tile" data-reveal><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="17"/><path d="M22 5v6M22 33v6M5 22h6M33 22h6"/><circle cx="22" cy="22" r="6"/></svg><h3>Inspektion &amp; Wartung</h3><p>Nach Herstellervorgabe, mit Stempel im Serviceheft.</p></article>
+        <article class="tile" data-reveal><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="16"/><circle cx="22" cy="22" r="4"/><path d="M30 9a16 16 0 0 1 5 7l-6 3"/></svg><h3>Bremsendienst</h3><p>Scheiben, Beläge, Sättel und Bremsflüssigkeit.</p></article>
+        <article class="tile" data-reveal><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="17"/><circle cx="22" cy="22" r="9"/><path d="M22 13v18M13 22h18M16 16l12 12M28 16 16 28"/></svg><h3>Reifen &amp; Räder</h3><p>Wechsel, Montage, Auswuchten und neue Reifen.</p></article>
+        <article class="tile" data-reveal><svg viewBox="0 0 44 44"><path d="M4 26h20l4-4h8v8h-8l-4-4"/><path d="M36 24h4M36 28h4"/></svg><h3>Auspuff</h3><p>Schalldämpfer, Rohre, Halter und Katalysator.</p></article>
+        <article class="tile" data-reveal><svg viewBox="0 0 44 44"><path d="M5 30v-6l5-8h20l7 8h3v6"/><circle cx="13" cy="31" r="4"/><circle cx="32" cy="31" r="4"/><path d="M14 16l-2 8h22"/></svg><h3>Karosserie</h3><p>Unfallschäden, Rost und Dellen, sauber instand gesetzt.</p></article>
+        <article class="tile" data-reveal><svg viewBox="0 0 44 44"><path d="M10 6h18v10H10z"/><path d="M28 11h6v8H19v5"/><path d="M17 24h4v14h-4z"/></svg><h3>Lackierung</h3><p>Spot-Repair bis Ganzlackierung, im Originalfarbton.</p></article>
+        <article class="tile" data-reveal><svg viewBox="0 0 44 44"><path d="M4 28c0-4 3-6 7-7l5-6h12l6 6c4 1 6 3 6 7"/><circle cx="12" cy="29" r="4"/><circle cx="32" cy="29" r="4"/><path d="M16 29h12"/></svg><h3>Oldtimer</h3><p>Pflege, Reparatur und Wartung für Klassiker.</p></article>
+        <article class="tile" data-reveal><svg viewBox="0 0 44 44"><path d="M8 10h28v24H8z"/><path d="M8 17h28M15 24h6M15 28h10"/></svg><h3>Fahrzeughandel</h3><p>Geprüfte Gebrauchte aus der eigenen Werkstatt.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="check" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <div><p class="eyebrow">Werkstatt-Check</p><h2 style="margin-top:14px">Wo drückt <span>der Schuh?</span></h2></div>
+        <p>Tippen Sie auf die Stellen am Auto, die Ihnen Sorgen machen. Wir haben Ihre Liste beim Anruf direkt vor Augen und können Ihnen schneller sagen, was es kostet.</p>
+      </div>
+      <div class="check" data-reveal>
+        <div class="stage" id="stage">
+          <canvas id="checkCanvas" aria-hidden="true"></canvas>
+          <p class="hint">Ziehen zum Drehen · Punkte antippen</p>
+        </div>
+        <div class="order">
+          <h3>Ihr Auftrag</h3>
+          <div class="quick" id="quick" aria-label="Schnellauswahl"></div>
+          <ul id="list"><li class="emptyli" id="empty"><span class="empty">Noch nichts ausgewählt. Tippen Sie auf einen gelben Punkt.</span></li></ul>
+          <textarea id="note" rows="3" placeholder="Was ist Ihnen aufgefallen? z. B. Quietschen beim Bremsen"></textarea>
+          <a class="btn" href="tel:+49410134480" id="callBtn">Anrufen: 04101 34480</a>
+          <p class="small">Ihre Auswahl bleibt in diesem Fenster stehen, damit Sie sie am Telefon vorlesen können.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="oldtimer" style="padding-top:0">
+    <div class="wrap classic">
+      <div class="art" data-reveal>
+        <p class="tag">Klassiker</p>
+        <svg viewBox="0 0 600 220" fill="none" stroke="#E2B868" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M40 160h30M160 160h250M500 160h40c10 0 14-10 12-22l-6-18c-4-10-14-14-26-16l-70-10-60-44c-10-8-22-12-36-12H210c-16 0-26 6-36 16l-40 44-70 8c-14 2-22 10-24 22l-2 22c0 6 4 10 10 10"/>
+          <circle cx="115" cy="160" r="42"/><circle cx="115" cy="160" r="20"/><circle cx="455" cy="160" r="42"/><circle cx="455" cy="160" r="20"/>
+          <path d="M190 104l34-38h60v38zM310 104V66h36c8 0 14 2 20 6l42 32z"/><path d="M548 128h12M30 134h-8"/>
+        </svg>
+      </div>
+      <div data-reveal>
+        <p class="eyebrow">Oldtimer</p>
+        <h2 style="margin-top:14px">Für Autos mit Geschichte.</h2>
+        <p>Klassiker brauchen Zeit, Erfahrung und das Gefühl für Technik ohne Steuergerät. Wir kümmern uns um Ihren Oldtimer mit derselben Sorgfalt wie Sie selbst, von der Durchsicht vor der Saison bis zur Karosseriearbeit.</p>
+        <ul><li>Saison-Check</li><li>Vergaser &amp; Zündung</li><li>Bremsen &amp; Fahrwerk</li><li>Rost &amp; Karosserie</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="kontakt" style="background:var(--bg2);border-top:1px solid var(--line)">
+    <div class="wrap contact">
+      <div data-reveal>
+        <p class="eyebrow">Kontakt</p>
+        <h2 style="margin-top:14px">Termin? <span>Anruf genügt.</span></h2>
+        <p class="lead">Sagen Sie uns, was Ihr Auto hat. Wir nennen Ihnen einen Termin und einen Preis, bevor wir anfangen.</p>
+        <div class="cta"><a class="btn" href="tel:+49410134480">04101 34480</a><a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Hermann-L%C3%B6ns-Weg+1+25462+Rellingen" target="_blank" rel="noopener">Route planen</a></div>
+      </div>
+      <dl class="card" data-reveal>
+        <div><dt>Firma</dt><dd>Richter u. Lange<br>Kfz-Meisterfachbetrieb GmbH</dd></div>
+        <div><dt>Adresse</dt><dd>Hermann-Löns-Weg 1<br>25462 Rellingen</dd></div>
+        <div><dt>Telefon</dt><dd><a href="tel:+49410134480">04101 34480</a></dd></div>
+        <div><dt>Marken</dt><dd>Alle Marken, Alltagsauto bis Oldtimer</dd></div>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© Richter u. Lange Kfz-Meisterfachbetrieb GmbH · Hermann-Löns-Weg 1 · 25462 Rellingen</span><span>Impressum · Datenschutz</span></div></footer>
+
+<script type="module">
+import { THREE, makeRenderer, studioEnv, autoSize, loop, scrollProgress, dragRotate, reveals, clamp, lerp, range, ease, smooth, reduced } from '../shared/kit.js';
+reveals();
+const nav = document.querySelector('.nav'), heroSec = document.getElementById('hero');
+const navSolid = () => nav.classList.toggle('solid', heroSec.getBoundingClientRect().bottom < innerHeight * .6);
+addEventListener('scroll', navSolid, { passive: true }); navSolid();
+
+const garageEnv = r => studioEnv(r, { bg: '#0d0f12', panels: [
+  ...[-4.5, -2, .5, 3].map(z => ({ pos: [0, 9, z], size: [16, .7], color: '#ffffff', i: 5, rot: [Math.PI / 2, 0, 0] })),
+  { pos: [-9.5, 3, 0], size: [10, 3], color: '#dfe8ff', i: 1.6, rot: [0, Math.PI / 2, 0] },
+  { pos: [9.5, 2.5, 0], size: [10, 2], color: '#fff2d8', i: 1.3, rot: [0, -Math.PI / 2, 0] },
+  { pos: [0, 2, -9.5], size: [10, 2.4], color: '#ffe9b8', i: 1.4, rot: [0, 0, 0] },
+  { pos: [0, 1.6, 9.5], size: [12, 1.6], color: '#ffffff', i: 1.8, rot: [0, Math.PI, 0] },
+  { pos: [0, -2, 0], size: [14, 14], color: '#2a2e35', i: 1, rot: [-Math.PI / 2, 0, 0] },
+] });
+
+/* ---------------- Procedural car ---------------- */
+function buildCar(paintColor = '#B3121A') {
+  const car = new THREE.Group();
+  const paint = new THREE.MeshPhysicalMaterial({ color: paintColor, metalness: .55, roughness: .3, clearcoat: 1, clearcoatRoughness: .05, envMapIntensity: 1.2 });
+  const glass = new THREE.MeshPhysicalMaterial({ color: '#0a0d10', metalness: .3, roughness: .04, clearcoat: 1, envMapIntensity: 1.6 });
+  const black = new THREE.MeshStandardMaterial({ color: '#111315', roughness: .6 });
+  const chrome = new THREE.MeshStandardMaterial({ color: '#e6e9ec', metalness: 1, roughness: .16, envMapIntensity: 1.6 });
+  const rubber = new THREE.MeshStandardMaterial({ color: '#1b1c1e', roughness: .85 });
+  const steel = new THREE.MeshStandardMaterial({ color: '#9aa0a6', metalness: .9, roughness: .35, emissive: '#000000' });
+  const W = 1.72;
+  const sh = m => { m.castShadow = true; m.receiveShadow = true; return m; };
+
+  const s = new THREE.Shape();
+  s.moveTo(-2.15, .3); s.lineTo(-1.72, .3); s.absarc(-1.3, .32, .42, Math.PI, 0, true); s.lineTo(.93, .3);
+  s.absarc(1.35, .32, .42, Math.PI, 0, true); s.lineTo(2.08, .3);
+  s.quadraticCurveTo(2.25, .32, 2.24, .55); s.lineTo(2.18, .72); s.quadraticCurveTo(2.1, .8, 1.9, .83);
+  s.lineTo(.75, .98); s.lineTo(-1.6, 1.0); s.lineTo(-2.0, .98); s.quadraticCurveTo(-2.22, .95, -2.2, .7); s.lineTo(-2.17, .36); s.closePath();
+  const bodyG = new THREE.ExtrudeGeometry(s, { depth: W - .1, bevelEnabled: true, bevelThickness: .16, bevelSize: .07, bevelSegments: 6, curveSegments: 28 });
+  bodyG.translate(0, 0, -(W - .1) / 2);
+  // tumblehome and rounded corners seen from above
+  const bodyZ = (x, y) => (1 - .08 * clamp((y - .55) / .5)) * (1 - .2 * Math.pow(Math.abs(x + .05) / 2.3, 6));
+  const cabZ = (x, y) => (1 - .2 * clamp((y - .98) / .5)) * (1 - .12 * Math.pow(Math.abs(x + .5) / 1.35, 4));
+  const deform = (g, f) => { const a = g.attributes.position; for (let i = 0; i < a.count; i++) a.setZ(i, a.getZ(i) * f(a.getX(i), a.getY(i))); a.needsUpdate = true; };
+  deform(bodyG, bodyZ);
+  const body = sh(new THREE.Mesh(bodyG, paint)); car.add(body);
+
+  const c = new THREE.Shape();
+  c.moveTo(.8, .96); c.quadraticCurveTo(.2, 1.3, -.1, 1.42); c.lineTo(-1.15, 1.42); c.quadraticCurveTo(-1.55, 1.3, -1.8, .98); c.closePath();
+  const cabG = new THREE.ExtrudeGeometry(c, { depth: W - .3, bevelEnabled: true, bevelThickness: .08, bevelSize: .06, bevelSegments: 4, curveSegments: 16 });
+  cabG.translate(0, 0, -(W - .3) / 2); deform(cabG, cabZ);
+  const cabin = sh(new THREE.Mesh(cabG, glass)); car.add(cabin);
+  const roofS = new THREE.Shape(); roofS.moveTo(-.1, 1.4); roofS.lineTo(-1.12, 1.4); roofS.lineTo(-1.12, 1.445); roofS.lineTo(-.1, 1.445); roofS.closePath();
+  const roofG = new THREE.ExtrudeGeometry(roofS, { depth: W - .3, bevelEnabled: true, bevelThickness: .08, bevelSize: .03, bevelSegments: 3 }); roofG.translate(0, 0, -(W - .3) / 2); deform(roofG, cabZ);
+  car.add(sh(new THREE.Mesh(roofG, paint)));
+  for (const z of [-1, 1]) {
+    const bp = sh(new THREE.Mesh(new THREE.BoxGeometry(.12, .44, .02), paint)); bp.position.set(-.55, 1.2, z * ((W - .3) / 2 + .085) * cabZ(-.55, 1.2)); car.add(bp);
+    const mirror = sh(new THREE.Mesh(new THREE.BoxGeometry(.16, .1, .14), paint)); mirror.position.set(.62, 1.02, z * ((W / 2 + .06) * bodyZ(.62, 1.02) + .1)); car.add(mirror);
+    const handle = new THREE.Mesh(new THREE.BoxGeometry(.16, .03, .02), chrome); handle.position.set(-.2, .86, z * ((W / 2 + .06) * bodyZ(-.2, .86) + .012)); car.add(handle);
+  }
+  // lights, grille
+  const head = new THREE.MeshStandardMaterial({ color: '#ffffff', emissive: '#dfe9ff', emissiveIntensity: 2.2 });
+  const tail = new THREE.MeshStandardMaterial({ color: '#550000', emissive: '#ff2418', emissiveIntensity: 1.6 });
+  for (const z of [-1, 1]) {
+    const h = new THREE.Mesh(new THREE.BoxGeometry(.1, .07, .42), head); h.position.set(2.2, .68, z * .58); h.rotation.z = -.35; car.add(h);
+    const t = new THREE.Mesh(new THREE.BoxGeometry(.06, .07, .5), tail); t.position.set(-2.24, .83, z * .56); car.add(t);
+  }
+  const grille = new THREE.Mesh(new THREE.BoxGeometry(.06, .16, 1.0), black); grille.position.set(2.27, .45, 0); car.add(grille);
+  const sill = new THREE.Mesh(new THREE.BoxGeometry(2.1, .08, W + .18), black); sill.position.set(.02, .32, 0); car.add(sill);
+
+  // engine (seen in x-ray)
+  const engine = new THREE.Group(); engine.position.set(1.5, .6, 0); car.add(engine);
+  engine.add(sh(new THREE.Mesh(new THREE.BoxGeometry(.7, .36, .8), steel)));
+  for (let i = 0; i < 4; i++) { const cyl = new THREE.Mesh(new THREE.CylinderGeometry(.07, .07, .14, 12), steel); cyl.position.set(-.05, .25, -.3 + i * .2); engine.add(cyl); }
+  engine.visible = false;
+
+  // exhaust
+  const exMat = new THREE.MeshStandardMaterial({ color: '#8b8f94', metalness: .85, roughness: .4, emissive: '#000000' });
+  const exCurve = new THREE.CatmullRomCurve3([new THREE.Vector3(1.3, .42, .2), new THREE.Vector3(1.0, .18, .25), new THREE.Vector3(.2, .17, .3), new THREE.Vector3(-1.2, .17, .35), new THREE.Vector3(-1.8, .2, .45), new THREE.Vector3(-2.3, .22, .48)]);
+  const exhaust = new THREE.Group(); car.add(exhaust);
+  exhaust.add(sh(new THREE.Mesh(new THREE.TubeGeometry(exCurve, 60, .035, 10), exMat)));
+  const muff = sh(new THREE.Mesh(new THREE.CylinderGeometry(.11, .11, .5, 16), exMat)); muff.rotation.z = Math.PI / 2; muff.position.set(-1.55, .2, .42); exhaust.add(muff);
+  const cat = sh(new THREE.Mesh(new THREE.CylinderGeometry(.07, .07, .3, 14), exMat)); cat.rotation.z = Math.PI / 2; cat.position.set(.6, .17, .28); exhaust.add(cat);
+  const tip = new THREE.Mesh(new THREE.CylinderGeometry(.05, .045, .14, 16, 1, true), chrome); tip.rotation.z = Math.PI / 2; tip.position.set(-2.3, .22, .48); exhaust.add(tip);
+
+  // wheels: hub group (disc + caliper) and rolling wheel (tyre + rim) that can slide out
+  const wheels = [];
+  const tyreG = new THREE.TorusGeometry(.27, .095, 16, 40);
+  const rimG = new THREE.CylinderGeometry(.24, .24, .16, 32);
+  const discG = new THREE.CylinderGeometry(.2, .2, .028, 36);
+  for (const [x, front] of [[1.35, true], [-1.3, false]]) for (const z of [-1, 1]) {
+    const corner = new THREE.Group(); corner.position.set(x, .34, z * (W / 2 - .02)); car.add(corner);
+    const discMat = new THREE.MeshStandardMaterial({ color: '#7d8389', metalness: .9, roughness: .28, emissive: '#ff3a0a', emissiveIntensity: 0 });
+    const disc = sh(new THREE.Mesh(discG, discMat)); disc.rotation.x = Math.PI / 2; disc.position.z = z * .02; corner.add(disc);
+    const calMat = new THREE.MeshStandardMaterial({ color: '#E5352B', roughness: .4, emissive: '#FFC21A', emissiveIntensity: 0 });
+    const cal = sh(new THREE.Mesh(new THREE.BoxGeometry(.12, .16, .07), calMat)); cal.position.set(-.13, .1, z * .03); cal.rotation.z = .5; corner.add(cal);
+    const wheel = new THREE.Group(); wheel.position.z = z * .07; corner.add(wheel);
+    const tyre = sh(new THREE.Mesh(tyreG, rubber)); wheel.add(tyre);
+    const rim = new THREE.Group(); wheel.add(rim);
+    const rimDisk = sh(new THREE.Mesh(rimG, chrome)); rimDisk.rotation.x = Math.PI / 2; rimDisk.scale.set(1, .3, 1); rimDisk.position.z = z * -.06; rim.add(rimDisk);
+    for (let i = 0; i < 5; i++) { const sp = sh(new THREE.Mesh(new THREE.BoxGeometry(.045, .2, .04), chrome)); sp.position.set(Math.cos(i / 5 * 6.283) * .12, Math.sin(i / 5 * 6.283) * .12, z * .04); sp.rotation.z = i / 5 * 6.283 + Math.PI / 2; rim.add(sp); }
+    const hub = new THREE.Mesh(new THREE.CylinderGeometry(.05, .05, .1, 16), black); hub.rotation.x = Math.PI / 2; hub.position.z = z * .05; rim.add(hub);
+    const lip = new THREE.Mesh(new THREE.TorusGeometry(.235, .014, 8, 40), chrome); lip.position.z = z * .06; rim.add(lip);
+    wheels.push({ corner, wheel, disc, discMat, calMat, front, z, base: wheel.position.z });
+  }
+  // blob shadow
+  const sc = document.createElement('canvas'); sc.width = sc.height = 128; const g2 = sc.getContext('2d'); const gr = g2.createRadialGradient(64, 64, 0, 64, 64, 64); gr.addColorStop(0, 'rgba(0,0,0,.75)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); g2.fillStyle = gr; g2.fillRect(0, 0, 128, 128);
+  const blob = new THREE.Mesh(new THREE.PlaneGeometry(5.6, 2.8), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(sc), transparent: true, depthWrite: false }));
+  blob.rotation.x = -Math.PI / 2; blob.position.y = .005; car.add(blob);
+
+  // x-ray outline of the body
+  const edges = new THREE.LineSegments(new THREE.EdgesGeometry(bodyG, 28), new THREE.LineBasicMaterial({ color: '#FFC21A', transparent: true, opacity: 0 }));
+  const cabEdges = new THREE.LineSegments(new THREE.EdgesGeometry(cabG, 28), edges.material);
+  car.add(edges, cabEdges);
+
+  return { car, paint, glass, wheels, exhaust, exMat, engine, edges, body, cabin };
+}
+
+/* ---------------- Hero ---------------- */
+{
+  const stick = heroSec.querySelector('.stick'), canvas = document.getElementById('heroCanvas');
+  const renderer = makeRenderer(canvas, { alpha: true, exposure: 1.0 });
+  const scene = new THREE.Scene();
+  scene.environment = garageEnv(renderer);
+  scene.fog = new THREE.Fog('#0C0E11', 14, 34);
+  const camera = new THREE.PerspectiveCamera(30, 1, .1, 100);
+  scene.add(new THREE.HemisphereLight('#c7d3e6', '#101214', .4));
+  const key = new THREE.SpotLight('#ffffff', 70, 30, .55, .9, 1.4); key.position.set(1, 9, 2); key.castShadow = true; key.shadow.mapSize.set(2048, 2048); key.shadow.bias = -.0004; scene.add(key);
+  const rimL = new THREE.DirectionalLight('#9db8ff', 1.2); rimL.position.set(-6, 3, -5); scene.add(rimL);
+  const floor = new THREE.Mesh(new THREE.CircleGeometry(60, 64), new THREE.MeshStandardMaterial({ color: '#16191d', roughness: .55, metalness: .15 }));
+  floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+  // floor marking: a yellow line bay
+  const lineM = new THREE.MeshBasicMaterial({ color: '#FFC21A' });
+  for (const z of [-1.7, 1.7]) { const l = new THREE.Mesh(new THREE.PlaneGeometry(6.4, .05), lineM); l.rotation.x = -Math.PI / 2; l.position.set(0, .004, z); scene.add(l); }
+  // overhead light strips (visible above)
+
+  const C = buildCar('#B3121A'); scene.add(C.car);
+  const heat = new THREE.PointLight('#ff4a14', 0, 2.2, 2); scene.add(heat);
+  const exGlow = new THREE.PointLight('#FFC21A', 0, 3, 2); exGlow.position.set(-.4, .1, .6); scene.add(exGlow);
+  const PAINTS = ['#B3121A', '#1D4E89', '#D8D9DB', '#1C1F22', '#B3121A'].map(c => new THREE.Color(c));
+
+  const kf = [
+    [0,   [6.8, 2.1, 7.4],  [0, .6, 0]],
+    [.12, [7.0, 1.9, 7.6],  [0, .6, 0]],
+    [.2,  [4.6, 1.15, 5.8], [1.35, .45, .9]],
+    [.36, [4.5, 1.1, 5.6],  [1.35, .4, .9]],
+    [.48, [-4.8, 1.9, 5.4], [-.5, .4, .2]],
+    [.62, [-5.2, 1.6, 5.0], [-.6, .4, .2]],
+    [.72, [4.6, 3.2, -7.6], [0, .6, 0]],
+    [.86, [-2.4, 3.0, -8.2], [0, .6, 0]],
+    [1,   [8.4, 2.6, 8.6],  [0, .55, 0]],
+  ];
+  const cp = new THREE.Vector3(), lk = new THREE.Vector3();
+  const camAt = q => {
+    let i = 0; while (i < kf.length - 2 && q > kf[i + 1][0]) i++;
+    const [a, pa, la] = kf[i], [b, pb, lb] = kf[i + 1], t = smooth(clamp((q - a) / (b - a)));
+    cp.set(lerp(pa[0], pb[0], t), lerp(pa[1], pb[1], t), lerp(pa[2], pb[2], t)); lk.set(lerp(la[0], lb[0], t), lerp(la[1], lb[1], t), lerp(la[2], lb[2], t));
+  };
+
+  const copy = document.getElementById('copy'), cards = [...document.querySelectorAll('.svc')], track = [...document.querySelectorAll('#track li')];
+  const ranges = [[.14, .3], [.3, .44], [.44, .64], [.64, .86], [.86, 1.01]];
+  let p = 0, mx = 0, tmx = 0, wheelSpin = 0;
+  addEventListener('pointermove', e => { tmx = e.clientX / innerWidth - .5; }, { passive: true });
+  autoSize(renderer, camera, stick, (w, h) => {
+    camera.fov = w / h < .8 ? 46 : 30;
+    if (w > 1000) camera.setViewOffset(w, h, -w * .17, 0, w, h); else camera.clearViewOffset();
+    camera.updateProjectionMatrix();
+  });
+  const fl = C.wheels.find(w => w.front && w.z > 0);
+
+  loop(stick, (dt, time) => {
+    const target = scrollProgress(heroSec);
+    p += (target - p) * (reduced ? 1 : Math.min(1, dt * 6));
+    mx += (tmx - mx) * .05;
+    const tyre = range(p, .16, .26) * (1 - range(p, .3, .36));
+    const brake = range(p, .3, .38) * (1 - range(p, .43, .47));
+    const xray = range(p, .45, .5) * (1 - range(p, .6, .65));
+    const paintT = range(p, .66, .86);
+
+    // tyres slide out and spin
+    wheelSpin += dt * (tyre * 6 + (p < .1 ? 0 : 0));
+    C.wheels.forEach(w => {
+      const out = w === fl ? ease(tyre) * .45 + ease(brake) * .4 : 0;
+      w.wheel.position.z = w.base + w.z * out;
+      w.wheel.rotation.z = -wheelSpin;
+      const hot = w.front ? brake : 0;
+      w.discMat.emissiveIntensity = hot * (2.2 + Math.sin(time * 9) * .3);
+      w.calMat.emissiveIntensity = hot * .25;
+    });
+    heat.position.set(fl.corner.position.x, .34, fl.corner.position.z + .25); heat.intensity = brake * 5;
+
+    // x-ray: body fades to an outline, exhaust and engine glow
+    const op = 1 - xray * .93;
+    for (const m of [C.paint, C.glass]) { m.transparent = op < .999; m.opacity = op; m.depthWrite = op > .5; }
+    C.edges.material.opacity = xray * .7;
+    C.engine.visible = xray > .01;
+    C.exMat.emissive.set('#FFC21A'); C.exMat.emissiveIntensity = xray * 1.2;
+    exGlow.intensity = xray * 4;
+
+    // paint cycles through four colours
+    const k = paintT * 4, i = Math.min(3, Math.floor(k)), f = smooth(k - i);
+    C.paint.color.copy(PAINTS[i]).lerp(PAINTS[i + 1], f);
+
+    camAt(p);
+    const mob = innerWidth < 760;
+    if (mob) { cp.sub(lk).multiplyScalar(1.6).add(lk); lk.y += 1.1; }
+    camera.position.set(cp.x + mx * .4, cp.y, cp.z);
+    camera.lookAt(lk);
+
+    copy.classList.toggle('away', p > .12);
+    let active = -1;
+    ranges.forEach(([a, b], j) => { if (p >= a && p < b) active = j; track[j].style.setProperty('--f', range(p, a, b)); });
+    cards.forEach((c, j) => c.classList.toggle('on', j === active));
+    track.forEach((t, j) => t.classList.toggle('on', j === active));
+    renderer.render(scene, camera);
+  });
+}
+
+/* ---------------- Werkstatt-Check ---------------- */
+{
+  const stage = document.getElementById('stage'), canvas = document.getElementById('checkCanvas');
+  const list = document.getElementById('list'), empty = document.getElementById('empty'), note = document.getElementById('note');
+  const SPOTS = [
+    { id: 'motor', label: 'Motor / Inspektion', pos: [1.55, 1.0, 0], n: [0, 1, 0] },
+    { id: 'bremsen', label: 'Bremsen', pos: [1.35, .38, .98], n: [0, 0, 1] },
+    { id: 'reifen', label: 'Reifen & Räder', pos: [-1.3, .2, 1.0], n: [0, 0, 1] },
+    { id: 'auspuff', label: 'Auspuff', pos: [-2.3, .24, .5], n: [-1, 0, 0] },
+    { id: 'karosserie', label: 'Karosserie / Delle', pos: [.1, .7, .96], n: [0, 0, 1] },
+    { id: 'lack', label: 'Lack / Kratzer', pos: [-.6, 1.5, 0], n: [0, 1, 0] },
+    { id: 'licht', label: 'Licht', pos: [2.2, .68, -.58], n: [1, 0, 0] },
+  ];
+  const chosen = new Set();
+  const quick = document.getElementById('quick');
+  SPOTS.forEach(s => { const q = document.createElement('button'); q.type = 'button'; q.textContent = s.label; q.setAttribute('aria-pressed', 'false'); q.onclick = () => toggle(s.id); quick.appendChild(q); s.q = q; });
+  const btns = SPOTS.map(s => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'hs'; b.setAttribute('aria-pressed', 'false');
+    b.innerHTML = `<i></i><span>${s.label}</span>`;
+    b.addEventListener('pointerdown', e => e.stopPropagation());
+    b.addEventListener('click', () => toggle(s.id)); stage.appendChild(b); s.btn = b; return b;
+  });
+  const render = () => {
+    [...list.querySelectorAll('li:not(#empty)')].forEach(li => li.remove());
+    empty.hidden = chosen.size > 0;
+    SPOTS.filter(s => chosen.has(s.id)).forEach(s => {
+      const li = document.createElement('li'); li.innerHTML = `<span>${s.label}</span><button type="button" aria-label="${s.label} entfernen">×</button>`;
+      li.querySelector('button').onclick = () => toggle(s.id); list.appendChild(li);
+    });
+    SPOTS.forEach(s => { s.btn.setAttribute('aria-pressed', chosen.has(s.id)); s.q.setAttribute('aria-pressed', chosen.has(s.id)); });
+  };
+  const toggle = id => { chosen.has(id) ? chosen.delete(id) : chosen.add(id); render(); };
+
+  let started = false;
+  const boot = () => {
+    const renderer = makeRenderer(canvas, { alpha: true, exposure: 1.05 });
+    const scene = new THREE.Scene(); scene.environment = garageEnv(renderer);
+    const camera = new THREE.PerspectiveCamera(30, 1, .1, 60);
+    scene.add(new THREE.HemisphereLight('#c7d3e6', '#101214', .6));
+    const key = new THREE.DirectionalLight('#ffffff', 2.4); key.position.set(3, 8, 4); key.castShadow = true; key.shadow.mapSize.set(1024, 1024); Object.assign(key.shadow.camera, { left: -4, right: 4, top: 4, bottom: -4 }); scene.add(key);
+    const holder = new THREE.Group(); holder.rotation.y = .6; scene.add(holder);
+    const C = buildCar('#1D4E89'); holder.add(C.car);
+    const ground = new THREE.Mesh(new THREE.PlaneGeometry(20, 20), new THREE.ShadowMaterial({ opacity: .5 })); ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; scene.add(ground);
+    const spin = dragRotate(stage, holder, { x: false, idle: .1 });
+    autoSize(renderer, camera, stage, (w, h) => { const narrow = w / h < 1.1; camera.fov = narrow ? 34 : 30; camera.updateProjectionMatrix(); const d = narrow ? 2.9 / (Math.tan(camera.fov * Math.PI / 360) * (w / h)) : 8.6; camera.position.set(0, d * .3, d); camera.lookAt(0, .55, 0); });
+    const v = new THREE.Vector3(), nrm = new THREE.Vector3(), toCam = new THREE.Vector3();
+    loop(stage, dt => {
+      spin(dt);
+      holder.updateMatrixWorld();
+      SPOTS.forEach(s => {
+        v.set(...s.pos).applyMatrix4(holder.matrixWorld);
+        nrm.set(...s.n).transformDirection(holder.matrixWorld);
+        toCam.copy(camera.position).sub(v).normalize();
+        const facing = nrm.dot(toCam) > -.05;
+        v.project(camera);
+        s.btn.style.left = (v.x * .5 + .5) * stage.clientWidth + 'px';
+        s.btn.style.top = (-v.y * .5 + .5) * stage.clientHeight + 'px';
+        s.btn.classList.toggle('back', !facing);
+      });
+      renderer.render(scene, camera);
+    });
+  };
+  new IntersectionObserver((es, io) => { if (es[0].isIntersecting && !started) { started = true; io.disconnect(); boot(); } }, { rootMargin: '400px' }).observe(stage);
+  render();
+}
+</script>
+</body>
+</html>
