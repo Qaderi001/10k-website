@@ -1,5 +1,5 @@
 // Small shared toolkit for the lead demos: renderer, studio lighting, scroll and drag helpers.
-import * as THREE from '../../assets/vendor/three.module.min.js';
+import * as THREE from '../vendor/three.module.min.js';
 export { THREE };
 
 export const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
