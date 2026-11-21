@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adolf Schneider · Gartengestaltung &amp; Baumschule in Rellingen</title>
+<meta name="description" content="Baumschule und Gartengestaltung aus einer Hand, seit 1953 in Rellingen. Gehölze aus eigener Anzucht, Planung, Pflanzung und Pflege. Bitzkamp 47, 25462 Rellingen.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F5F1E6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%232F5D3A'/%3E%3Cpath d='M32 50V30M32 34c-10 0-14-8-14-16 9 0 14 6 14 14 0-8 5-14 14-14 0 8-4 16-14 16z' fill='%23F5F1E6'/%3E%3C/svg%3E">
+<link rel="preload" href="../fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="modulepreload" href="../vendor/three.module.min.js">
+<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__demoReady)document.documentElement.classList.remove('js')},3500)</script>
+<style>
+@font-face{font-family:"Fraunces";font-weight:600;font-display:swap;src:url(../fonts/fraunces-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Fraunces";font-weight:400;font-style:italic;font-display:swap;src:url(../fonts/fraunces-latin-400-italic.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:400;font-display:swap;src:url(../fonts/dm-sans-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:500;font-display:swap;src:url(../fonts/dm-sans-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:700;font-display:swap;src:url(../fonts/dm-sans-latin-700-normal.woff2) format("woff2")}
+:root{
+  --cream:#F5F1E6;--sand:#EAE3D1;--sand2:#DDD3BC;--ink:#1E2B22;--ink2:#4B5A4F;--ink3:#7A867C;
+  --green:#2F5D3A;--green2:#244A2E;--moss:#7FA35A;--accent:#BF6131;--line:#D3CBB6;
+  --f-d:"Fraunces",Georgia,serif;--f-b:"DM Sans",system-ui,sans-serif;
+  --g:clamp(18px,4.5vw,64px);--ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 17px/1.65 var(--f-b);-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit}
+img,svg,canvas{display:block;max-width:100%}
+h1,h2,h3{font-family:var(--f-d);font-weight:600;letter-spacing:-.02em;line-height:1.02;margin:0}
+em{font-family:var(--f-d);font-style:italic;font-weight:400}
+p{margin:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.eyebrow{font:700 12px/1 var(--f-b);letter-spacing:.18em;text-transform:uppercase;color:var(--green)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 var(--g)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 24px;border-radius:99px;background:var(--green);color:var(--cream);font:500 15.5px/1 var(--f-b);text-decoration:none;border:0;cursor:pointer;transition:background .25s,transform .25s var(--ease)}
+.btn:hover{background:var(--green2);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--cream)}
+.js [data-reveal]{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js [data-reveal].in{opacity:1;transform:none}
+
+.nav{position:fixed;inset:0 0 auto;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px var(--g);transition:background .3s,padding .3s,box-shadow .3s}
+.nav.solid{background:#F5F1E6f2;padding-top:12px;padding-bottom:12px;box-shadow:0 1px 0 var(--line)}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo svg{width:40px;height:40px}
+.logo b{display:block;font:600 21px/1 var(--f-d);letter-spacing:-.01em}
+.logo small{display:block;font:500 11px/1.4 var(--f-b);letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);margin-top:3px}
+.nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0;font-size:15px;font-weight:500}
+.nav ul a{text-decoration:none;color:var(--ink2)}
+.nav ul a:hover{color:var(--ink)}
+.nav .btn{padding:11px 18px;font-size:14px}
+@media(max-width:920px){.nav ul{display:none}}
+@media(max-width:480px){.nav .btn{display:none}}
+
+.hero{position:relative;height:520vh}
+.hero .stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--sky,#EEF0E4);transition:background-color .2s}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero .copy{position:absolute;left:var(--g);top:50%;transform:translateY(-50%);max-width:min(600px,44vw);transition:opacity .4s,transform .4s}
+.hero h1{font-size:clamp(38px,min(7.4vw,10.5vh),116px)}
+.hero h1 em{color:var(--green)}
+.hero .lead{margin-top:22px;font-size:clamp(17px,1.4vw,19.5px);color:var(--ink2);max-width:430px}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.chapter{position:absolute;left:var(--g);bottom:clamp(26px,6vh,60px);display:flex;gap:18px;align-items:baseline;font-size:14px;color:var(--ink2)}
+.chapter b{font:400 italic clamp(40px,4.4vw,64px)/1 var(--f-d);color:var(--ink)}
+.season{position:absolute;right:var(--g);bottom:clamp(26px,6vh,60px);text-align:right}
+.season ol{display:flex;gap:6px;list-style:none;margin:0 0 12px;padding:0;justify-content:flex-end}
+.season li{width:34px;height:4px;border-radius:2px;background:#1E2B2222;overflow:hidden}
+.season li i{display:block;height:100%;background:var(--green);transform-origin:left;transform:scaleX(var(--f,0))}
+.season p{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);font-weight:700}
+.season h2{font:400 italic clamp(44px,5vw,78px)/1 var(--f-d)}
+.season{opacity:0;transition:opacity .5s}
+.hint{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);font-weight:700;transition:opacity .4s}
+@media(max-width:760px){
+  .hero .copy{top:92px;transform:none;right:var(--g)}
+  .hero h1{font-size:clamp(44px,12.5vw,64px)}
+  .hero .lead{font-size:16px;margin-top:14px}
+  .hero .cta{margin-top:18px}
+  .hero .cta .ghost{display:none}
+  .chapter{bottom:70px}
+  .chapter b{font-size:36px}
+  .season{bottom:70px}
+  .hint{display:none}
+}
+
+.sec{padding:clamp(90px,12vw,160px) 0}
+.sec-head{display:grid;grid-template-columns:1.1fr 1fr;gap:24px 60px;align-items:end;margin-bottom:clamp(40px,6vw,72px)}
+.sec-head h2{font-size:clamp(40px,5.4vw,76px)}
+.sec-head p{color:var(--ink2);max-width:470px}
+@media(max-width:820px){.sec-head{grid-template-columns:1fr}}
+
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.duo article{background:var(--sand);border-radius:28px;padding:clamp(28px,4vw,52px);display:flex;flex-direction:column;gap:18px;min-height:460px;position:relative;overflow:hidden}
+.duo article.dark{background:var(--green);color:var(--cream)}
+.duo article.dark p,.duo article.dark li{color:#DCE5D6}
+.duo h3{font-size:clamp(32px,3.4vw,46px)}
+.duo p{color:var(--ink2);max-width:420px}
+.duo ul{list-style:none;margin:auto 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 20px}
+.duo li{padding-top:10px;border-top:1px solid #1E2B2226;font-weight:500;font-size:15.5px}
+.duo .dark li{border-color:#F5F1E633}
+.duo .num{font:400 italic 15px/1 var(--f-d);opacity:.7}
+@media(max-width:860px){.duo{grid-template-columns:1fr}.duo article{min-height:0}}
+
+/* hedge calculator */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:28px;overflow:hidden;background:#fff;box-shadow:0 1px 0 var(--line),0 30px 80px -40px #2F5D3A55}
+.calc form{padding:clamp(26px,4vw,48px);display:grid;gap:26px;align-content:start}
+.calc fieldset{border:0;margin:0;padding:0}
+.calc legend,.calc .lbl{font:700 12px/1 var(--f-b);letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px;padding:0;display:block}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{cursor:pointer}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips span{display:block;padding:10px 16px;border-radius:99px;border:1.5px solid var(--line);font-weight:500;font-size:15px;transition:all .2s}
+.chips input:checked+span{background:var(--green);border-color:var(--green);color:var(--cream)}
+.chips input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.len{display:flex;align-items:center;gap:14px}
+.len input[type=range]{flex:1}
+.len output{font:600 28px/1 var(--f-d);min-width:90px;text-align:right}
+input[type=range]{-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--green) var(--v,30%),var(--sand) var(--v,30%))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;border:2px solid var(--green);box-shadow:0 4px 10px #0002;cursor:pointer}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;border:2px solid var(--green);cursor:pointer}
+.result{background:var(--green);color:var(--cream);padding:clamp(26px,4vw,48px);display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.result .big{font:600 clamp(80px,10vw,140px)/.9 var(--f-d);letter-spacing:-.04em}
+.result .big small{font:400 italic 26px/1 var(--f-d);letter-spacing:0;margin-left:6px}
+.result p{color:#DCE5D6;max-width:380px}
+.result dl{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:auto 0 0;padding-top:20px;border-top:1px solid #F5F1E633}
+.result dt{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#B9CBB2;font-weight:700}
+.result dd{margin:4px 0 0;font:600 20px/1.2 var(--f-d)}
+.hedge{display:flex;align-items:flex-end;gap:3px;height:70px;margin-top:6px}
+.hedge i{flex:1;max-width:16px;border-radius:8px 8px 3px 3px;background:var(--moss);transform-origin:bottom;animation:pop .5s var(--ease) both}
+@keyframes pop{from{transform:scaleY(0)}}
+@media(max-width:860px){.calc{grid-template-columns:1fr}}
+
+.range-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.plant{background:#fff;border-radius:24px;padding:26px;display:grid;gap:10px;box-shadow:0 1px 0 var(--line)}
+.plant svg{width:64px;height:64px}
+.plant h3{font-size:26px}
+.plant p{color:var(--ink2);font-size:15px}
+.plant small{font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+@media(max-width:900px){.range-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.range-grid{grid-template-columns:1fr}}
+
+.story{background:var(--green);color:var(--cream);border-radius:clamp(0px,3vw,40px);margin:0 clamp(0px,1.5vw,24px)}
+.story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,90px);align-items:center}
+.story .year{font:600 clamp(110px,17vw,260px)/.8 var(--f-d);letter-spacing:-.05em;color:#F5F1E6}
+.story .year em{display:block;font-size:.28em;letter-spacing:0;color:#B9CBB2;margin-top:18px}
+.story h2{font-size:clamp(34px,4vw,54px);margin-bottom:20px}
+.story p{color:#DCE5D6;margin-bottom:14px;max-width:520px}
+.story .stats{display:flex;gap:40px;margin-top:30px;padding-top:24px;border-top:1px solid #F5F1E633}
+.story .stats b{display:block;font:600 44px/1 var(--f-d)}
+.story .stats span{font-size:13px;color:#B9CBB2}
+@media(max-width:860px){.story .wrap{grid-template-columns:1fr}}
+
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px)}
+.contact h2{font-size:clamp(44px,6vw,86px)}
+.contact .lead{color:var(--ink2);margin-top:18px;max-width:440px}
+.addr{margin-top:34px;display:grid;gap:18px}
+.addr div{display:grid;grid-template-columns:110px 1fr;border-top:1px solid var(--line);padding-top:14px}
+.addr dt{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);font-weight:700;padding-top:3px}
+.addr dd{margin:0;font-weight:500}
+.form{background:#fff;border-radius:28px;padding:clamp(24px,4vw,44px);display:grid;gap:16px;box-shadow:0 30px 80px -40px #2F5D3A55}
+.form label{display:grid;gap:6px;font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--ink2)}
+.form input,.form select,.form textarea{font:inherit;font-weight:400;letter-spacing:0;color:var(--ink);padding:14px 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--cream)}
+.form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--green)}
+.form .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form .ok{display:none;padding:14px 16px;border-radius:14px;background:#E3EEDB;color:var(--green);font-weight:500}
+.form.sent .ok{display:block}
+@media(max-width:860px){.contact{grid-template-columns:1fr}.form .row2{grid-template-columns:1fr}}
+
+footer{padding:40px 0 90px;color:var(--ink3);font-size:13px;border-top:1px solid var(--line);margin-top:40px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+.badge{position:fixed;left:14px;bottom:14px;z-index:30;padding:8px 12px;border-radius:99px;background:#1E2B22e6;color:#eee;font:500 11.5px/1 var(--f-b);letter-spacing:.04em;text-decoration:none}
+.badge b{color:#BFD7A6}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-reveal]{opacity:1;transform:none}}
+
+@media(min-width:761px) and (max-height:820px){.hero .lead{font-size:16px;margin-top:14px}.hero .cta{margin-top:18px}.btn{padding:12px 18px}}
+</style>
+</head>
+<body>
+<a class="badge" href="https://magie-studio.de" target="_blank" rel="noopener">Entwurf · <b>Magie Studio</b></a>
+
+<header class="nav">
+  <a class="logo" href="#top" aria-label="Adolf Schneider, zum Seitenanfang">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#2F5D3A"/><path d="M20 32V18M20 21c-6 0-9-5-9-10 6 0 9 4 9 9 0-5 3-9 9-9 0 5-3 10-9 10z" fill="#F5F1E6"/></svg>
+    <span><b>Adolf Schneider</b><small>Gartengestaltung · Baumschule</small></span>
+  </a>
+  <ul>
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#hecke">Heckenrechner</a></li>
+    <li><a href="#sortiment">Sortiment</a></li>
+    <li><a href="#geschichte">Seit 1953</a></li>
+  </ul>
+  <a class="btn" href="#kontakt">Beratung anfragen</a>
+</header>
+
+<main id="top">
+  <section class="hero" id="hero" aria-label="Vom Setzling zum Garten">
+    <div class="stick">
+      <canvas id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="copy" id="copy">
+        <p class="eyebrow">Rellingen · seit 1953</p>
+        <h1 style="margin-top:16px">Hier wächst <em>Ihr Garten</em> heran.</h1>
+        <p class="lead">Gehölze aus unserer Baumschule, gepflanzt in einen Garten, den wir für Sie planen. Mitten im Pinneberger Baumschulland.</p>
+        <div class="cta"><a class="btn" href="#kontakt">Gartenberatung</a><a class="btn ghost" href="#sortiment">Sortiment ansehen</a></div>
+      </div>
+      <div class="chapter" id="chapter"><b id="chB">Anzucht</b><span id="chS">Jungpflanzen in der Baumschule</span></div>
+      <div class="season" id="season"><ol id="sBars"><li><i></i></li><li><i></i></li><li><i></i></li><li><i></i></li></ol><p id="sMonth">März – Mai</p><h2 id="sName">Frühling</h2></div>
+      <p class="hint" id="hint">Scrollen und wachsen lassen</p>
+    </div>
+  </section>
+
+  <section class="sec" id="leistungen">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <div><p class="eyebrow">Leistungen</p><h2 style="margin-top:14px">Baumschule und Gärtner. <em>Aus einer Hand.</em></h2></div>
+        <p>Was wir pflanzen, haben wir selbst großgezogen. Darum wissen wir, wie es wächst, wo es sich wohlfühlt und wie es in zehn Jahren aussieht.</p>
+      </div>
+      <div class="duo">
+        <article data-reveal>
+          <span class="num">01</span>
+          <h3>Baumschule</h3>
+          <p>Gehölze aus eigener Anzucht und von Partnerbetrieben aus der Region. Abgestimmt auf Boden und Klima zwischen Elbe und Pinnau.</p>
+          <ul><li>Laubbäume</li><li>Nadelgehölze</li><li>Heckenpflanzen</li><li>Obstgehölze</li><li>Solitäre</li><li>Ziersträucher</li></ul>
+        </article>
+        <article class="dark" data-reveal>
+          <span class="num">02</span>
+          <h3>Gartengestaltung</h3>
+          <p>Vom ersten Rundgang über den Plan bis zur fertigen Pflanzung. Und danach kommen wir gerne wieder, zum Schneiden und Pflegen.</p>
+          <ul><li>Planung &amp; Beratung</li><li>Pflanzung</li><li>Hecken &amp; Sichtschutz</li><li>Wege &amp; Beete</li><li>Rasen</li><li>Gehölzpflege</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="hecke" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <div><p class="eyebrow">Heckenrechner</p><h2 style="margin-top:14px">Wie viele Pflanzen <em>brauche ich?</em></h2></div>
+        <p>Heckenart wählen, Länge einstellen, fertig. Den Rest besprechen wir gerne vor Ort: Boden, Pflanzgröße und den besten Zeitpunkt.</p>
+      </div>
+      <div class="calc" data-reveal>
+        <form id="calc" onsubmit="return false">
+          <fieldset>
+            <legend>Heckenpflanze</legend>
+            <div class="chips">
+              <label><input type="radio" name="p" value="hainbuche" checked><span>Hainbuche</span></label>
+              <label><input type="radio" name="p" value="rotbuche"><span>Rotbuche</span></label>
+              <label><input type="radio" name="p" value="liguster"><span>Liguster</span></label>
+              <label><input type="radio" name="p" value="eibe"><span>Eibe</span></label>
+              <label><input type="radio" name="p" value="kirschlorbeer"><span>Kirschlorbeer</span></label>
+              <label><input type="radio" name="p" value="lebensbaum"><span>Lebensbaum</span></label>
+            </div>
+          </fieldset>
+          <div>
+            <span class="lbl">Heckenlänge</span>
+            <div class="len"><input type="range" id="len" min="2" max="60" step="1" value="15" aria-label="Heckenlänge in Metern"><output id="lenOut">15 m</output></div>
+          </div>
+          <fieldset>
+            <legend>Pflanzweise</legend>
+            <div class="chips">
+              <label><input type="radio" name="r" value="1" checked><span>Einreihig</span></label>
+              <label><input type="radio" name="r" value="2"><span>Zweireihig, versetzt</span></label>
+            </div>
+          </fieldset>
+        </form>
+        <div class="result" aria-live="polite">
+          <span class="lbl" style="color:#B9CBB2">Sie brauchen etwa</span>
+          <div class="big"><span id="count">45</span><small>Pflanzen</small></div>
+          <div class="hedge" id="hedge" aria-hidden="true"></div>
+          <p id="note">Hainbuche: sommergrün, sehr schnittverträglich, hält das trockene Laub bis zum Frühjahr.</p>
+          <dl>
+            <div><dt>Pflanzen pro Meter</dt><dd id="pm">3</dd></div>
+            <div><dt>Endhöhe bei Schnitt</dt><dd id="hh">1 – 4 m</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="sortiment" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <div><p class="eyebrow">Sortiment</p><h2 style="margin-top:14px">Aus dem Baumschulland. <em>Für Ihren Garten.</em></h2></div>
+        <p>Eine Auswahl dessen, was bei uns wächst. Was gerade in welcher Größe da ist, zeigen wir Ihnen am liebsten direkt im Quartier.</p>
+      </div>
+      <div class="range-grid">
+        <article class="plant" data-reveal><svg viewBox="0 0 64 64"><circle cx="32" cy="26" r="20" fill="#7FA35A"/><circle cx="22" cy="30" r="12" fill="#6B9149"/><rect x="30" y="38" width="4" height="22" rx="2" fill="#6B4A33"/></svg><small>Laubbäume</small><h3>Hausbäume</h3><p>Feldahorn, Zierapfel, Felsenbirne. Bäume, die zum Grundstück passen und nicht über den Kopf wachsen.</p></article>
+        <article class="plant" data-reveal><svg viewBox="0 0 64 64"><path d="M32 4 14 30h8L10 48h44L42 30h8z" fill="#2F5D3A"/><rect x="30" y="48" width="4" height="12" rx="2" fill="#6B4A33"/></svg><small>Nadelgehölze</small><h3>Immergrün</h3><p>Eiben, Kiefern und Zwergkoniferen für Struktur, die auch im Winter trägt.</p></article>
+        <article class="plant" data-reveal><svg viewBox="0 0 64 64"><rect x="6" y="20" width="52" height="34" rx="12" fill="#7FA35A"/><rect x="6" y="20" width="52" height="12" rx="6" fill="#93B66B"/></svg><small>Hecken</small><h3>Sichtschutz</h3><p>Hainbuche, Liguster, Eibe. Als Ballenware oder wurzelnackt in der Pflanzzeit.</p></article>
+        <article class="plant" data-reveal><svg viewBox="0 0 64 64"><circle cx="32" cy="26" r="20" fill="#7FA35A"/><circle cx="24" cy="22" r="4" fill="#C9463A"/><circle cx="38" cy="30" r="4" fill="#C9463A"/><circle cx="36" cy="16" r="4" fill="#C9463A"/><rect x="30" y="40" width="4" height="20" rx="2" fill="#6B4A33"/></svg><small>Obst</small><h3>Obstgehölze</h3><p>Alte Apfelsorten, Birnen, Kirschen und Beerensträucher, auch als Spalier.</p></article>
+        <article class="plant" data-reveal><svg viewBox="0 0 64 64"><circle cx="32" cy="24" r="18" fill="#F0B9C6"/><circle cx="22" cy="28" r="10" fill="#E8A3B4"/><circle cx="42" cy="28" r="9" fill="#F5CBD5"/><rect x="30" y="38" width="4" height="22" rx="2" fill="#6B4A33"/></svg><small>Blüte</small><h3>Ziersträucher</h3><p>Zierkirsche, Hortensie, Flieder. Damit der Garten von März bis Oktober etwas zu zeigen hat.</p></article>
+        <article class="plant" data-reveal><svg viewBox="0 0 64 64"><ellipse cx="32" cy="26" rx="12" ry="22" fill="#4F7F3A"/><rect x="30" y="44" width="4" height="16" rx="2" fill="#6B4A33"/></svg><small>Solitäre</small><h3>Besondere Stücke</h3><p>Formgehölze und große Solitäre, die einem Garten sofort Charakter geben.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec story" id="geschichte">
+    <div class="wrap">
+      <div class="year" data-reveal>1953<em>Gegründet in Rellingen</em></div>
+      <div data-reveal>
+        <p class="eyebrow" style="color:#B9CBB2">Unsere Geschichte</p>
+        <h2 style="margin-top:14px">Seit über 70 Jahren am Bitzkamp.</h2>
+        <p>Rellingen liegt mitten im Pinneberger Baumschulland, einem der größten Baumschulgebiete Europas. Hier ist Adolf Schneider seit 1953 zu Hause.</p>
+        <p>Aus der Baumschule ist über die Jahre ein Betrieb geworden, der Gärten nicht nur bepflanzt, sondern von Grund auf gestaltet. Die Haltung ist geblieben: gute Pflanzen, ehrliche Beratung, sauberes Handwerk.</p>
+        <div class="stats"><div><b>70+</b><span>Jahre Erfahrung</span></div><div><b>1</b><span>Hand für Pflanze &amp; Plan</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="kontakt">
+    <div class="wrap contact">
+      <div data-reveal>
+        <p class="eyebrow">Kontakt</p>
+        <h2 style="margin-top:14px">Kommen Sie <em>vorbei.</em></h2>
+        <p class="lead">Am schönsten beraten wir Sie zwischen den Pflanzen. Oder wir kommen zu Ihnen und schauen uns den Garten gemeinsam an.</p>
+        <dl class="addr">
+          <div><dt>Adresse</dt><dd>Adolf Schneider<br>Gartengestaltung u. Baumschule<br>Bitzkamp 47 · 25462 Rellingen</dd></div>
+          <div><dt>Anfahrt</dt><dd><a href="https://www.google.com/maps/search/?api=1&query=Bitzkamp+47+25462+Rellingen" target="_blank" rel="noopener">Route in Google Maps öffnen</a></dd></div>
+        </dl>
+      </div>
+      <form class="form" id="form" data-reveal>
+        <p class="eyebrow">Rückruf anfordern</p>
+        <div class="row2">
+          <label>Name<input name="name" autocomplete="name" required></label>
+          <label>Telefon<input name="tel" type="tel" autocomplete="tel" required></label>
+        </div>
+        <label>Worum geht es?<select name="topic"><option>Neuer Garten / Umgestaltung</option><option>Hecke pflanzen</option><option>Bäume &amp; Gehölze kaufen</option><option>Pflege &amp; Schnitt</option></select></label>
+        <label>Nachricht<textarea name="msg" rows="4" placeholder="z. B. Hecke, 15 m Hainbuche, Pflanzung im Herbst"></textarea></label>
+        <button class="btn" type="submit">Rückruf anfordern</button>
+        <p class="ok" role="status">Danke! Wir melden uns in den nächsten Tagen bei Ihnen.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© Adolf Schneider Gartengestaltung u. Baumschule · Bitzkamp 47 · 25462 Rellingen</span><span>Impressum · Datenschutz</span></div></footer>
+
+<script type="module">
+import { THREE, makeRenderer, autoSize, loop, scrollProgress, reveals, clamp, lerp, range, ease, smooth, reduced } from '../shared/kit.js?v=4';
+reveals(); window.__demoReady = true;
+const nav = document.querySelector('.nav'), heroSec = document.getElementById('hero');
+const navSolid = () => nav.classList.toggle('solid', heroSec.getBoundingClientRect().bottom < innerHeight * .6);
+addEventListener('scroll', navSolid, { passive: true }); navSolid();
+document.getElementById('form').addEventListener('submit', e => { e.preventDefault(); e.target.classList.add('sent'); });
+
+/* ---------------- Hedge calculator ---------------- */
+{
+  const P = {
+    hainbuche: { pm: 3, h: '1 – 4 m', note: 'Hainbuche: sommergrün, sehr schnittverträglich, hält das trockene Laub bis zum Frühjahr.' },
+    rotbuche: { pm: 3, h: '1 – 4 m', note: 'Rotbuche: kräftiges Grün im Sommer, kupferbraunes Laub im Winter. Mag keine Staunässe.' },
+    liguster: { pm: 4, h: '1 – 2,5 m', note: 'Liguster: dicht, robust und fast immergrün. Weiße Blüten im Juni, beliebt bei Bienen.' },
+    eibe: { pm: 3, h: '0,5 – 3 m', note: 'Eibe: immergrün, langsamer Wuchs, verträgt Schatten und sogar starken Rückschnitt.' },
+    kirschlorbeer: { pm: 2, h: '1 – 3 m', note: 'Kirschlorbeer: großblättrig und immergrün, schneller Sichtschutz. Breit wachsend.' },
+    lebensbaum: { pm: 3, h: '1 – 4 m', note: 'Lebensbaum: immergrün und schmal. Gut gießen, besonders in den ersten Sommern.' },
+  };
+  const f = document.getElementById('calc'), len = document.getElementById('len');
+  const out = { c: document.getElementById('count'), pm: document.getElementById('pm'), hh: document.getElementById('hh'), note: document.getElementById('note'), lo: document.getElementById('lenOut'), hedge: document.getElementById('hedge') };
+  let lastN = -1;
+  const calc = () => {
+    const p = P[f.p.value], rows = +f.r.value, L = +len.value;
+    const n = Math.ceil(L * p.pm * (rows === 2 ? 1.6 : 1));
+    out.c.textContent = n; out.pm.textContent = (p.pm * (rows === 2 ? 1.6 : 1)).toLocaleString('de-DE', { maximumFractionDigits: 1 });
+    out.hh.textContent = p.h; out.note.textContent = p.note; out.lo.textContent = L + ' m';
+    len.style.setProperty('--v', ((L - 2) / 58 * 100) + '%');
+    const bars = Math.min(36, Math.max(4, Math.round(L * .6)));
+    if (bars !== lastN) { lastN = bars; out.hedge.innerHTML = Array.from({ length: bars }, (_, i) => `<i style="height:${60 + Math.sin(i * 1.7) * 18 + Math.random() * 18}%;animation-delay:${i * 12}ms"></i>`).join(''); }
+  };
+  f.addEventListener('input', calc); calc();
+}
+
+/* ---------------- Hero: nursery to garden, through the seasons ---------------- */
+{
+  const stick = heroSec.querySelector('.stick'), canvas = document.getElementById('heroCanvas');
+  const renderer = makeRenderer(canvas, { alpha: true, exposure: 1.05 });
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(30, 1, .1, 120);
+  const hemi = new THREE.HemisphereLight('#fff8e8', '#5b6b4a', 1.3); scene.add(hemi);
+  const sun = new THREE.DirectionalLight('#fff1d6', 2.6);
+  sun.position.set(8, 14, 6); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048);
+  Object.assign(sun.shadow.camera, { left: -9, right: 9, top: 9, bottom: -9, near: 1, far: 40 }); sun.shadow.bias = -.0006; sun.shadow.normalBias = .02;
+  scene.add(sun);
+
+  let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const std = (c, o = {}) => new THREE.MeshStandardMaterial({ color: c, roughness: .9, flatShading: true, ...o });
+  const shadow = m => { m.castShadow = m.receiveShadow = true; return m; };
+
+  // island
+  const R = 6.2;
+  const island = new THREE.Group(); scene.add(island);
+  const soilSide = shadow(new THREE.Mesh(new THREE.CylinderGeometry(R, R * .94, 1.1, 64), std('#6E5038')));
+  soilSide.position.y = -.55; island.add(soilSide);
+  const soilTop = shadow(new THREE.Mesh(new THREE.CircleGeometry(R, 64), std('#7C5C40', { flatShading: false })));
+  soilTop.rotation.x = -Math.PI / 2; soilTop.position.y = .001; island.add(soilTop);
+  // nursery furrows
+  const furrows = new THREE.Group(); island.add(furrows);
+  for (let i = -2; i <= 2; i++) { const f = shadow(new THREE.Mesh(new THREE.BoxGeometry(9.5, .08, .55), std('#6A4C33'))); f.position.set(0, .04, i * 1.5); furrows.add(f); }
+  // lawn spreads out from the centre
+  const lawnMat = std('#79A851', { flatShading: false });
+  const lawn = shadow(new THREE.Mesh(new THREE.CircleGeometry(R - .02, 64), lawnMat));
+  lawn.rotation.x = -Math.PI / 2; lawn.position.y = .02; lawn.scale.setScalar(.001); island.add(lawn);
+
+  // path of stepping stones
+  const stones = [];
+  const pathPts = new THREE.CatmullRomCurve3([new THREE.Vector3(.8, 0, 6), new THREE.Vector3(.2, 0, 3.6), new THREE.Vector3(-.9, 0, 1.6), new THREE.Vector3(-1.4, 0, -.6)]);
+  for (let i = 0; i < 9; i++) {
+    const p = pathPts.getPoint(i / 8);
+    const s = shadow(new THREE.Mesh(new THREE.CylinderGeometry(.42 + rnd() * .1, .45, .08, 9), std('#B9B3A6')));
+    s.position.set(p.x, .05, p.z); s.rotation.y = rnd() * 3; s.scale.setScalar(.001); island.add(s); stones.push(s);
+  }
+  // bench and pond
+  const bench = new THREE.Group();
+  const wood = std('#9C7048'), iron = std('#2E3230', { roughness: .5, metalness: .4 });
+  for (let i = 0; i < 3; i++) bench.add(shadow(new THREE.Mesh(new THREE.BoxGeometry(1.6, .05, .12), wood)).translateY(.45).translateZ(-.15 + i * .15));
+  for (let i = 0; i < 2; i++) bench.add(shadow(new THREE.Mesh(new THREE.BoxGeometry(1.6, .12, .04), wood)).translateY(.7 + i * .16).translateZ(-.28));
+  for (const x of [-.7, .7]) { bench.add(shadow(new THREE.Mesh(new THREE.BoxGeometry(.05, .45, .4), iron)).translateX(x).translateY(.22)); bench.add(shadow(new THREE.Mesh(new THREE.BoxGeometry(.05, .4, .05), iron)).translateX(x).translateY(.7).translateZ(-.28)); }
+  bench.position.set(-1.7, 0, -1.6); bench.rotation.y = .5; bench.scale.setScalar(.001); island.add(bench);
+  const pondMat = new THREE.MeshStandardMaterial({ color: '#5D8A92', roughness: .08, metalness: .3 });
+  const pond = new THREE.Mesh(new THREE.CircleGeometry(1.2, 40), pondMat); pond.rotation.x = -Math.PI / 2; pond.position.set(2.3, .035, 1.2); pond.scale.set(1.3, 1, 1); pond.scale.multiplyScalar(.001); island.add(pond);
+  const pondRim = []; for (let i = 0; i < 14; i++) { const a = i / 14 * Math.PI * 2; const r = shadow(new THREE.Mesh(new THREE.DodecahedronGeometry(.16 + rnd() * .08, 0), std('#A8A194'))); r.position.set(2.3 + Math.cos(a) * 1.25 * 1.3, .06, 1.2 + Math.sin(a) * 1.25); r.scale.setScalar(.001); island.add(r); pondRim.push(r); }
+
+  // hedge along the back
+  const hedge = [];
+  for (let i = 0; i < 15; i++) {
+    const a = Math.PI * (1.12 + i / 14 * .76), r = R - .55;
+    const h = shadow(new THREE.Mesh(new THREE.BoxGeometry(.95, 1, .7, 2, 2, 2), std('#3F6B34')));
+    h.position.set(Math.cos(a) * r, 0, Math.sin(a) * r); h.rotation.y = -a + Math.PI / 2; h.scale.set(1, .001, 1); island.add(h); hedge.push(h);
+  }
+
+  /* trees */
+  const SEASON = { // spring, summer, autumn, winter
+    leaf: ['#9CC567', '#4E7E38', '#D98B2B', '#6C7F5C'],
+    leaf2: ['#B4D27A', '#5C8B41', '#C4492D', '#6C7F5C'],
+    cherry: ['#F3B8C8', '#5B8A42', '#D2643A', '#6C7F5C'],
+    conifer: ['#3F6E45', '#2F5A39', '#33573A', '#4E6E58'],
+    crown: [1, 1, .92, .04],
+    lawn: ['#86B45A', '#6E9E45', '#9AA352', '#E9EEF0'],
+    hedge: ['#6E9A4A', '#3F6B34', '#9C7A33', '#C7D2CB'],
+    sky: ['#EDF1E2', '#F3EEDB', '#F2E5D2', '#E4EBEE'],
+    soil: ['#7C5C40', '#7C5C40', '#7C5C40', '#E9EEF0'],
+  };
+  const trees = [];
+  const trunkM = std('#6B4A33');
+  const mkTree = (type, gx, gz, s = 1) => {
+    const g = new THREE.Group(); island.add(g);
+    const h = (type === 'conifer' ? .9 : type === 'column' ? 1.3 : 1.25) * s;
+    const trunk = shadow(new THREE.Mesh(new THREE.CylinderGeometry(.06 * s, .11 * s, h, 7), trunkM)); trunk.position.y = h / 2; g.add(trunk);
+    const crown = new THREE.Group(); crown.position.y = h; g.add(crown);
+    const mat = std(type === 'conifer' ? SEASON.conifer[1] : SEASON.leaf[1]);
+    const fruits = [];
+    if (type === 'conifer') {
+      for (let i = 0; i < 3; i++) { const c = shadow(new THREE.Mesh(new THREE.ConeGeometry((.95 - i * .24) * s, 1.1 * s, 8), mat)); c.position.y = (i * .62 - .2) * s; crown.add(c); }
+    } else if (type === 'column') {
+      const c = shadow(new THREE.Mesh(new THREE.IcosahedronGeometry(.55 * s, 1), mat)); c.scale.set(1, 2.3, 1); c.position.y = .9 * s; crown.add(c);
+    } else {
+      for (let i = 0; i < 6; i++) { const b = shadow(new THREE.Mesh(new THREE.IcosahedronGeometry((.45 + rnd() * .3) * s, 1), mat)); b.position.set((rnd() - .5) * 1.1 * s, (rnd() * .7 + .2) * s, (rnd() - .5) * 1.1 * s); crown.add(b); }
+      if (type === 'apple') for (let i = 0; i < 9; i++) { const f = new THREE.Mesh(new THREE.SphereGeometry(.07 * s, 8, 6), std('#C9463A', { flatShading: false })); const a = rnd() * 6.28, e = rnd() * 1.2 - .2; f.position.set(Math.cos(a) * .7 * s, (.5 + e * .45) * s, Math.sin(a) * .7 * s); crown.add(f); fruits.push(f); }
+    }
+    // bare branches show in winter
+    const branches = new THREE.Group(); g.add(branches);
+    if (type !== 'conifer') for (let i = 0; i < 5; i++) {
+      const b = new THREE.Mesh(new THREE.CylinderGeometry(.015 * s, .035 * s, .8 * s, 5), trunkM); b.castShadow = true;
+      b.position.set(0, h * .8 + i * .07 * s, 0); b.rotation.set(.7 + rnd() * .3, i * 1.3, 0); b.translateY(.38 * s); branches.add(b);
+    }
+    // pot in the nursery
+    const pot = shadow(new THREE.Mesh(new THREE.CylinderGeometry(.28, .22, .34, 10), std('#2B2B29', { roughness: .6 }))); pot.position.y = .17; g.add(pot);
+    const t = { g, crown, mat, type, fruits, pot, branches, garden: new THREE.Vector3(gx, 0, gz), nursery: new THREE.Vector3(), delay: rnd() * .35, phase: rnd() * 6.28 };
+    trees.push(t); return t;
+  };
+  mkTree('round', -3.2, -2.6, 1.25); mkTree('conifer', -1.2, -4.4, 1.25); mkTree('column', .8, -4.6, 1.05); mkTree('conifer', 2.6, -3.9, 1);
+  mkTree('cherry', 3.6, -1.6, 1.05); mkTree('apple', -3.8, .6, 1); mkTree('round', 4.1, 2.2, .85); mkTree('column', -2.4, 3.1, .8);
+  mkTree('cherry', -4.4, -1.1, .75); mkTree('conifer', 4.5, -.1, .7); mkTree('apple', 1.9, -2.1, .8); mkTree('round', -.4, -2.5, .7);
+  // nursery grid positions: 3 rows of 4
+  trees.forEach((t, i) => { t.nursery.set(-3.3 + (i % 4) * 2.2, 0, -1.5 + Math.floor(i / 4) * 1.5); });
+
+  /* particles: petals, leaves, snow */
+  const NP = 420, pg = new THREE.BufferGeometry(), pp = new Float32Array(NP * 3), pc = new Float32Array(NP * 3), pv = new Float32Array(NP);
+  for (let i = 0; i < NP; i++) { pp.set([(rnd() - .5) * 14, rnd() * 8, (rnd() - .5) * 14], i * 3); pv[i] = .4 + rnd() * .8; }
+  pg.setAttribute('position', new THREE.BufferAttribute(pp, 3)); pg.setAttribute('color', new THREE.BufferAttribute(pc, 3));
+  const dot = (() => { const c = document.createElement('canvas'); c.width = c.height = 32; const g = c.getContext('2d'); g.beginPath(); g.ellipse(16, 16, 14, 9, .6, 0, 7); g.fillStyle = '#fff'; g.fill(); return new THREE.CanvasTexture(c); })();
+  const pmat = new THREE.PointsMaterial({ size: .16, map: dot, vertexColors: true, transparent: true, alphaTest: .3, depthWrite: false });
+  const parts = new THREE.Points(pg, pmat); parts.frustumCulled = false; scene.add(parts);
+
+  const cA = new THREE.Color(), cB = new THREE.Color();
+  const seasonColor = (arr, s, out) => { const i = Math.floor(s) % 4, j = (i + 1) % 4, f = smooth(s - Math.floor(s)); return out.set(arr[i]).lerp(cB.set(arr[j]), f); };
+  const seasonVal = (arr, s) => { const i = Math.floor(s) % 4, j = (i + 1) % 4; return lerp(arr[i], arr[j], smooth(s - Math.floor(s))); };
+
+  const copy = document.getElementById('copy'), chB = document.getElementById('chB'), chS = document.getElementById('chS'), chapter = document.getElementById('chapter'), hint = document.getElementById('hint');
+  const seasonEl = document.getElementById('season'), sName = document.getElementById('sName'), sMonth = document.getElementById('sMonth'), bars = [...document.querySelectorAll('#sBars i')];
+  const NAMES = ['Frühling', 'Sommer', 'Herbst', 'Winter'], MONTHS = ['März – Mai', 'Juni – August', 'September – November', 'Dezember – Februar'];
+  const CH = [['Anzucht', 'Jungpflanzen in der Baumschule'], ['Wachstum', 'Jahre der Pflege im Quartier'], ['Gestaltung', 'Ihr Garten nach Plan']];
+
+  let p = 0, mx = 0, tmx = 0;
+  addEventListener('pointermove', e => { tmx = e.clientX / innerWidth - .5; }, { passive: true });
+  autoSize(renderer, camera, stick, (w, h) => {
+    camera.fov = w / h < .8 ? 44 : 30;
+    if (w > 760) camera.setViewOffset(w, h, -w * .17, 0, w, h); else camera.clearViewOffset();
+    camera.updateProjectionMatrix();
+  });
+  const sky = new THREE.Color(), tmp = new THREE.Vector3();
+  let lastChapter = '';
+
+  const frame = (dt, time) => {
+    const target = scrollProgress(heroSec);
+    p += (target - p) * (reduced ? 1 : Math.min(1, dt * 6));
+    mx += (tmx - mx) * .04;
+    const grow = range(p, 0, .26), move = range(p, .24, .44), design = range(p, .3, .5), seasons = range(p, .52, .98);
+    const s = seasons * 4; // 0 spring .. 4 spring again
+    const inSeason = p > .5;
+
+    trees.forEach((t, i) => {
+      const gr = ease(range(grow, t.delay * .6, t.delay * .6 + .65));
+      const mv = smooth(range(move, t.delay * .5, t.delay * .5 + .5));
+      const size = lerp(.18, .55, gr) + .45 * mv;
+      t.g.scale.setScalar(size);
+      tmp.lerpVectors(t.nursery, t.garden, mv);
+      t.g.position.set(tmp.x, Math.sin(mv * Math.PI) * 1.6, tmp.z);
+      t.pot.scale.setScalar(1 - smooth(range(mv, 0, .5)) + .0001); t.pot.visible = mv < .5;
+      // season
+      if (t.type === 'conifer') { seasonColor(SEASON.conifer, s, t.mat.color); }
+      else {
+        seasonColor(t.type === 'cherry' ? SEASON.cherry : i % 2 ? SEASON.leaf2 : SEASON.leaf, s, t.mat.color);
+        const cs = inSeason ? seasonVal(SEASON.crown, s) : 1;
+        t.crown.scale.setScalar(Math.max(.001, cs));
+        t.fruits.forEach(f => f.visible = s > .85 && s < 2.6);
+      }
+      // gentle sway
+      t.g.rotation.z = Math.sin(time * 1.2 + t.phase) * .012;
+    });
+
+    furrows.children.forEach(f => f.scale.y = Math.max(.001, 1 - design * 3));
+    furrows.visible = design < .34;
+    lawn.scale.setScalar(Math.max(.001, ease(range(design, 0, .55))));
+    stones.forEach((st, i) => st.scale.setScalar(Math.max(.001, ease(range(design, .3 + i * .05, .45 + i * .05)))));
+    hedge.forEach((h, i) => h.scale.y = Math.max(.001, ease(range(design, .2 + i * .03, .5 + i * .03))) * 1.05);
+    hedge.forEach(h => h.position.y = h.scale.y / 2);
+    const bS = Math.max(.001, ease(range(design, .7, 1))); bench.scale.setScalar(bS);
+    pond.scale.set(1.3 * Math.max(.001, ease(range(design, .5, .85))), 1, Math.max(.001, ease(range(design, .5, .85))));
+    pondRim.forEach((r, i) => r.scale.setScalar(Math.max(.001, ease(range(design, .6 + i * .02, .8 + i * .02)))));
+
+    const sv = inSeason ? s : 1;
+    seasonColor(SEASON.lawn, sv, lawnMat.color);
+    hedge[0].material.color && seasonColor(SEASON.hedge, sv, cA) && hedge.forEach(h => h.material.color.copy(cA));
+    seasonColor(SEASON.sky, inSeason ? s : 0, sky);
+    stick.style.setProperty('--sky', '#' + sky.getHexString());
+    const winter = inSeason ? clamp(1 - Math.abs(s - 3) * 1.4) : 0;
+    sun.intensity = lerp(2.6, 1.7, winter); sun.color.set(winter > .5 ? '#eef3ff' : '#fff1d6');
+    soilTop.material.color.set('#7C5C40').lerp(cA.set('#E9EEF0'), winter);
+
+    // particles: petals in spring, leaves in autumn, snow in winter
+    const spring = inSeason ? clamp(1 - Math.min(Math.abs(s), Math.abs(s - 4)) * 1.6) : 0;
+    const autumn = inSeason ? clamp(1 - Math.abs(s - 2.35) * 1.6) : 0;
+    const amt = Math.max(spring, autumn, winter);
+    const col = winter > autumn && winter > spring ? [1, 1, 1] : autumn > spring ? [.85, .45, .15] : [.98, .74, .8];
+    pmat.size = winter > autumn ? .11 : .17;
+    for (let i = 0; i < NP; i++) {
+      pp[i * 3 + 1] -= pv[i] * dt * (winter > .5 ? .9 : 1.3);
+      pp[i * 3] += Math.sin(time * 1.3 + i) * dt * .35;
+      if (pp[i * 3 + 1] < 0) pp[i * 3 + 1] += 8;
+      const on = i / NP < amt ? 1 : 0;
+      pc.set(on ? col : [0, 0, 0], i * 3);
+    }
+    parts.visible = amt > .02;
+    pg.attributes.position.needsUpdate = true; pg.attributes.color.needsUpdate = true;
+    pmat.opacity = 1;
+    // hide unlit particles: black points with alphaTest stay invisible only if we scale them out
+    pg.setDrawRange(0, Math.floor(NP * amt));
+
+    // camera: close on the nursery, pull back for the design, orbit through the year
+    const ang = lerp(-.15, .25, smooth(range(p, 0, .5))) + seasons * .9 + mx * .15;
+    const dist = lerp(19, 22, smooth(range(p, .2, .5)));
+    const hgt = lerp(9.5, 11, smooth(range(p, .2, .5)));
+    const mob = innerWidth < 760;
+    camera.position.set(Math.sin(ang) * dist * (mob ? 1.35 : 1), hgt * (mob ? 1.2 : 1), Math.cos(ang) * dist * (mob ? 1.35 : 1));
+    camera.lookAt(0, mob ? 2.6 : .4, 0);
+
+    // overlay text
+    const ci = p < .2 ? 0 : p < .38 ? 1 : 2;
+    chapter.style.opacity = inSeason ? 0 : range(p, .06, .12);
+    if (CH[ci][0] !== lastChapter) { lastChapter = CH[ci][0]; chB.textContent = CH[ci][0]; chS.textContent = CH[ci][1]; }
+    seasonEl.style.opacity = inSeason ? 1 : 0;
+    const si = Math.min(3, Math.floor(s % 4 + .5) % 4);
+    sName.textContent = NAMES[si]; sMonth.textContent = MONTHS[si];
+    bars.forEach((b, i) => b.style.setProperty('--f', clamp(s - i)));
+    copy.style.opacity = 1 - range(p, .03, .1); copy.style.pointerEvents = p > .08 ? 'none' : '';
+    hint.style.opacity = 1 - range(p, 0, .05);
+    renderer.render(scene, camera);
+  };
+  loop(stick, frame);
+  frame(0, 0);
+}
+</script>
+</body>
+</html>

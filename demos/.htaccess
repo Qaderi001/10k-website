@@ -1,0 +1,6 @@
+# Demo pages change often: keep scripts and pages fresh, pictures may stay cached.
+<IfModule mod_expires.c>
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType application/javascript "access plus 1 hour"
+  ExpiresByType text/javascript "access plus 1 hour"
+</IfModule>

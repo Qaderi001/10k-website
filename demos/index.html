@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo-Entwürfe · Magie Studio</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+@font-face{font-family:"Unbounded";font-weight:700;font-display:swap;src:url(fonts/unbounded-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Instrument Sans";font-weight:400;font-display:swap;src:url(fonts/instrument-sans-latin-400-normal.woff2) format("woff2")}
+*{box-sizing:border-box}
+body{margin:0;background:#F2F3EE;color:#111411;font:400 17px/1.6 "Instrument Sans",system-ui,sans-serif;padding:clamp(28px,6vw,80px) clamp(18px,5vw,64px)}
+h1{font:700 clamp(32px,5vw,60px)/1.05 "Unbounded",system-ui,sans-serif;letter-spacing:-.02em;margin:0 0 14px}
+p.lead{color:#4A514A;max-width:620px;margin:0 0 44px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px;max-width:1240px}
+a.card{display:flex;flex-direction:column;gap:10px;min-height:250px;padding:26px;border-radius:20px;text-decoration:none;color:#fff;position:relative;overflow:hidden;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+a.card:hover{transform:translateY(-4px)}
+a.card small{font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.75}
+a.card b{font:700 24px/1.15 "Unbounded",system-ui,sans-serif;letter-spacing:-.01em}
+a.card span{margin-top:auto;font-size:15px;opacity:.85}
+</style>
+</head>
+<body>
+<h1>Demo-Entwürfe</h1>
+<p class="lead">Vier 3D-Demoseiten für Betriebe in Rellingen. Jede Seite erzählt beim Scrollen, was der Betrieb macht, und hat ein eigenes interaktives Element.</p>
+<div class="grid">
+  <a class="card" href="mikeska/" style="background:linear-gradient(150deg,#1F2225,#121314);box-shadow:inset 0 -4px 0 #FF6B1A"><small>Schlosserei · Metallbau</small><b>Mikeska GmbH</b><span>Tor wird gezeichnet, geschweißt, beschichtet und geöffnet. 3D-Konfigurator für Tor, Geländer, Wendeltreppe und Vordach.</span></a>
+  <a class="card" href="schneider/" style="background:linear-gradient(150deg,#3C6E46,#244A2E)"><small>Gartengestaltung · Baumschule</small><b>Adolf Schneider</b><span>Setzlinge wachsen, ziehen in einen geplanten Garten und erleben die vier Jahreszeiten. Heckenrechner.</span></a>
+  <a class="card" href="richter-lange/" style="background:linear-gradient(150deg,#1A1E24,#0C0E11);box-shadow:inset 0 -4px 0 #FFC21A"><small>Kfz-Meisterbetrieb</small><b>Richter &amp; Lange</b><span>Fotorealistische Kamerafahrt ums Auto, dann Reifen, Bremsen, Auspuff und Lack im Detail. Klickbarer Werkstatt-Check.</span></a>
+  <a class="card" href="da-matteo/" style="background:linear-gradient(150deg,#C8372D,#7E1F18)"><small>Trattoria · Bistro</small><b>Da Matteo</b><span>Fotorealistisch: Eine Margherita entsteht beim Scrollen, vom Teig bis zum ersten Stück. Live-Öffnungsstatus und Reservierung.</span></a>
+</div>
+</body>
+</html>

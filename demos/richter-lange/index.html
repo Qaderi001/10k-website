@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Richter &amp; Lange · Kfz-Meisterbetrieb in Rellingen</title>
+<meta name="description" content="Kfz-Meisterfachbetrieb in Rellingen: Inspektion, Bremsen, Reifen &amp; Räder, Auspuff, Karosserie, Lackierung, Oldtimer und Fahrzeughandel. Hermann-Löns-Weg 1, Telefon 04101 34480.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0C0E11">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230C0E11'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='900' font-size='26' text-anchor='middle' fill='%23FFC21A'%3ER%26L%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="../fonts/archivo-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="img-v5/hi-start-d.webp" media="(min-width: 760px)" fetchpriority="high">
+<link rel="preload" as="image" href="img-v5/hi-start-m.webp" media="(max-width: 759px)" fetchpriority="high">
+<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__demoReady)document.documentElement.classList.remove('js')},3500)</script>
+<style>
+@font-face{font-family:"Archivo";font-weight:800;font-display:swap;src:url(../fonts/archivo-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:"Archivo";font-weight:600;font-display:swap;src:url(../fonts/archivo-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:400;font-display:swap;src:url(../fonts/dm-sans-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:500;font-display:swap;src:url(../fonts/dm-sans-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:700;font-display:swap;src:url(../fonts/dm-sans-latin-700-normal.woff2) format("woff2")}
+:root{
+  --bg:#0C0E11;--bg2:#13161A;--panel:#181C21;--line:#262B31;--line2:#3A4048;
+  --ink:#F1F2F4;--ink2:#A6ADB6;--ink3:#6F7780;--y:#FFC21A;--y2:#FFD45C;--red:#E5352B;
+  --f-d:"Archivo",system-ui,sans-serif;--f-b:"DM Sans",system-ui,sans-serif;
+  --g:clamp(18px,4.5vw,64px);--ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--f-b);-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit}
+img,svg,canvas{display:block;max-width:100%}
+h1,h2,h3{font-family:var(--f-d);font-weight:800;letter-spacing:-.025em;line-height:.98;margin:0}
+p{margin:0}
+:focus-visible{outline:2px solid var(--y);outline-offset:3px}
+.eyebrow{font:700 12px/1 var(--f-b);letter-spacing:.2em;text-transform:uppercase;color:var(--y)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 var(--g)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 22px;border-radius:10px;background:var(--y);color:#141006;font:700 15px/1 var(--f-b);text-decoration:none;border:0;cursor:pointer;transition:background .25s,transform .25s var(--ease)}
+.btn:hover{background:var(--y2);transform:translateY(-2px)}
+.btn.ghost{background:#ffffff0d;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line2)}
+.btn.ghost:hover{background:#ffffff1a}
+.js [data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.js [data-reveal].in{opacity:1;transform:none}
+
+.nav{position:fixed;inset:0 0 auto;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px var(--g);background:linear-gradient(#0C0E11e0,#0C0E1100);transition:background .3s,padding .3s,box-shadow .3s}
+.nav.solid{background:#0C0E11f2;padding-top:10px;padding-bottom:10px;box-shadow:0 1px 0 var(--line)}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo .mk{width:42px;height:42px;border-radius:10px;background:var(--y);color:#141006;display:grid;place-items:center;font:800 15px/1 var(--f-d);letter-spacing:-.04em}
+.logo b{display:block;font:800 19px/1 var(--f-d);letter-spacing:-.02em}
+.logo small{display:block;font:500 11px/1.4 var(--f-b);letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);margin-top:3px}
+.nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:14.5px;font-weight:500}
+.nav ul a{text-decoration:none;color:var(--ink2)}
+.nav ul a:hover{color:var(--ink)}
+.nav .btn{padding:11px 16px;font-size:14px}
+@media(max-width:940px){.nav ul{display:none}}
+@media(max-width:520px){.nav .btn span{display:none}}
+
+.hero{position:relative;height:420vh}
+.hero .stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:radial-gradient(ellipse 80% 60% at 60% 70%,#1A1E24 0%,#0C0E11 70%)}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero .shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#0C0E11e6 0%,#0C0E1180 28%,#0C0E1100 52%)}
+.hero .copy{position:absolute;left:var(--g);top:50%;transform:translateY(-50%);max-width:540px;transition:opacity .5s,transform .5s var(--ease)}
+.hero .copy.away{opacity:0;transform:translate(-30px,-50%);pointer-events:none}
+.hero h1{font-size:clamp(38px,min(7vw,10.5vh),108px)}
+.hero h1 span{color:var(--y)}
+.hero .lead{margin-top:22px;font-size:clamp(17px,1.4vw,19px);color:var(--ink2);max-width:430px}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.svc{position:absolute;left:var(--g);top:50%;transform:translateY(calc(-50% + 14px));width:min(440px,40vw);opacity:0;transition:opacity .25s,transform .35s var(--ease);pointer-events:none}
+.svc.on{opacity:1;transform:translateY(-50%)}
+.svc .no{font:800 15px/1 var(--f-d);color:var(--y);letter-spacing:.04em}
+.svc h2{font-size:clamp(34px,min(5.4vw,9vh),84px);margin:14px 0 18px}
+.svc p{color:var(--ink2);font-size:18px}
+.svc ul{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:10px}
+.svc li{display:flex;gap:12px;align-items:center;font-weight:500}
+.svc li::before{content:"";width:18px;height:2px;background:var(--y)}
+.track{position:absolute;left:var(--g);right:var(--g);bottom:clamp(22px,5vh,48px);display:grid;grid-template-columns:repeat(5,1fr);gap:8px;list-style:none;margin:0;padding:0}
+.track li{font:600 12px/1.2 var(--f-d);letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);padding-top:12px;position:relative}
+.track li::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;border-radius:2px;background:var(--line2)}
+.track li::after{content:"";position:absolute;left:0;top:0;height:3px;border-radius:2px;background:var(--y);width:calc(var(--f,0) * 100%)}
+.track li.on{color:var(--ink)}
+@media(max-width:760px){
+  .hero .shade{background:linear-gradient(180deg,#0C0E11f0 0%,#0C0E1199 36%,#0C0E1100 56%)}
+  .hero .copy,.svc{top:96px;transform:none;right:var(--g);width:auto}
+  .hero .copy.away{transform:translateY(-20px)}
+  .hero h1{font-size:clamp(42px,12vw,60px)}
+  .hero .lead{font-size:16px;margin-top:14px}
+  .hero .cta{margin-top:18px}
+  .hero .cta .ghost{display:none}
+  .svc h2{font-size:40px;margin:10px 0 10px}
+  .svc,.svc.on{transform:none}
+  .svc p{font-size:15.5px}
+  .svc ul{display:none}
+  .track{bottom:62px;gap:4px}
+  .track li{font-size:9.5px;letter-spacing:.02em}
+}
+
+.sec{padding:clamp(90px,12vw,160px) 0}
+.sec-head{display:grid;grid-template-columns:1.1fr 1fr;gap:24px 60px;align-items:end;margin-bottom:clamp(40px,6vw,72px)}
+.sec-head h2{font-size:clamp(40px,5.6vw,84px)}
+.sec-head h2 span{color:var(--y)}
+.sec-head p{color:var(--ink2);max-width:470px}
+@media(max-width:820px){.sec-head{grid-template-columns:1fr}}
+
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px 24px 28px;display:flex;flex-direction:column;gap:12px;min-height:250px;transition:border-color .3s,transform .3s var(--ease)}
+.tile:hover{border-color:var(--y);transform:translateY(-4px)}
+.tile svg{width:44px;height:44px;stroke:var(--y);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.tile h3{font-size:22px;margin-top:auto}
+.tile p{color:var(--ink2);font-size:15px}
+@media(max-width:1000px){.svc-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.svc-grid{grid-template-columns:1fr}.tile{min-height:0}}
+
+.check{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(300px,1fr);border:1px solid var(--line);border-radius:22px;overflow:hidden;background:var(--bg2)}
+.stage{--x0:.29;position:relative;align-self:center;aspect-ratio:calc((1 - var(--x0)) * 1.768);background:#0F1215;overflow:hidden}
+.pic{position:absolute;top:0;bottom:0;width:calc(100% / (1 - var(--x0)));left:calc(-1 * var(--x0) * 100% / (1 - var(--x0)))}
+.pic img{display:block;width:100%;height:100%;object-fit:cover}
+.stage::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#0F1215 0%,#0F121500 12%)}
+.stage .hint{position:absolute;left:18px;bottom:16px;font:700 11px/1 var(--f-b);letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);pointer-events:none}
+.hs{position:absolute;z-index:2;transform:translate(-13px,-50%);display:flex;align-items:center;gap:8px;padding:0;border:0;background:none;color:var(--ink);font:600 13px/1 var(--f-b);cursor:pointer;transition:opacity .3s}
+.hs i{width:26px;height:26px;border-radius:50%;background:#0C0E11cc;border:2px solid var(--y);display:grid;place-items:center;position:relative}
+.hs i::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--y);transition:transform .2s}
+.hs i::after{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid var(--y);opacity:0;animation:ping 2s infinite}
+@keyframes ping{0%{transform:scale(.6);opacity:.8}100%{transform:scale(1.3);opacity:0}}
+.hs.flip{flex-direction:row-reverse;transform:translate(calc(-100% + 13px),-50%)}
+.hs span{padding:6px 10px;border-radius:8px;background:#0C0E11d9;border:1px solid var(--line2);white-space:nowrap}
+.hs[aria-pressed=true] i{background:var(--y)}
+.hs[aria-pressed=true] i::before{background:#141006;transform:scale(1.2)}
+.hs[aria-pressed=true] span{border-color:var(--y)}
+.hs.back{opacity:0;pointer-events:none}
+@media(max-width:600px){.hs span{display:none}.hs[aria-pressed=true] span{display:block}}
+.quick{display:flex;flex-wrap:wrap;gap:6px}
+.quick button{font:500 13.5px/1 var(--f-b);color:var(--ink2);background:none;border:1px solid var(--line2);border-radius:99px;padding:9px 12px;cursor:pointer;transition:all .2s}
+.quick button:hover{color:var(--ink);border-color:var(--ink3)}
+.quick button[aria-pressed=true]{background:var(--y);border-color:var(--y);color:#141006}
+.order{padding:30px;display:flex;flex-direction:column;gap:18px;border-left:1px solid var(--line)}
+.order h3{font-size:26px}
+.order ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;min-height:60px;align-content:start}
+.order li{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 14px;border-radius:10px;background:var(--panel);border:1px solid var(--line);font-weight:500;animation:in .35s var(--ease)}
+.order li button{background:none;border:0;color:var(--ink3);cursor:pointer;font-size:20px;line-height:1;padding:0 4px}
+.order li button:hover{color:var(--red)}
+@keyframes in{from{opacity:0;transform:translateX(12px)}}
+.order li.emptyli{all:unset;display:block}
+.order li.emptyli[hidden]{display:none}
+.order .empty{display:block;color:var(--ink3);font-size:15px;border:1px dashed var(--line2);border-radius:10px;padding:18px;text-align:center}
+.order textarea{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;resize:vertical}
+.order textarea:focus{outline:none;border-color:var(--y)}
+.order .small{font-size:13px;color:var(--ink3)}
+@media(max-width:980px){.check{grid-template-columns:1fr}.stage{--x0:.27}.order{border-left:0;border-top:1px solid var(--line)}}
+
+.classic{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,90px);align-items:center}
+.classic .art{aspect-ratio:4/3;border-radius:22px;background:linear-gradient(160deg,#2A2116,#14110C);border:1px solid #3A2F20;position:relative;overflow:hidden}
+.classic .art svg{position:absolute;inset:auto 0 12% 0;width:100%}
+.classic .art .tag{position:absolute;left:22px;top:20px;font:800 13px/1 var(--f-d);letter-spacing:.2em;text-transform:uppercase;color:#E2B868}
+.classic h2{font-size:clamp(40px,5vw,72px)}
+.classic p{color:var(--ink2);margin-top:18px;max-width:480px}
+.classic ul{list-style:none;padding:0;margin:26px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:10px 24px}
+.classic li{border-top:1px solid var(--line2);padding-top:10px;font-weight:500}
+@media(max-width:860px){.classic{grid-template-columns:1fr}}
+
+.contact{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(30px,6vw,90px);align-items:center}
+.contact h2{font-size:clamp(48px,7vw,110px)}
+.contact h2 span{color:var(--y)}
+.contact .lead{color:var(--ink2);margin-top:18px;max-width:460px}
+.contact .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.card{border:1px solid var(--line);border-radius:22px;background:var(--panel);padding:8px}
+.card div{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:18px 20px;border-bottom:1px solid var(--line)}
+.card div:last-child{border:0}
+.card dt{font:700 12px/1.6 var(--f-b);letter-spacing:.16em;text-transform:uppercase;color:var(--ink3)}
+.card dd{margin:0;font-weight:500}
+.card a{text-decoration:none}
+.card a:hover{color:var(--y)}
+@media(max-width:860px){.contact{grid-template-columns:1fr}.card div{grid-template-columns:1fr;gap:4px}}
+
+footer{border-top:1px solid var(--line);padding:30px 0 90px;color:var(--ink3);font-size:13px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+.badge{position:fixed;left:14px;bottom:14px;z-index:30;padding:8px 12px;border-radius:99px;background:#000c;color:#ddd;font:500 11.5px/1 var(--f-b);letter-spacing:.04em;text-decoration:none;border:1px solid #ffffff22}
+.badge b{color:var(--y)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-reveal]{opacity:1;transform:none}}
+
+@media(min-width:761px) and (max-height:820px){.hero .lead{font-size:16px;margin-top:14px}.hero .cta{margin-top:18px}.btn{padding:12px 18px}}
+</style>
+</head>
+<body>
+<a class="badge" href="https://magie-studio.de" target="_blank" rel="noopener">Entwurf · <b>Magie Studio</b></a>
+
+<header class="nav">
+  <a class="logo" href="#top" aria-label="Richter und Lange, zum Seitenanfang"><span class="mk">R&amp;L</span><span><b>Richter &amp; Lange</b><small>Kfz-Meisterfachbetrieb</small></span></a>
+  <ul>
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#check">Werkstatt-Check</a></li>
+    <li><a href="#oldtimer">Oldtimer</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a class="btn" href="tel:+49410134480"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span>04101 34480</span></a>
+</header>
+
+<main id="top">
+  <section class="hero" id="hero" aria-label="Rundgang durch die Werkstatt">
+    <div class="stick">
+      <canvas id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="shade"></div>
+      <div class="copy" id="copy">
+        <p class="eyebrow">Meisterwerkstatt · Rellingen</p>
+        <h1 style="margin-top:16px">Wir kennen Ihr Auto <span>bis ins Detail.</span></h1>
+        <p class="lead">Inspektion, Bremsen, Reifen, Auspuff, Karosserie und Lack. Alles unter einem Dach am Hermann-Löns-Weg, vom Alltagsauto bis zum Oldtimer.</p>
+        <div class="cta"><a class="btn" href="tel:+49410134480">Termin: 04101 34480</a><a class="btn ghost" href="#check">Werkstatt-Check</a></div>
+      </div>
+      <div class="svc" data-i="0"><p class="no">01 / Reifen &amp; Räder</p><h2>Grip, der hält.</h2><p>Reifenwechsel, Auswuchten und Montage. Sommer, Winter oder Ganzjahr, wir beraten Sie ehrlich.</p><ul><li>Reifenwechsel &amp; Montage</li><li>Auswuchten</li><li>Felgen &amp; Kompletträder</li></ul></div>
+      <div class="svc" data-i="1"><p class="no">02 / Bremsen</p><h2>Sicher zum Stehen.</h2><p>Scheiben, Beläge, Bremsflüssigkeit. Wir prüfen, messen und tauschen, bevor es quietscht.</p><ul><li>Bremsscheiben &amp; Beläge</li><li>Bremsflüssigkeit</li><li>Handbremse</li></ul></div>
+      <div class="svc" data-i="2"><p class="no">03 / Auspuff</p><h2>Alles dicht.</h2><p>Vom Krümmer bis zum Endrohr. Wir finden Lecks, tauschen Schalldämpfer und Halter.</p><ul><li>Schalldämpfer &amp; Rohre</li><li>Halter &amp; Dichtungen</li><li>Katalysator</li></ul></div>
+      <div class="svc" data-i="3"><p class="no">04 / Karosserie &amp; Lack</p><h2>Wie neu.</h2><p>Unfallschaden, Rost oder Kratzer. Wir richten, spachteln und lackieren im Farbton Ihres Autos.</p><ul><li>Unfallinstandsetzung</li><li>Smart Repair &amp; Kratzer</li><li>Teil- und Ganzlackierung</li></ul></div>
+      <div class="svc" data-i="4"><p class="no">05 / Termin</p><h2>Rufen Sie an.</h2><p>Kurz schildern, was los ist. Wir sagen Ihnen ehrlich, was nötig ist und was es kostet.</p><ul><li>Kostenvoranschlag vorab</li><li>Meisterbetrieb</li><li>Kurze Wege in Rellingen</li></ul></div>
+      <ol class="track" id="track"><li>Reifen</li><li>Bremsen</li><li>Auspuff</li><li>Karosserie</li><li>Termin</li></ol>
+    </div>
+  </section>
+
+  <section class="sec" id="leistungen">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <div><p class="eyebrow">Leistungen</p><h2 style="margin-top:14px">Eine Werkstatt. <span>Alle Arbeiten.</span></h2></div>
+        <p>Als Kfz-Meisterfachbetrieb reparieren und warten wir Fahrzeuge aller Marken. Sie bekommen vorher einen klaren Preis und nachher Ihr Auto zurück, wie vereinbart.</p>
+      </div>
+      <div class="svc-grid">
+        <article class="tile" data-reveal><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="17"/><path d="M22 5v6M22 33v6M5 22h6M33 22h6"/><circle cx="22" cy="22" r="6"/></svg><h3>Inspektion &amp; Wartung</h3><p>Nach Herstellervorgabe, mit Stempel im Serviceheft.</p></article>
+        <article class="tile" data-reveal><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="16"/><circle cx="22" cy="22" r="4"/><path d="M30 9a16 16 0 0 1 5 7l-6 3"/></svg><h3>Bremsendienst</h3><p>Scheiben, Beläge, Sättel und Bremsflüssigkeit.</p></article>
+        <article class="tile" data-reveal><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="17"/><circle cx="22" cy="22" r="9"/><path d="M22 13v18M13 22h18M16 16l12 12M28 16 16 28"/></svg><h3>Reifen &amp; Räder</h3><p>Wechsel, Montage, Auswuchten und neue Reifen.</p></article>
+        <article class="tile" data-reveal><svg viewBox="0 0 44 44"><path d="M4 26h20l4-4h8v8h-8l-4-4"/><path d="M36 24h4M36 28h4"/></svg><h3>Auspuff</h3><p>Schalldämpfer, Rohre, Halter und Katalysator.</p></article>
+        <article class="tile" data-reveal><svg viewBox="0 0 44 44"><path d="M5 30v-6l5-8h20l7 8h3v6"/><circle cx="13" cy="31" r="4"/><circle cx="32" cy="31" r="4"/><path d="M14 16l-2 8h22"/></svg><h3>Karosserie</h3><p>Unfallschäden, Rost und Dellen, sauber instand gesetzt.</p></article>
+        <article class="tile" data-reveal><svg viewBox="0 0 44 44"><path d="M10 6h18v10H10z"/><path d="M28 11h6v8H19v5"/><path d="M17 24h4v14h-4z"/></svg><h3>Lackierung</h3><p>Spot-Repair bis Ganzlackierung, im Originalfarbton.</p></article>
+        <article class="tile" data-reveal><svg viewBox="0 0 44 44"><path d="M4 28c0-4 3-6 7-7l5-6h12l6 6c4 1 6 3 6 7"/><circle cx="12" cy="29" r="4"/><circle cx="32" cy="29" r="4"/><path d="M16 29h12"/></svg><h3>Oldtimer</h3><p>Pflege, Reparatur und Wartung für Klassiker.</p></article>
+        <article class="tile" data-reveal><svg viewBox="0 0 44 44"><path d="M8 10h28v24H8z"/><path d="M8 17h28M15 24h6M15 28h10"/></svg><h3>Fahrzeughandel</h3><p>Geprüfte Gebrauchte aus der eigenen Werkstatt.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="check" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <div><p class="eyebrow">Werkstatt-Check</p><h2 style="margin-top:14px">Wo drückt <span>der Schuh?</span></h2></div>
+        <p>Tippen Sie auf die Stellen am Auto, die Ihnen Sorgen machen. Wir haben Ihre Liste beim Anruf direkt vor Augen und können Ihnen schneller sagen, was es kostet.</p>
+      </div>
+      <div class="check" data-reveal>
+        <div class="stage" id="stage">
+          <div class="pic" id="pic"><img src="img-v5/side.webp" alt="Roter Kompaktwagen in der Seitenansicht in der Werkstatt" loading="lazy" decoding="async" width="1600" height="905"></div>
+          <p class="hint">Punkte antippen</p>
+        </div>
+        <div class="order">
+          <h3>Ihr Auftrag</h3>
+          <div class="quick" id="quick" aria-label="Schnellauswahl"></div>
+          <ul id="list"><li class="emptyli" id="empty"><span class="empty">Noch nichts ausgewählt. Tippen Sie auf einen gelben Punkt.</span></li></ul>
+          <textarea id="note" rows="3" placeholder="Was ist Ihnen aufgefallen? z. B. Quietschen beim Bremsen"></textarea>
+          <a class="btn" href="tel:+49410134480" id="callBtn">Anrufen: 04101 34480</a>
+          <p class="small">Ihre Auswahl bleibt in diesem Fenster stehen, damit Sie sie am Telefon vorlesen können.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="oldtimer" style="padding-top:0">
+    <div class="wrap classic">
+      <div class="art" data-reveal>
+        <p class="tag">Klassiker</p>
+        <svg viewBox="0 0 600 220" fill="none" stroke="#E2B868" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M40 160h30M160 160h250M500 160h40c10 0 14-10 12-22l-6-18c-4-10-14-14-26-16l-70-10-60-44c-10-8-22-12-36-12H210c-16 0-26 6-36 16l-40 44-70 8c-14 2-22 10-24 22l-2 22c0 6 4 10 10 10"/>
+          <circle cx="115" cy="160" r="42"/><circle cx="115" cy="160" r="20"/><circle cx="455" cy="160" r="42"/><circle cx="455" cy="160" r="20"/>
+          <path d="M190 104l34-38h60v38zM310 104V66h36c8 0 14 2 20 6l42 32z"/><path d="M548 128h12M30 134h-8"/>
+        </svg>
+      </div>
+      <div data-reveal>
+        <p class="eyebrow">Oldtimer</p>
+        <h2 style="margin-top:14px">Für Autos mit Geschichte.</h2>
+        <p>Klassiker brauchen Zeit, Erfahrung und das Gefühl für Technik ohne Steuergerät. Wir kümmern uns um Ihren Oldtimer mit derselben Sorgfalt wie Sie selbst, von der Durchsicht vor der Saison bis zur Karosseriearbeit.</p>
+        <ul><li>Saison-Check</li><li>Vergaser &amp; Zündung</li><li>Bremsen &amp; Fahrwerk</li><li>Rost &amp; Karosserie</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="kontakt" style="background:var(--bg2);border-top:1px solid var(--line)">
+    <div class="wrap contact">
+      <div data-reveal>
+        <p class="eyebrow">Kontakt</p>
+        <h2 style="margin-top:14px">Termin? <span>Anruf genügt.</span></h2>
+        <p class="lead">Sagen Sie uns, was Ihr Auto hat. Wir nennen Ihnen einen Termin und einen Preis, bevor wir anfangen.</p>
+        <div class="cta"><a class="btn" href="tel:+49410134480">04101 34480</a><a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Hermann-L%C3%B6ns-Weg+1+25462+Rellingen" target="_blank" rel="noopener">Route planen</a></div>
+      </div>
+      <dl class="card" data-reveal>
+        <div><dt>Firma</dt><dd>Richter u. Lange<br>Kfz-Meisterfachbetrieb GmbH</dd></div>
+        <div><dt>Adresse</dt><dd>Hermann-Löns-Weg 1<br>25462 Rellingen</dd></div>
+        <div><dt>Telefon</dt><dd><a href="tel:+49410134480">04101 34480</a></dd></div>
+        <div><dt>Marken</dt><dd>Alle Marken, Alltagsauto bis Oldtimer</dd></div>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© Richter u. Lange Kfz-Meisterfachbetrieb GmbH · Hermann-Löns-Weg 1 · 25462 Rellingen</span><span>Impressum · Datenschutz</span></div></footer>
+
+<script type="module">
+import { scrollProgress, reveals, clamp, lerp, range, frameLoader, stage, loadImg, drawFrame } from '../shared/frames-v5.js';
+reveals(); window.__demoReady = true;
+const nav = document.querySelector('.nav'), heroSec = document.getElementById('hero');
+const navSolid = () => nav.classList.toggle('solid', heroSec.getBoundingClientRect().bottom < innerHeight * .6);
+addEventListener('scroll', navSolid, { passive: true }); navSolid();
+
+/* ---------------- Hero: camera move around the car, then the work in detail ---------------- */
+{
+  const stick = heroSec.querySelector('.stick'), canvas = document.getElementById('heroCanvas');
+  const st = stage(stick, canvas, '#0C0E11');
+  const N = 42, NAMES = ['tyre', 'brake', 'exhaust', 'paint'];
+  // each detail picture wipes in at its start point
+  const AT = [.34, .5, .66, .82], WIPE = .035;
+  let v = null, get = () => null, hiStart, hiEnd, stills = [];
+  const load = () => {
+    const nv = st.mobile ? 'm' : 'd'; if (nv === v) return; v = nv;
+    const on = () => { dirty = true; kick(); };
+    hiStart = loadImg(`img-v5/hi-start-${v}.webp`); hiStart.onload = on;
+    setTimeout(() => { get = frameLoader(N, i => `img-v5/orbit/${v}/f${String(i).padStart(3, '0')}.webp`, [N - 1, 20], on); hiEnd = loadImg(`img-v5/hi-end-${v}.webp`); hiEnd.onload = on; }, 200);
+    setTimeout(() => { stills = NAMES.map(n => { const im = loadImg(`img-v5/${n}-${v}.webp`); im.onload = on; return im; }); }, 900);
+  };
+  let dirty = true, p = 0, lastP = -1;
+  const render = () => {
+    st.clear();
+    // camera move: sharp photo at both ends, blended video frames in between
+    const f = lerp(0, N - 1, range(p, .04, .28));
+    drawFrame(st, get, f);
+    if (!get(0)) st.draw(hiStart);
+    st.draw(hiStart, 1 - clamp(f / 1.2));
+    st.draw(hiEnd, 1 - clamp((N - 1 - f) / 1.2));
+    // detail pictures: crisp wipe from the right, slow push-in while they stay
+    AT.forEach((a, i) => {
+      if (i < AT.length - 1 && p > AT[i + 1] + WIPE) return;
+      const t = range(p, a - WIPE, a), z = 1 + .04 * range(p, a - WIPE, (AT[i + 1] || .95));
+      if (i === AT.length - 1 && p > .93) return;     // back to the car for the call to action
+      st.wipe(stills[i], t, z);
+    });
+    if (p > .9) st.wipe(hiEnd, range(p, .9, .93));
+    st.edges('12,14,17');
+  };
+  new ResizeObserver(() => { st.fit(); load(); dirty = true; kick(); }).observe(stick);
+
+  const copy = document.getElementById('copy'), cards = [...document.querySelectorAll('.svc')], track = [...document.querySelectorAll('#track li')];
+  const ranges = [[.31, .47], [.47, .63], [.63, .79], [.79, .9], [.9, 1.01]];
+  let raf = 0;
+  const tick = () => {
+    raf = 0;
+    p = scrollProgress(heroSec);
+    if (dirty || p !== lastP) { dirty = false; lastP = p; render(); }
+    copy.classList.toggle('away', p > .22);
+    let active = -1;
+    ranges.forEach(([a, b], j) => { if (p >= a && p < b) active = j; track[j].style.setProperty('--f', range(p, a, b)); });
+    cards.forEach((c, j) => c.classList.toggle('on', j === active));
+    track.forEach((t, j) => t.classList.toggle('on', j === active));
+  };
+  const kick = () => { if (!raf) raf = requestAnimationFrame(tick); };
+  addEventListener('scroll', kick, { passive: true });
+  load(); kick();
+}
+
+/* ---------------- Werkstatt-Check ---------------- */
+{
+  const stage = document.getElementById('stage'), pic = document.getElementById('pic');
+  const list = document.getElementById('list'), empty = document.getElementById('empty');
+  // positions in % of the side photo
+  const SPOTS = [
+    { id: 'motor', label: 'Motor / Inspektion', x: 79, y: 43 },
+    { id: 'licht', label: 'Licht', x: 89, y: 50 },
+    { id: 'bremsen', label: 'Bremsen', x: 80.3, y: 62 },
+    { id: 'reifen', label: 'Reifen & Räder', x: 39.2, y: 66 },
+    { id: 'auspuff', label: 'Auspuff', x: 30.8, y: 58 },
+    { id: 'karosserie', label: 'Karosserie / Delle', x: 52, y: 55 },
+    { id: 'lack', label: 'Lack / Kratzer', x: 58, y: 30 },
+  ];
+  const chosen = new Set();
+  const quick = document.getElementById('quick');
+  SPOTS.forEach(s => { const q = document.createElement('button'); q.type = 'button'; q.textContent = s.label; q.setAttribute('aria-pressed', 'false'); q.onclick = () => toggle(s.id); quick.appendChild(q); s.q = q; });
+  SPOTS.forEach(s => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'hs'; b.setAttribute('aria-pressed', 'false');
+    b.style.left = s.x + '%'; b.style.top = s.y + '%'; if (s.x > 70) b.classList.add('flip');
+    b.innerHTML = `<i></i><span>${s.label}</span>`;
+    b.addEventListener('click', () => toggle(s.id)); pic.appendChild(b); s.btn = b;
+  });
+  const render = () => {
+    [...list.querySelectorAll('li:not(#empty)')].forEach(li => li.remove());
+    empty.hidden = chosen.size > 0;
+    SPOTS.filter(s => chosen.has(s.id)).forEach(s => {
+      const li = document.createElement('li'); li.innerHTML = `<span>${s.label}</span><button type="button" aria-label="${s.label} entfernen">×</button>`;
+      li.querySelector('button').onclick = () => toggle(s.id); list.appendChild(li);
+    });
+    SPOTS.forEach(s => { s.btn.setAttribute('aria-pressed', chosen.has(s.id)); s.q.setAttribute('aria-pressed', chosen.has(s.id)); });
+  };
+  const toggle = id => { chosen.has(id) ? chosen.delete(id) : chosen.add(id); render(); };
+  render();
+}
+</script>
+</body>
+</html>
