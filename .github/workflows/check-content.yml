@@ -1,0 +1,15 @@
+name: Showcase-Regeln prüfen
+on:
+  push:
+  pull_request:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # Fails if a live client project has placeholders, unverified numbers or no beleg,
+      # if a demo shows numbers, or if index.html was not rebuilt after editing showcases.json.
+      - run: node scripts/build-showcases.mjs --check

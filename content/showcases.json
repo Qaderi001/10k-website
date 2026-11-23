@@ -1,0 +1,117 @@
+{
+  "_anleitung": [
+    "Diese Datei ist die einzige Quelle fuer den Bereich 'Arbeiten' auf der Startseite.",
+    "Nach jeder Aenderung: node scripts/build-showcases.mjs  (schreibt den HTML-Block in index.html).",
+    "art: 'demo' = Konzept-Demo ohne Kundenzahlen. art: 'kunde' = echtes Kundenprojekt.",
+    "status: 'entwurf' wird NICHT veroeffentlicht. status: 'live' erscheint auf der Seite.",
+    "Ein Kundenprojekt geht nur live, wenn: keine [Platzhalter] mehr drin sind, ergebnis.verifiziert = true, ergebnis.beleg ausgefuellt ist (interne Notiz, wird nicht angezeigt) und mindestens eine Kennzahl plus Zeitraum eingetragen sind.",
+    "Eine Demo darf keine Kennzahlen haben. So koennen keine erfundenen Ergebnisse auf die Seite rutschen.",
+    "vorschau.typ: 'konfigurator' (Zaun-Grafik, verlinkt auf die Live-Demo), 'vorher-nachher' (Schieberegler) oder 'bild' (Screenshot: src, alt, breite, hoehe)."
+  ],
+  "showcases": [
+    {
+      "id": "zaun-konfigurator",
+      "art": "demo",
+      "status": "live",
+      "gewerk": "Zaunbau",
+      "titel": "Zaun-Konfigurator mit 3D-Ansicht und Richtpreis",
+      "ausgangslage": "Typisch für Zaunbauer: Die meisten Anfragen kommen per Telefon oder Formular ohne Maße und ohne Material. Für jedes Angebot sind Rückfragen oder eine Besichtigung nötig, auch bei Kunden, deren Budget von Anfang an nicht passt.",
+      "gebaut": [
+        "3D-Ansicht, die sich bei jeder Einstellung sofort ändert: Material, Höhe, Länge, Tor",
+        "Richtpreis als Spanne, berechnet aus der Preisliste des Betriebs",
+        "Prüfung von Einzugsgebiet und Zeitraum, bevor die Anfrage rausgeht",
+        "Anfrage mit allen Angaben, die man für ein Angebot braucht",
+        "Die 3D-Ansicht lädt erst, wenn jemand hinscrollt. Die Seite bleibt schnell."
+      ],
+      "ergebnis": {
+        "text": "Das ist eine Demo, es gibt noch keine Kundenzahlen. In einem echten Projekt messen wir ab dem ersten Tag: Anzahl der Anfragen, Anteil mit vollständigen Angaben und wie viele davon zum Auftrag werden.",
+        "zeitraum": "",
+        "kennzahlen": [],
+        "verifiziert": false,
+        "beleg": ""
+      },
+      "vorschau": { "typ": "konfigurator" },
+      "link": { "href": "#demo", "text": "Demo ausprobieren" }
+    },
+    {
+      "id": "relaunch-tischlerei",
+      "art": "demo",
+      "status": "live",
+      "gewerk": "Tischlerei / Innenausbau",
+      "titel": "Relaunch: von der alten Seite zur Anfrage-Seite",
+      "ausgangslage": "Typische Ausgangslage: eine Website von vor zehn Jahren, auf dem Handy kaum lesbar, keine aktuellen Projektfotos und kein klarer Weg zur Anfrage.",
+      "gebaut": [
+        "Neue Seite im Stil des Betriebs, mit echten Projektfotos statt Stockbildern",
+        "Anfrage mit Projektart, Raum, Zeitraum und Budgetrahmen",
+        "Schnell auf dem Handy, saubere Struktur für Google"
+      ],
+      "ergebnis": {
+        "text": "Konzept-Demo mit erfundenem Betrieb, ohne Kundenzahlen. Ziehen Sie den Regler, um Vorher und Nachher zu vergleichen.",
+        "zeitraum": "",
+        "kennzahlen": [],
+        "verifiziert": false,
+        "beleg": ""
+      },
+      "vorschau": { "typ": "vorher-nachher" },
+      "link": null
+    },
+    {
+      "id": "kunde-zaunbau",
+      "art": "kunde",
+      "status": "entwurf",
+      "gewerk": "Zaunbau",
+      "firma": "[Firmenname]",
+      "ort": "[Ort]",
+      "titel": "[z. B. Zaun-Konfigurator für Doppelstab- und Holzzäune]",
+      "ausgangslage": "[z. B. Rund [X] Anfragen im Monat, davon etwa [Y] ohne Maße. Für fast jedes Angebot war eine Besichtigung nötig.]",
+      "gebaut": [
+        "[z. B. Konfigurator mit 3D-Ansicht für 3 Zauntypen]",
+        "[z. B. Richtpreis aus der eigenen Preisliste]",
+        "[z. B. Anfrage mit PLZ-Prüfung für das Einzugsgebiet]"
+      ],
+      "ergebnis": {
+        "text": "[Ein Satz, was sich für den Betrieb geändert hat, möglichst in den Worten des Kunden]",
+        "zeitraum": "[z. B. in den ersten 8 Wochen nach Start]",
+        "kennzahlen": [
+          { "wert": "[X]", "label": "Anfragen über den Konfigurator" },
+          { "wert": "[Y] %", "label": "mit vollständigen Maßen und PLZ" },
+          { "wert": "[Z] €", "label": "Auftragsvolumen aus diesen Anfragen" }
+        ],
+        "verifiziert": false,
+        "beleg": ""
+      },
+      "zitat": { "text": "[Optional: Zitat des Inhabers]", "person": "[Name, Funktion]" },
+      "vorschau": { "typ": "bild", "src": "assets/arbeiten/[datei].webp", "alt": "[Screenshot der Seite]", "breite": 1280, "hoehe": 800 },
+      "link": { "href": "https://[domain-des-kunden].de", "text": "Seite ansehen" }
+    },
+    {
+      "id": "kunde-hausbau-ausbau",
+      "art": "kunde",
+      "status": "entwurf",
+      "gewerk": "Hausbau / Ausbau",
+      "firma": "[Firmenname]",
+      "ort": "[Ort]",
+      "titel": "[z. B. 3D-Ansicht für Dachausbau mit Ausstattungsvarianten]",
+      "ausgangslage": "[z. B. Viele Erstanfragen ohne Vorstellung vom Budget. Rund [X] Beratungstermine im Monat, davon [Y] ohne Auftrag.]",
+      "gebaut": [
+        "[z. B. 3D-Ansicht des Ausbaus mit Gauben- und Fenstervarianten]",
+        "[z. B. Kostenrahmen je Ausstattungsstufe]",
+        "[z. B. Anfrage mit Baujahr, Wohnfläche, Zeitraum und Fotos]"
+      ],
+      "ergebnis": {
+        "text": "[Ein Satz, was sich geändert hat]",
+        "zeitraum": "[z. B. in den ersten 12 Wochen nach Start]",
+        "kennzahlen": [
+          { "wert": "[X]", "label": "qualifizierte Anfragen" },
+          { "wert": "[Y]", "label": "Beratungstermine weniger ohne Auftrag" },
+          { "wert": "[Z] €", "label": "Auftragsvolumen" }
+        ],
+        "verifiziert": false,
+        "beleg": ""
+      },
+      "zitat": null,
+      "vorschau": { "typ": "bild", "src": "assets/arbeiten/[datei].webp", "alt": "[Screenshot der Seite]", "breite": 1280, "hoehe": 800 },
+      "link": null
+    }
+  ]
+}

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Magie Studio · 3D-Websites mit Tiefe</title>
-<meta name="description" content="Magie Studio baut 3D-Websites für Unternehmen mit Produkten und Dienstleistungen: ein Film, der beim Scrollen spielt, Ladezeit unter einer Sekunde, Festpreis und ein fester Ansprechpartner.">
+<title>Magie Studio · Websites mit 3D-Konfigurator für Handwerksbetriebe</title>
+<meta name="description" content="Schnelle Websites mit 3D-Ansicht und Konfigurator für Zaunbau, Hausbau und Ausbau. Anfragen mit Maßen, Material und Zeitraum statt „Was kostet das?“. Festpreis, 2 bis 4 Wochen, ein Ansprechpartner.">
 <meta name="theme-color" content="#F2F3EE">
 <link rel="canonical" href="https://magie-studio.de/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
-<meta property="og:title" content="Magie Studio · 3D-Websites mit Tiefe">
-<meta property="og:description" content="Websites mit Tiefe, die in unter einer Sekunde laden. Festpreis. Fester Termin. Ein Ansprechpartner.">
+<meta property="og:title" content="Magie Studio · Websites mit 3D-Konfigurator für Handwerksbetriebe">
+<meta property="og:description" content="Anfragen mit Maßen, Material und Zeitraum. Für Zaunbau, Hausbau und Ausbau. Festpreis, 2 bis 4 Wochen, ein Ansprechpartner.">
 <meta property="og:url" content="https://magie-studio.de/">
 <meta property="og:image" content="https://magie-studio.de/assets/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -18,574 +18,555 @@
 <link rel="preload" href="assets/fonts/unbounded-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/instrument-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-@font-face{font-family:"Unbounded";font-weight:500;font-display:swap;src:url(assets/fonts/unbounded-latin-500-normal.woff2) format("woff2")}
 @font-face{font-family:"Unbounded";font-weight:700;font-display:swap;src:url(assets/fonts/unbounded-latin-700-normal.woff2) format("woff2")}
 @font-face{font-family:"Instrument Sans";font-weight:400;font-display:swap;src:url(assets/fonts/instrument-sans-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Instrument Sans";font-weight:500;font-display:swap;src:url(assets/fonts/instrument-sans-latin-500-normal.woff2) format("woff2")}
 @font-face{font-family:"Instrument Sans";font-weight:600;font-display:swap;src:url(assets/fonts/instrument-sans-latin-600-normal.woff2) format("woff2")}
-@font-face{font-family:"JetBrains Mono";font-weight:400;font-display:swap;src:url(assets/fonts/jetbrains-mono-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"JetBrains Mono";font-weight:500;font-display:swap;src:url(assets/fonts/jetbrains-mono-latin-500-normal.woff2) format("woff2")}
 :root{
-  --canvas:#F2F3EE; --panel:#FAFAF7; --ink:#111411; --text-secondary:#4A514A;
-  --graphite:#0E110F; --graphite-2:#171B18; --on-dark:#EEF0EA; --on-dark-2:#B9C0B6;
-  --accent:#6DA227; --accent-hover:#7DB536; --accent-ink:#4E7A17; --accent-muted:rgba(109,162,39,.16);
-  --line:#C9CEC4; --line-strong:#8C948A;
-  --f-display:"Unbounded",system-ui,sans-serif; --f-body:"Instrument Sans",system-ui,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,monospace;
-  --ease-out:cubic-bezier(.16,1,.3,1); --ease-io:cubic-bezier(.65,0,.35,1);
-  --tshadow-dark:0 2px 14px rgba(5,7,5,.75);
-  --tshadow-light:0 0 16px rgba(242,243,238,.9);
-  --gutter:clamp(16px,4vw,56px);
+  --canvas:#F2F3EE; --panel:#FAFAF7; --white:#fff; --ink:#111411; --text-2:#4A514A;
+  --accent:#6DA227; --accent-hover:#7DB536; --accent-ink:#4E7A17; --accent-soft:rgba(109,162,39,.12);
+  --line:#D6DAD0; --line-strong:#8C948A; --demo:#8A5A12; --demo-soft:#F6EEDD;
+  --f-display:"Unbounded",system-ui,sans-serif; --f-body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --gutter:clamp(16px,4vw,48px); --r:14px;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{overflow-x:hidden;overflow-x:clip;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;overflow-x:hidden;overflow-x:clip;background:var(--canvas);color:var(--ink);font:400 17px/1.6 var(--f-body);-webkit-font-smoothing:antialiased;animation:pagein .9s var(--ease-out) both}
-@keyframes pagein{from{opacity:0}to{opacity:1}}
-img,svg,video,canvas{display:block;max-width:100%}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--canvas);color:var(--ink);font:400 17px/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
+img,svg,canvas{display:block;max-width:100%}
 a{color:inherit}
-h1,h2,h3{font-family:var(--f-display);font-weight:700;letter-spacing:-.02em;line-height:1.08;margin:0}
-p{margin:0}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;letter-spacing:-.02em;line-height:1.12;margin:0}
+h3{font-family:var(--f-body);font-weight:600;letter-spacing:0;line-height:1.3}
+p,ul,ol,dl,dd,figure{margin:0}
+ul,ol{padding:0;list-style:none}
 .sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
-.skip{position:fixed;left:16px;top:-60px;z-index:100;background:var(--ink);color:var(--canvas);padding:10px 16px;border-radius:10px;text-decoration:none;transition:top .3s var(--ease-out)}
+.skip{position:fixed;left:16px;top:-60px;z-index:100;background:var(--ink);color:var(--canvas);padding:10px 16px;border-radius:10px;text-decoration:none}
 .skip:focus{top:16px}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
-.mono{font-family:var(--f-mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase}
-
-/* environment layer: grain + slow green haze */
-.env{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:var(--canvas)}
-/* Light and shadow: sun through a glass facade. Outer wrappers follow the scroll, inner layers drift slowly. */
-.env .lw{position:absolute;inset:0;transform:translate3d(calc((var(--sp,.5) - .5) * var(--kx) * 1vw),calc((var(--sp,.5) - .5) * var(--ky) * 1vh),0);will-change:transform}
-.env .beam{position:absolute;top:-60vh;height:220vh;transform:rotate(-24deg);background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.35) 22%,rgba(255,255,255,.8) 42%,rgba(255,253,244,.92) 50%,rgba(255,255,255,.8) 58%,rgba(255,255,255,.35) 78%,rgba(255,255,255,0) 100%)}
-.env .shade{position:absolute;top:-60vh;height:220vh;transform:rotate(-24deg);background:linear-gradient(90deg,rgba(28,34,28,0) 0%,rgba(28,34,28,.04) 28%,rgba(28,34,28,.085) 50%,rgba(28,34,28,.04) 72%,rgba(28,34,28,0) 100%)}
-.env .glow{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(109,162,39,.16),rgba(109,162,39,0) 64%)}
-.env::after{content:"";position:absolute;inset:-50%;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-@keyframes haze{0%{transform:translate(-18vw,-8vh) scale(1)}100%{transform:translate(18vw,22vh) scale(1.25)}}
+:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1160px;margin:0 auto}
+.eyebrow{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:14px}
+.h2{font-size:clamp(28px,3.6vw,44px);max-width:22ch}
+.lede{margin-top:18px;max-width:60ch;color:var(--text-2);font-size:clamp(17px,1.3vw,19px)}
+.sec{padding:clamp(64px,9vw,112px) var(--gutter);border-top:1px solid var(--line)}
+.sec-head{margin-bottom:clamp(32px,5vw,56px)}
 
 /* nav */
-.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;width:min(1180px,calc(100% - 24px));display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 12px 10px 18px;border-radius:16px;background:rgba(244,245,240,.94);border:1px solid rgba(17,20,17,.08);box-shadow:0 8px 24px -16px rgba(17,20,17,.3)}
-.brand{display:flex;align-items:center;gap:10px;white-space:nowrap;text-decoration:none;font-family:var(--f-display);font-weight:700;font-size:15px;letter-spacing:.04em}
+.nav{position:sticky;top:0;z-index:50;background:rgba(242,243,238,.97);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px var(--gutter)}
+.brand{display:flex;align-items:center;gap:10px;white-space:nowrap;text-decoration:none;font:700 15px var(--f-display);letter-spacing:.04em}
 .brand svg{width:30px;height:30px}
-.brand span b{color:var(--accent-ink);font-weight:500}
-.nav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0}
-.nav ul a{display:block;padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:500;font-size:15px;color:var(--text-secondary);transition:color .3s var(--ease-out),background .3s var(--ease-out)}
+.brand b{color:var(--accent-ink);font-weight:700}
+.nav ul{display:flex;gap:2px}
+.nav ul a{display:block;padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;color:var(--text-2)}
 .nav ul a:hover{color:var(--ink);background:rgba(17,20,17,.05)}
-@media (max-width:820px){.nav ul{display:none}}
+@media (max-width:900px){.nav ul{display:none}}
 
 /* buttons */
-.btn{--bg:var(--accent);display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:12px;border:0;background:var(--bg);color:#0B0E0B;font:600 16px/1.2 var(--f-body);text-decoration:none;cursor:pointer;text-shadow:none;transition:transform .35s var(--ease-out),background .35s var(--ease-out),box-shadow .35s var(--ease-out)}
-.btn:hover{--bg:var(--accent-hover);transform:translateY(-2px);box-shadow:0 10px 30px -10px rgba(109,162,39,.7)}
-.btn svg{width:18px;height:18px;transition:transform .35s var(--ease-out)}
-.btn:hover svg{transform:translateX(3px)}
-.btn.ghost{--bg:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}
-.btn.ghost:hover{--bg:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1.5px currentColor}
-.btn.small{padding:10px 16px;font-size:15px}
-@media (pointer:coarse){.btn{min-height:44px}.nav ul a{min-height:44px;display:flex;align-items:center}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 22px;border-radius:10px;border:0;background:var(--accent);color:#0B0E0B;font:600 16px/1.2 var(--f-body);text-decoration:none;cursor:pointer;transition:background .2s}
+.btn:hover{background:var(--accent-hover)}
+.btn svg{width:18px;height:18px}
+.btn.ghost{background:transparent;box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn.ghost:hover{background:rgba(17,20,17,.05)}
+.btn.small{min-height:40px;padding:8px 16px;font-size:15px}
 
-/* ---------- HERO ---------- */
-.hero{position:relative;height:520vh;background:var(--canvas)}
-.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;contain:paint;background:#cfd2cc center/cover no-repeat}
-.stage .poster{position:absolute;inset:0;background:center/cover no-repeat}
-.stage canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .6s var(--ease-out)}
-.stage.video-ready canvas{opacity:1}
-.scrim{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 120% 90% at 50% 45%,rgba(242,243,238,.18) 30%,rgba(242,243,238,.5) 100%)}
-.ring{position:absolute;right:28px;bottom:28px;width:44px;height:44px;color:var(--accent);transition:opacity .6s var(--ease-out)}
-.ring circle.track{stroke:rgba(17,20,17,.15)}
-.stage.video-ready .ring{opacity:0}
-.cue{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);color:var(--ink);opacity:.7}
-.cue svg{width:26px;height:26px;animation:cue 2.4s var(--ease-io) -1s infinite}
-@keyframes cue{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+/* hero */
+.hero{padding:clamp(48px,8vw,96px) var(--gutter) clamp(56px,8vw,96px)}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,64px);align-items:center}
+.hero h1{font-size:clamp(34px,5vw,60px);max-width:16ch}
+.hero .lede{max-width:52ch}
+.hero .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.facts{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:32px;color:var(--text-2);font-size:15px}
+.facts li{display:flex;gap:8px;align-items:center}
+.facts li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
+@media (max-width:960px){.hero .wrap{grid-template-columns:1fr}}
 
-.band{will-change:opacity;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0;padding:0 var(--gutter)}
-.band.on{pointer-events:auto}
-.band .copy{position:relative;text-align:center}
-.band .copy::before{content:"";position:absolute;inset:-30% -20%;z-index:-1;pointer-events:none;will-change:opacity;opacity:calc(.25 + .75*var(--k,1));background:radial-gradient(ellipse 60% 58% at 50% 50%,rgba(5,7,5,var(--sa,.66)) 0%,rgba(5,7,5,calc(var(--sa,.66)*.66)) 46%,rgba(5,7,5,0) 76%)}
-.band.dark-ink .copy::before{background:radial-gradient(ellipse 60% 58% at 50% 50%,rgba(242,243,238,var(--sa,.7)) 0%,rgba(242,243,238,calc(var(--sa,.7)*.66)) 46%,rgba(242,243,238,0) 76%)}
-.band{color:var(--on-dark);text-shadow:var(--tshadow-dark)}
-.band.dark-ink{color:var(--ink);text-shadow:var(--tshadow-light)}
-.band .btn{text-shadow:none}
-.band .kicker{display:inline-block;margin-bottom:22px;padding:7px 12px;border-radius:999px;background:rgba(244,245,240,.88);border:1px solid rgba(17,20,17,.12);color:var(--accent-ink);text-shadow:none}
-.band h1,.band h2{font-size:clamp(40px,7.4vw,104px);max-width:14ch;margin:0 auto}
-.band .sub{max-width:34ch;margin:22px auto 0;font-size:clamp(17px,1.7vw,22px);line-height:1.5;font-weight:500}
-.band .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:34px}
-.vis .w{display:inline-block;white-space:nowrap}
-.vis .c{display:inline-block}
-/* (f) drift-down */
-.fx-drift .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*2.8,1);opacity:var(--kc);transform:translateY(calc((1 - var(--kc))*-28px))}
-/* (c) blur-to-sharp */
-.fx-blur .stack{display:grid}
-.fx-blur .stack>*{grid-area:1/1}
-.fx-blur .soft{filter:blur(10px);opacity:calc(1 - var(--k,0));will-change:opacity}
-.fx-blur .sharp{opacity:var(--k,0)}
-/* (g) approach-from-depth */
-.fx-depth .vis{display:block;opacity:var(--k,0);transform:scale(calc(.82 + .18*var(--k,0)))}
-/* (e) staged settle */
-.fx-settle .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*3.2,1);opacity:var(--kc);transform:translateY(calc((1 - var(--kc))*34px))}
-.fx-settle .sub{opacity:clamp(0,(var(--k,0) - .62)*4,1)}
-.fx-settle .row{opacity:clamp(0,(var(--k,0) - .76)*5,1);transform:translateY(calc((1 - clamp(0,(var(--k,0) - .76)*5,1))*14px))}
-.fx-drift .sub{opacity:clamp(0,(var(--k,0) - .45)*3,1)}
-.fx-blur .sub,.fx-depth .sub{opacity:clamp(0,(var(--k,0) - .5)*3,1)}
-.band-1 .copy{transform:translateY(-6vh)}
-/* the ink cloud fills the middle and lower frame, so later captions sit in the clear water above it */
-.band-2,.band-3,.band-4{align-items:flex-start;padding-top:max(108px,13vh)}
-.band-2,.band-3{--sa:.8!important}
-.band-4{--sa:.82!important}
+/* inquiry card (hero + demo) */
+.inq{background:var(--white);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.inq-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline;padding:14px 18px;border-bottom:1px solid var(--line);font-size:14px;font-weight:600}
+.inq-head span{color:var(--text-2);font-weight:400}
+.inq dl{padding:6px 18px 10px}
+.inq dl div{display:grid;grid-template-columns:130px 1fr;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:15px}
+.inq dl div:last-child{border-bottom:0}
+.inq dt{color:var(--text-2)}
+.inq dd{font-weight:600}
+.inq .fit{margin:0 18px 16px;padding:10px 12px;border-radius:10px;font-size:14px;font-weight:600;background:var(--accent-soft);color:var(--accent-ink)}
+.inq .fit.warn{background:var(--demo-soft);color:var(--demo)}
+.inq-foot{padding:10px 18px;border-top:1px solid var(--line);font-size:13px;color:var(--text-2);background:var(--panel)}
 
-/* static hero (5 gates) */
-.static-hero{display:none}
-@media (prefers-reduced-motion:reduce){
-  .hero{height:auto}
-  .stage{display:none}
-  .static-hero{display:flex;position:relative;min-height:100vh;min-height:100svh;align-items:flex-start;justify-content:center;padding:clamp(120px,22vh,200px) var(--gutter) 120px;background:var(--canvas) url('assets/hero-ending.jpg') center 70%/cover no-repeat;color:var(--ink);text-align:center}
-  .static-hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(242,243,238,.9) 0%,rgba(242,243,238,.72) 55%,rgba(242,243,238,.25) 100%)}
-}
-.static-hero .inner{position:relative;max-width:640px}
-.static-hero .kicker{display:inline-block;margin-bottom:20px;color:var(--accent-ink)}
-.static-hero h1{font-size:clamp(38px,10vw,64px);text-shadow:var(--tshadow-light)}
-.static-hero p{margin:20px auto 0;max-width:32ch;font-size:18px;font-weight:500;color:var(--ink);text-shadow:var(--tshadow-light)}
-.static-hero .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
-.static-hero .btn.ghost{color:var(--ink)}
-@media (max-height:560px){.cue,.ring{display:none}}
-
-/* ---------- sections ---------- */
-main{position:relative;display:block}
-main:focus{outline:none}
-.sec{position:relative;padding:clamp(96px,14vw,180px) var(--gutter)}
-.wrap{max-width:1180px;margin:0 auto}
-.eyebrow{display:flex;align-items:baseline;gap:12px;color:var(--accent-ink);margin-bottom:22px}
-.eyebrow i{font-style:normal;color:var(--text-secondary)}
-.h2{font-size:clamp(32px,4.6vw,60px);max-width:16ch}
-.lede{margin-top:22px;max-width:52ch;color:var(--text-secondary);font-size:clamp(17px,1.4vw,20px)}
-
-/* entrance choreography */
-.rv .part{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
-.rv.in .part{opacity:1;transform:none}
-.rv.in .part:nth-child(2){transition-delay:.09s}
-.rv.in .part:nth-child(3){transition-delay:.18s}
-.rv.in .part:nth-child(4){transition-delay:.27s}
-.rv.in .part:nth-child(5){transition-delay:.36s}
-.rv.done .part,.rv.done .part:nth-child(2),.rv.done .part:nth-child(3),.rv.done .part:nth-child(4),.rv.done .part:nth-child(5){transition-delay:0s}
-
-/* the Lichtfaden (signature thread) */
-.thread{position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;pointer-events:none;list-style:none}
-.thread::before{content:"";position:absolute;inset:0;background:var(--line)}
-.thread i{position:absolute;inset:0;background:linear-gradient(180deg,var(--accent),#9BD15A);transform-origin:top;transform:scaleY(var(--draw,0));box-shadow:0 0 18px rgba(109,162,39,.55)}
+/* badges */
+.badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:13px;font-weight:600;line-height:1.5;white-space:nowrap}
+.badge-demo{background:var(--demo-soft);color:var(--demo);border:1px solid #E5D3AE}
+.badge-client{background:var(--accent-soft);color:var(--accent-ink);border:1px solid rgba(78,122,23,.3)}
 
 /* problem */
-.problem{background:transparent}
-.problem .head{text-align:center;margin:0 auto clamp(56px,8vw,110px)}
-.problem .head .h2{margin:0 auto}
-.problem .head .eyebrow{justify-content:center}
-.quotes{position:relative;max-width:1000px;margin:0 auto;display:grid;gap:clamp(56px,9vw,120px)}
-.quote{position:static;margin:0;width:min(44%,420px)}
-.node{position:absolute;left:50%;width:14px;height:14px;margin:.55em 0 0 -7px;border-radius:50%;background:var(--canvas);border:2px solid var(--line-strong);transition:border-color .6s var(--ease-out),background .6s var(--ease-out),box-shadow .6s var(--ease-out)}
-.quote.lit .node{border-color:var(--accent);background:var(--accent);box-shadow:0 0 0 6px var(--accent-muted)}
-.quote:nth-child(even){justify-self:start;text-align:right}
-.quote:nth-child(odd){justify-self:end}
-.quote blockquote{margin:0;font-family:var(--f-display);font-weight:500;font-size:clamp(22px,2.6vw,34px);line-height:1.2;letter-spacing:-.01em}
-.quote p{margin-top:12px;color:var(--text-secondary)}
-.answer{position:relative;margin:clamp(70px,10vw,130px) auto 0;text-align:center;background:rgba(244,245,240,.86);border-radius:16px;padding:18px 0;max-width:640px}
-.answer h3{font-size:clamp(28px,3.6vw,46px)}
-.answer h3 em{font-style:normal;color:var(--accent-ink)}
-@media (max-width:720px){
-  .thread{left:22px}
-  .quote,.quote:nth-child(odd),.quote:nth-child(even){width:auto;justify-self:stretch;text-align:left;padding-left:46px}
-  .node{left:22px}
-  .answer{text-align:left;padding-left:46px}
-}
+.pains{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pain{padding:24px;border-radius:var(--r);background:var(--panel);border:1px solid var(--line)}
+.pain h3{font-size:19px;margin-bottom:10px}
+.pain p{color:var(--text-2)}
+.bottom-line{margin-top:32px;font-size:clamp(18px,1.6vw,21px);font-weight:600;max-width:60ch}
+@media (max-width:900px){.pains{grid-template-columns:1fr}}
 
-/* services */
-.services{background:transparent}
-.services .top{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end;margin-bottom:clamp(48px,6vw,80px)}
-.services .top .lede{margin:0}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.card{position:relative;border-radius:22px;overflow:hidden;background:var(--canvas);border:1px solid rgba(17,20,17,.08);transition:transform .5s var(--ease-out),box-shadow .5s var(--ease-out)}
-.card:hover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(17,20,17,.35)}
-.card .img{aspect-ratio:4/3;position:relative;overflow:hidden}
-.demo{background:radial-gradient(ellipse 80% 70% at 50% 60%,#ffffff 0%,#e9ece5 62%,#dde1d8 100%);border-bottom:1px solid rgba(17,20,17,.06)}
-.demo-hint{position:absolute;left:14px;bottom:12px;font-size:11px;color:var(--text-secondary);opacity:.8;letter-spacing:.06em;pointer-events:none}
-.demo-3d{background:linear-gradient(160deg,#FAF0EC 0%,#EFD6CD 100%)}
-.demo-3d .demo-hint{color:#7A4B42}
-.nova{position:absolute;left:16px;top:14px;display:flex;flex-direction:column;font:400 20px/1 Georgia,"Times New Roman",serif;letter-spacing:.32em;color:#5E3A33;pointer-events:none}
-.nova small{margin-top:5px;font:500 9px var(--f-mono);letter-spacing:.24em;text-transform:uppercase;opacity:.7}
-/* demo 1: laptop with the mini scroll film */
-.laptop{position:absolute;left:50%;top:46%;width:78%;transform:translate(-50%,-50%) perspective(900px) rotateX(6deg);transition:transform .8s var(--ease-out)}
-.card:hover .laptop{transform:translate(-50%,-52%) perspective(900px) rotateX(2deg)}
-.laptop .screen{position:relative;aspect-ratio:16/10;border-radius:10px 10px 4px 4px;background:#0E110F;border:6px solid #111411;border-bottom-width:8px;overflow:hidden;box-shadow:0 18px 40px -18px rgba(17,20,17,.55)}
-.hotel{background:#EDB98C}
-.hotel .scene{position:absolute;inset:0;width:100%;height:100%}
-.hotel .ly{transform:translateY(var(--y,0px));will-change:transform}
-.h-nav{position:absolute;left:5%;right:5%;top:6%;display:flex;align-items:baseline;gap:6%;font:600 clamp(7px,.8vw,10px) Georgia,"Times New Roman",serif;color:#22394A;letter-spacing:.04em}
-.h-nav b{font-size:1.35em;font-weight:700;letter-spacing:.08em;margin-right:auto}
-.h-nav i{font-style:normal;padding:.35em .8em;border:1px solid rgba(34,57,74,.7);border-radius:999px}
-.h-head{position:absolute;left:7%;bottom:12%;margin:0;font:400 clamp(14px,1.9vw,23px)/1.02 Georgia,"Times New Roman",serif;color:#FFF8EE;text-shadow:0 2px 12px rgba(31,52,66,.5)}
-.laptop .base{position:relative;height:9px;margin:0 -9%;border-radius:0 0 12px 12px;background:linear-gradient(#cfd3cb,#9da398);box-shadow:0 10px 20px -10px rgba(17,20,17,.5)}
-.laptop .base::after{content:"";position:absolute;left:50%;top:0;width:16%;height:4px;margin-left:-8%;border-radius:0 0 6px 6px;background:#8b9187}
-/* demo 2: live 3D product */
-.demo-3d{cursor:grab;touch-action:pan-y}
-.demo-3d:active{cursor:grabbing}
-.demo-3d canvas{position:absolute;inset:0;width:100%!important;height:100%!important}
-/* demo 3: before / after */
-.demo-ba{cursor:ew-resize;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+/* demo / configurator */
+.demo-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,4vw,48px);align-items:start}
+.viewer{position:relative;aspect-ratio:16/10;border-radius:var(--r);overflow:hidden;background:#E9ECE4;border:1px solid var(--line);touch-action:pan-y;cursor:grab}
+.viewer:active{cursor:grabbing}
+.viewer canvas{position:absolute;inset:0;width:100%!important;height:100%!important}
+.viewer .fence-svg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.viewer.gl .fence-svg,.viewer.gl .load3d{display:none}
+.viewer .vhint{position:absolute;left:12px;bottom:12px;padding:5px 10px;border-radius:999px;background:rgba(250,250,247,.92);border:1px solid var(--line);font-size:13px;color:var(--text-2);pointer-events:none}
+.viewer .load3d{position:absolute;right:12px;bottom:12px}
+.viewer .badge{position:absolute;left:12px;top:12px}
+.controls{display:grid;gap:18px;margin-top:22px}
+.controls fieldset{border:0;margin:0;padding:0;min-width:0}
+.controls legend,.controls label.l{display:block;font-size:14px;font-weight:600;margin-bottom:8px}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg label{position:relative}
+.seg input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.seg span{display:block;padding:9px 14px;border-radius:10px;border:1.5px solid var(--line-strong);background:var(--white);font-size:15px;font-weight:600;cursor:pointer}
+.seg input:checked+span{border-color:var(--accent-ink);background:var(--accent-soft);color:var(--accent-ink)}
+.seg input:focus-visible+span{outline:2px solid var(--accent-ink);outline-offset:2px}
+.range-row{display:flex;gap:14px;align-items:center}
+.range-row input{flex:1;accent-color:var(--accent-ink);min-height:32px}
+.range-row output{min-width:56px;text-align:right;font-weight:600}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.price{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border-radius:var(--r);background:var(--ink);color:#EEF0EA;margin-bottom:14px}
+.price b{font:700 clamp(22px,2.2vw,28px) var(--f-display);color:#fff;white-space:nowrap}
+.price span{font-size:14px;color:#B9C0B6}
+.price small{display:block;font-size:13px;color:#B9C0B6}
+.demo-note{margin-top:14px;font-size:14px;color:var(--text-2)}
+@media (max-width:960px){.demo-grid{grid-template-columns:1fr}}
+@media (max-width:520px){.two{grid-template-columns:1fr}.inq dl div{grid-template-columns:110px 1fr}}
+
+/* form fields */
+input[type=text],input[type=email],input[type=tel],select,textarea{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line-strong);background:var(--white);color:var(--ink);font:400 16px/1.4 var(--f-body)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent-ink);box-shadow:0 0 0 3px var(--accent-soft)}
+textarea{min-height:130px;resize:vertical}
+
+/* showcases */
+.cases{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.case{display:flex;flex-direction:column;border-radius:var(--r);overflow:hidden;background:var(--white);border:1px solid var(--line)}
+.case-media{display:block;position:relative;aspect-ratio:16/10;overflow:hidden;background:#E9ECE4;border-bottom:1px solid var(--line)}
+.case-media img,.case-media .fence-svg{width:100%;height:100%;object-fit:cover}
+.case-body{display:flex;flex-direction:column;gap:14px;padding:22px 22px 24px;flex:1}
+.case-tag{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--text-2)}
+.case h3{font-size:20px}
+.case-who{margin-top:-8px;color:var(--text-2);font-size:15px}
+.case dl{display:grid;gap:12px}
+.case dl>div{display:grid;grid-template-columns:150px 1fr;gap:12px;padding-top:12px;border-top:1px solid var(--line)}
+.case dt{font-size:14px;font-weight:600;color:var(--text-2)}
+.case dd{font-size:15px}
+.case dd ul{display:grid;gap:4px}
+.case dd li{position:relative;padding-left:16px}
+.case dd li::before{content:"";position:absolute;left:0;top:.65em;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.case dd p+p{margin-top:6px}
+.case-time{font-weight:600}
+.case-proof{font-size:13px;color:var(--text-2)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:10px}
+.kpis li{padding:10px 12px;border-radius:10px;background:var(--accent-soft)}
+.kpis b{display:block;font:700 22px var(--f-display);color:var(--accent-ink)}
+.kpis span{font-size:13px;color:var(--text-2)}
+.case-quote{margin:0;padding:12px 16px;border-left:3px solid var(--accent);background:var(--panel)}
+.case-quote footer{margin-top:6px;font-size:14px;color:var(--text-2)}
+.case-link{margin-top:auto;display:inline-flex;gap:8px;align-items:center;font-weight:600;color:var(--accent-ink);text-decoration:none}
+.case-link svg{width:18px;height:18px}
+.case-link:hover{text-decoration:underline}
+.cases-note{margin-top:24px;padding:16px 18px;border-radius:var(--r);border:1px dashed var(--line-strong);color:var(--text-2);max-width:80ch}
+@media (max-width:960px){.cases{grid-template-columns:1fr}.case dl>div{grid-template-columns:1fr;gap:4px}}
+
+/* before / after */
+.ba{position:absolute;inset:0;cursor:ew-resize;touch-action:pan-y;user-select:none;-webkit-user-select:none;--pos:50%}
 .ba-old,.ba-new{position:absolute;inset:0;overflow:hidden}
 .ba-old{background:#d4d0c8;font-family:"Times New Roman",Times,serif;color:#000;padding:10px 12px}
-.o-bar{font:11px/1.2 Arial,sans-serif;background:#ffffff;border:2px inset #ffffff;padding:3px 6px;margin-bottom:10px;color:#333;white-space:nowrap;overflow:hidden}
-.o-title{margin:0 0 10px;font-size:clamp(14px,1.5vw,18px);font-weight:700;color:#cc0000;text-decoration:underline}
+.o-bar{font:11px/1.2 Arial,sans-serif;background:#fff;border:2px inset #fff;padding:3px 6px;margin-bottom:10px;color:#333;white-space:nowrap;overflow:hidden}
+.o-title{margin:0 0 10px;font-size:clamp(14px,1.5vw,18px);font-weight:700;color:#c00;text-decoration:underline}
 .o-row{display:flex;gap:10px}
-.o-img{flex:none;width:42%;aspect-ratio:4/3;display:grid;place-items:center;background:#ffffff;border:2px outset #ffffff;color:#888;font-size:12px}
-.o-row ul{margin:0;padding-left:16px;color:#0000ee;font-size:14px;line-height:1.6}
-.o-count{position:absolute;left:12px;bottom:12px;margin:0;font:11px Arial,sans-serif;background:#000;color:#0f0;padding:2px 6px}
-.ba-new{background:#2B211B;clip-path:inset(0 0 0 var(--pos));padding:0}
-.n-nav{position:absolute;left:5%;right:5%;top:7%;display:flex;align-items:baseline;gap:6%;font:500 clamp(8px,.8vw,10px) var(--f-body);color:#E9DCC9}
-.n-nav b{margin-right:auto;font:700 1.25em Georgia,"Times New Roman",serif;letter-spacing:.24em}
+.o-img{flex:none;width:42%;aspect-ratio:4/3;display:grid;place-items:center;background:#fff;border:2px outset #fff;color:#888;font-size:12px}
+.o-row ul{list-style:disc;padding-left:16px;color:#00e;font-size:14px;line-height:1.6}
+.o-count{position:absolute;left:12px;bottom:40px;font:11px Arial,sans-serif;background:#000;color:#0f0;padding:2px 6px}
+.ba-new{background:#2B211B;clip-path:inset(0 0 0 var(--pos))}
+.n-nav{position:absolute;left:5%;right:5%;top:7%;display:flex;align-items:baseline;gap:6%;font:500 clamp(9px,.9vw,11px) var(--f-body);color:#E9DCC9}
+.n-nav b{margin-right:auto;font:700 1.25em Georgia,serif;letter-spacing:.24em}
 .n-nav i{font-style:normal;color:#C8915A}
-.n-head{position:absolute;right:7%;top:27%;margin:0;text-align:right;font:400 clamp(17px,2.1vw,25px)/1.02 Georgia,"Times New Roman",serif;color:#F3E9DA}
-.n-btn{position:absolute;right:7%;top:58%;padding:5px 10px;border-radius:2px;background:#C8915A;color:#2B211B;font:600 10px var(--f-body);letter-spacing:.04em}
-.n-wood{position:absolute;right:0;bottom:0;width:62%;height:22%;background:repeating-linear-gradient(176deg,#6B4A33 0 3px,#7A5539 3px 7px,#5E412D 7px 9px,#835C3E 9px 14px);opacity:.9}
-.ba-handle{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;margin-left:-1px;background:var(--accent);box-shadow:0 0 14px rgba(109,162,39,.6);pointer-events:none}
-.ba-handle span{position:absolute;top:50%;left:50%;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:var(--accent);box-shadow:0 4px 14px rgba(17,20,17,.3)}
-.ba-handle span::before,.ba-handle span::after{content:"";position:absolute;top:50%;width:0;height:0;margin-top:-5px;border:5px solid transparent}
+.n-head{position:absolute;right:7%;top:27%;text-align:right;font:400 clamp(20px,2.4vw,30px)/1.02 Georgia,serif;color:#F3E9DA}
+.n-btn{position:absolute;right:7%;top:58%;padding:5px 10px;border-radius:2px;background:#C8915A;color:#2B211B;font:600 11px var(--f-body)}
+.n-wood{position:absolute;right:0;bottom:0;width:62%;height:22%;background:repeating-linear-gradient(176deg,#6B4A33 0 3px,#7A5539 3px 7px,#5E412D 7px 9px,#835C3E 9px 14px)}
+.ba-handle{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;margin-left:-1px;background:var(--accent);pointer-events:none}
+.ba-handle span{position:absolute;top:50%;left:50%;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:var(--accent)}
+.ba-handle span::before,.ba-handle span::after{content:"";position:absolute;top:50%;margin-top:-5px;border:5px solid transparent}
 .ba-handle span::before{left:4px;border-right-color:#0B0E0B}
 .ba-handle span::after{right:4px;border-left-color:#0B0E0B}
-.ba-tag{position:absolute;bottom:12px;padding:3px 8px;border-radius:999px;font-size:11px;background:rgba(17,20,17,.75);color:#EEF0EA;pointer-events:none}
+.ba-tag{position:absolute;bottom:12px;padding:3px 8px;border-radius:999px;font-size:12px;background:rgba(17,20,17,.75);color:#EEF0EA;pointer-events:none}
 .ba-tag.l{left:12px}.ba-tag.r{right:12px;background:var(--accent);color:#0B0E0B}
-.demo-ba .o-count{bottom:40px}
-.demo-ba:focus-within{outline:2px solid var(--accent);outline-offset:-2px}
-.card .body{padding:24px 24px 28px}
-.card .num{color:var(--accent-ink)}
-.card h3{font-size:22px;margin:10px 0 10px;letter-spacing:-.01em}
-.card .body p{color:var(--text-secondary)}
-@media (max-width:960px){.services .top{grid-template-columns:1fr}.cards{grid-template-columns:1fr;max-width:560px}}
+.ba:focus-within{outline:2px solid var(--accent-ink);outline-offset:-2px}
 
-/* try it (3D) */
-.try{background:transparent;overflow:hidden}
-.try .grid{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,5vw,72px);align-items:center}
-.viewer{position:relative;aspect-ratio:1/1;max-height:640px;width:100%;border-radius:28px;background:radial-gradient(ellipse 70% 60% at 50% 55%,#ffffff 0%,#e6e9e2 60%,#d6dad2 100%);border:1px solid rgba(17,20,17,.08);overflow:hidden;cursor:grab;touch-action:none}
-.viewer:active{cursor:grabbing}
-.viewer canvas{width:100%!important;height:100%!important}
-.viewer .fallback{position:absolute;inset:18%;display:flex;align-items:center;justify-content:center}
-.viewer.gl .fallback{display:none}
-.viewer .hint{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(250,250,247,.8);border:1px solid rgba(17,20,17,.08);color:var(--text-secondary);font-size:14px;white-space:nowrap;transition:opacity .6s var(--ease-out)}
-.meter{margin-top:30px;height:6px;border-radius:6px;background:rgba(17,20,17,.08);overflow:hidden}
-.meter i{display:block;height:100%;width:100%;background:var(--accent);transform-origin:left;transform:scaleX(var(--turn,0));transition:transform .25s var(--ease-out)}
-.meter-label{margin-top:10px;color:var(--text-secondary);font-size:14px;display:flex;justify-content:space-between;align-items:baseline}
-.unlock{margin-top:28px;display:grid;gap:10px}
-.unlock li{list-style:none;display:flex;gap:12px;align-items:baseline;opacity:.35;transform:translateX(-6px);transition:opacity .6s var(--ease-out),transform .6s var(--ease-out)}
-.unlock ul{margin:0;padding:0;display:grid;gap:12px}
-.unlock li::before{content:"";flex:none;width:10px;height:10px;border-radius:50%;border:2px solid var(--line-strong);transform:translateY(-1px);transition:all .6s var(--ease-out)}
-.try.won .unlock li{opacity:1;transform:none}
-.try.won .unlock li::before{background:var(--accent);border-color:var(--accent)}
-.try.won .unlock li:nth-child(2){transition-delay:.15s}
-.try.won .unlock li:nth-child(3){transition-delay:.3s}
-.won-line{margin-top:26px;font-family:var(--f-display);font-weight:500;font-size:clamp(20px,2vw,26px);opacity:0;transform:translateY(10px);transition:opacity .8s var(--ease-out) .4s,transform .8s var(--ease-out) .4s}
-.try.won .won-line{opacity:1;transform:none}
-.try.won .hint{opacity:0}
-@media (max-width:960px){.try .grid{grid-template-columns:1fr}.viewer{max-width:560px;margin:0 auto}}
-@media (max-width:640px){.viewer{width:84%}}
+/* services */
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc li{padding:24px;border-radius:var(--r);background:var(--white);border:1px solid var(--line)}
+.svc .n{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--accent-soft);color:var(--accent-ink);font-weight:600;font-size:15px;margin-bottom:14px}
+.svc h3{font-size:19px;margin-bottom:8px}
+.svc p{color:var(--text-2)}
+.not{margin-top:22px;color:var(--text-2)}
+@media (max-width:900px){.svc{grid-template-columns:1fr}}
+
+/* roi */
+.roi{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);align-items:start}
+.calc{border-radius:var(--r);border:1px solid var(--line);background:var(--white);overflow:hidden}
+.calc .cap{padding:12px 18px;border-bottom:1px solid var(--line);font-size:14px;font-weight:600;background:var(--panel)}
+.calc dl div{display:flex;justify-content:space-between;gap:16px;padding:12px 18px;border-bottom:1px solid var(--line);font-size:15px}
+.calc dt{color:var(--text-2)}
+.calc dd{font-weight:600;white-space:nowrap}
+.calc .res{padding:16px 18px;font-weight:600;background:var(--accent-soft)}
+@media (max-width:900px){.roi{grid-template-columns:1fr}}
 
 /* process */
-.process{background:transparent}
-.process .head{text-align:center;margin-bottom:clamp(56px,8vw,100px)}
-.process .head .h2,.process .head .lede{margin-left:auto;margin-right:auto}
-.process .head .eyebrow{justify-content:center}
-.steps{position:relative;max-width:1000px;margin:0 auto;display:grid;gap:clamp(40px,6vw,72px);list-style:none;padding:0}
-.step{position:static;width:min(44%,420px)}
-.step:nth-child(even){justify-self:start;text-align:right}
-.step:nth-child(odd){justify-self:end}
-.step .when{color:var(--accent-ink)}
-.step h3{font-size:clamp(22px,2.2vw,28px);margin:8px 0 10px}
-.step p{color:var(--text-secondary)}
-.step .dot{position:absolute;left:50%;margin:-4px 0 0 -17px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font:500 13px var(--f-mono);background:var(--panel);border:2px solid var(--line-strong);color:var(--text-secondary);transition:all .6s var(--ease-out)}
-.step.lit .dot{background:var(--accent);border-color:var(--accent);color:#0B0E0B;box-shadow:0 0 0 7px var(--accent-muted)}
-@media (max-width:720px){
-  .step,.step:nth-child(odd),.step:nth-child(even){width:auto;justify-self:stretch;text-align:left;padding-left:58px}
-  .step .dot{left:23px}
-}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s}
+.step{padding-top:18px;border-top:3px solid var(--accent)}
+.step .when{font-size:14px;font-weight:600;color:var(--accent-ink)}
+.step h3{font-size:19px;margin:6px 0 8px}
+.step p{color:var(--text-2);font-size:16px}
+@media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}}
 
+/* fit */
+.fitgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.fitbox{padding:24px;border-radius:var(--r);border:1px solid var(--line);background:var(--white)}
+.fitbox h3{font-size:19px;margin-bottom:14px}
+.fitbox li{position:relative;padding:6px 0 6px 28px;color:var(--text-2)}
+.fitbox li::before{position:absolute;left:0;top:6px;font-weight:700}
+.fitbox.yes li::before{content:"✓";color:var(--accent-ink)}
+.fitbox.no li::before{content:"–";color:var(--demo)}
+@media (max-width:760px){.fitgrid{grid-template-columns:1fr}}
 
 /* faq */
-.faq .grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,6vw,90px);align-items:start}
-.faq .side{position:sticky;top:120px}
+.faq .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,6vw,80px);align-items:start}
 .qa{border-top:1px solid var(--line)}
 .qa:last-child{border-bottom:1px solid var(--line)}
-.qa button{all:unset;box-sizing:border-box;width:100%;display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:24px 4px;cursor:pointer;font:600 clamp(18px,1.6vw,21px)/1.35 var(--f-body)}
-.qa button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.qa .pm{flex:none;width:16px;height:16px;position:relative;transform:translateY(2px)}
-.qa .pm::before,.qa .pm::after{content:"";position:absolute;left:0;right:0;top:7px;height:2px;background:var(--ink);transition:transform .45s var(--ease-out)}
-.qa .pm::after{transform:rotate(90deg)}
-.qa.open .pm::after{transform:rotate(0)}
-.qa .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease-out)}
-.qa.open .a{grid-template-rows:1fr}
-.qa .a>div{overflow:hidden}
-.qa .a p{padding:0 4px 26px;color:var(--text-secondary);max-width:60ch}
-@media (max-width:960px){.faq .grid{grid-template-columns:1fr}.faq .side{position:static}}
+.qa summary{display:flex;justify-content:space-between;gap:20px;padding:20px 4px;cursor:pointer;font-weight:600;font-size:clamp(17px,1.4vw,19px);list-style:none}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:"+";flex:none;font-size:22px;line-height:1;color:var(--accent-ink)}
+.qa[open] summary::after{content:"–"}
+.qa p{padding:0 4px 22px;color:var(--text-2);max-width:62ch}
+@media (max-width:900px){.faq .wrap{grid-template-columns:1fr}}
 
 /* contact */
-.contact{background:transparent;color:var(--ink);text-align:center;overflow:hidden}
-.contact .thread{top:0;bottom:auto;height:clamp(110px,14vw,170px)}
-.contact .thread::before{background:var(--line)}
-.contact .halo{position:absolute;left:50%;top:clamp(110px,14vw,170px);width:min(820px,140vw);aspect-ratio:1;transform:translate(-50%,-30%);border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(109,162,39,.18),rgba(109,162,39,0) 60%)}
-.contact .ringmark{width:86px;height:86px;margin:0 auto 34px;position:relative}
-.contact .ringmark::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--accent);box-shadow:0 0 30px rgba(109,162,39,.6),inset 0 0 20px rgba(109,162,39,.35)}
-.contact .ringmark::after{content:"";position:absolute;inset:-14px;border-radius:50%;border:1px solid rgba(109,162,39,.5);animation:breathe 5.5s var(--ease-io) -2s infinite}
-@keyframes breathe{0%,100%{transform:scale(.9);opacity:.2}50%{transform:scale(1.08);opacity:.7}}
-.contact .h2{margin:0 auto;max-width:18ch}
-.contact .lede{color:var(--text-secondary);margin:22px auto 0}
-.contact .eyebrow{justify-content:center}
-form{max-width:720px;margin:clamp(40px,6vw,64px) auto 0;text-align:left;display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:clamp(20px,3vw,32px);border-radius:24px;background:rgba(250,250,247,.92);border:1px solid rgba(17,20,17,.08);box-shadow:0 30px 70px -40px rgba(17,20,17,.35)}
-form .full{grid-column:1/-1}
-label{display:block;font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px}
-input,textarea{width:100%;padding:14px 16px;border-radius:12px;border:1.5px solid var(--line-strong);background:rgba(255,255,255,.75);color:var(--ink);font:400 16px/1.4 var(--f-body);transition:border-color .3s var(--ease-out),background .3s var(--ease-out)}
-input::placeholder,textarea::placeholder{color:#7C847B}
-input:focus,textarea:focus{outline:none;border-color:var(--accent-ink);background:#ffffff;box-shadow:0 0 0 4px var(--accent-muted)}
-textarea{min-height:130px;resize:vertical}
-.formrow{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:6px}
-.formrow small{color:var(--text-secondary);font-size:14px}
-.sent{grid-column:1/-1;display:none;padding:18px 20px;border-radius:14px;background:rgba(109,162,39,.12);border:1px solid rgba(109,162,39,.45);color:var(--ink)}
-form.done .sent{display:block;animation:pagein .6s var(--ease-out) both}
-@media (max-width:640px){form{grid-template-columns:1fr}}
+.contact .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,5vw,64px);align-items:start}
+.contact ul.after{margin-top:24px;display:grid;gap:10px;color:var(--text-2)}
+.contact ul.after li{display:flex;gap:10px}
+.contact ul.after b{color:var(--ink);flex:none;width:22px}
+#form{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:clamp(20px,3vw,28px);border-radius:var(--r);background:var(--white);border:1px solid var(--line)}
+#form .full{grid-column:1/-1}
+#form label{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+#form label i{font-style:normal;font-weight:400;color:var(--text-2)}
+.formrow{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.formrow small{color:var(--text-2);font-size:14px;max-width:38ch}
+.sent{grid-column:1/-1;display:none;padding:16px 18px;border-radius:10px;background:var(--accent-soft);border:1px solid rgba(78,122,23,.35)}
+#form.done .sent{display:block}
+@media (max-width:900px){.contact .wrap{grid-template-columns:1fr}}
+@media (max-width:600px){#form{grid-template-columns:1fr}}
 
-footer{background:transparent;color:var(--text-secondary);padding:40px var(--gutter) 46px;border-top:1px solid var(--line)}
+footer{padding:36px var(--gutter) 44px;border-top:1px solid var(--line);color:var(--text-2)}
 footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
 footer .brand{color:var(--ink)}
-footer .brand span b{color:var(--accent-ink)}
 footer nav{display:flex;gap:18px;flex-wrap:wrap}
 footer a{text-decoration:none}
-footer a:hover{color:var(--ink)}
+footer a:hover{color:var(--ink);text-decoration:underline}
 
-/* pause + reduced motion */
-body.paused *,body.paused *::before,body.paused *::after{animation-play-state:paused!important}
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .env .lw{transform:none}
-  *,*::before,*::after{animation:none!important;transition:none!important;transition-delay:0s!important}
-  .rv .part{opacity:1;transform:none}
-  .thread i{transform:scaleY(1)}
-  .node{border-color:var(--accent);background:var(--accent)}
-  .step .dot{background:var(--accent);border-color:var(--accent);color:#0B0E0B}
-}
-body.pinned .rv .part{opacity:1;transform:none;transition:none}
-body.pinned .thread i{transform:scaleY(1)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Zum Inhalt springen</a>
-<div class="env" aria-hidden="true">
-  <div class="lw" style="--kx:-6;--ky:-30"><i class="shade" style="left:8vw;width:9vw;animation-delay:-30s"></i><i class="shade" style="left:58vw;width:6vw;animation-delay:-60s"></i></div>
-  <div class="lw" style="--kx:-12;--ky:-55"><i class="beam" style="left:18vw;width:22vw;animation-delay:-12s"></i><i class="beam" style="left:72vw;width:14vw;opacity:.8;animation-delay:-48s"></i></div>
-  <div class="lw" style="--kx:8;--ky:-75"><i class="glow" style="left:-12vw;top:30vh;width:55vmax;height:55vmax;animation-delay:-20s"></i><i class="glow" style="left:62vw;top:110vh;width:48vmax;height:48vmax;animation-delay:-50s"></i></div>
-  <div class="lw" style="--kx:-16;--ky:-90"><i class="shade" style="left:38vw;width:4vw;animation-delay:-10s"></i></div>
-</div>
 
 <nav class="nav" aria-label="Hauptnavigation">
-  <a class="brand" href="#top" aria-label="Magie Studio, zum Seitenanfang">
-    <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 50V14h7l11 15 11-15h7v36h-7V27l-11 15-11-15v23z" fill="#6DA227"/><path d="M12 52 54 10" stroke="#F2F3EE" stroke-width="6"/><path d="M13 53 55 11" stroke="#6DA227" stroke-width="2.4" stroke-linecap="round"/></svg>
-    <span>MAGIE <b>STUDIO</b></span>
-  </a>
-  <ul>
-    <li><a href="#leistungen">Leistungen</a></li>
-    <li><a href="#probieren">Ausprobieren</a></li>
-    <li><a href="#ablauf">Ablauf</a></li>
-    <li><a href="#fragen">Fragen</a></li>
-  </ul>
-  <a class="btn small" href="#kontakt">Erstgespräch</a>
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Magie Studio, zum Seitenanfang">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 50V14h7l11 15 11-15h7v36h-7V27l-11 15-11-15v23z" fill="#6DA227"/><path d="M12 52 54 10" stroke="#F2F3EE" stroke-width="6"/><path d="M13 53 55 11" stroke="#6DA227" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <span>MAGIE <b>STUDIO</b></span>
+    </a>
+    <ul>
+      <li><a href="#demo">Demo</a></li>
+      <li><a href="#arbeiten">Arbeiten</a></li>
+      <li><a href="#leistungen">Leistungen</a></li>
+      <li><a href="#ablauf">Ablauf</a></li>
+      <li><a href="#fragen">Fragen</a></li>
+    </ul>
+    <a class="btn small" href="#kontakt">Erstgespräch</a>
+  </div>
 </nav>
-
-<header class="hero" id="top">
-  <div class="stage" aria-label="Einleitung">
-    <div class="poster" aria-hidden="true"></div>
-    <canvas id="hero" aria-hidden="true"></canvas>
-    <div class="scrim" aria-hidden="true"></div>
-
-    <div class="band band-1 dark-ink fx-drift" data-a="0" data-b="0.18" style="--sa:.72">
-      <div class="copy">
-        <span class="kicker mono">Magie Studio · 3D-Websites</span>
-        <h1 class="split">Websites mit Tiefe.</h1>
-        <p class="sub">Für Unternehmen, die nicht aussehen wollen wie alle anderen.</p>
-      </div>
-    </div>
-    <div class="band band-2 dark-ink fx-blur" data-a="0.23" data-b="0.46" data-ramp="0.036" style="--sa:.68">
-      <div class="copy">
-        <h2><span class="sr">Aus einer Idee wird ein Auftritt.</span><span class="stack" aria-hidden="true"><span class="soft">Aus einer Idee wird ein Auftritt.</span><span class="sharp">Aus einer Idee wird ein Auftritt.</span></span></h2>
-        <p class="sub">Kein Baukasten. Kein Template. Jede Seite für Ihre Marke gemacht.</p>
-      </div>
-    </div>
-    <div class="band band-3 dark-ink fx-depth" data-a="0.51" data-b="0.72" style="--sa:.7">
-      <div class="copy">
-        <h2><span class="sr">Tiefe, die nichts wiegt.</span><span class="vis" aria-hidden="true">Tiefe, die nichts wiegt.</span></h2>
-        <p class="sub">3D, das in unter einer Sekunde lädt. Auch auf dem Handy.</p>
-      </div>
-    </div>
-    <div class="band band-4 dark-ink fx-settle" data-a="0.77" data-b="1" style="--sa:.72">
-      <div class="copy">
-        <h2 class="split">Ihr Auftritt. In&nbsp;3D.</h2>
-        <p class="sub">Festpreis. Fester Termin. Ein Ansprechpartner.</p>
-        <div class="row">
-          <a class="btn" href="#kontakt">Kostenloses Erstgespräch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="btn ghost" href="#leistungen">Leistungen ansehen</a>
-        </div>
-      </div>
-    </div>
-
-    <svg class="ring" viewBox="0 0 48 48" aria-hidden="true"><circle class="track" cx="24" cy="24" r="20" fill="none" stroke-width="3"/><circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="126" transform="rotate(-90 24 24)" style="stroke-dashoffset:var(--ld,126)"/></svg>
-  </div>
-
-  <div class="static-hero">
-    <div class="inner">
-      <span class="kicker mono">Magie Studio · 3D-Websites</span>
-      <h1>Ihr Auftritt. In&nbsp;3D.</h1>
-      <p>Websites mit Tiefe, die in unter einer Sekunde laden. Festpreis. Fester Termin. Ein Ansprechpartner.</p>
-      <div class="row">
-        <a class="btn" href="#kontakt">Kostenloses Erstgespräch</a>
-        <a class="btn ghost" href="#leistungen">Leistungen ansehen</a>
-      </div>
-    </div>
-  </div>
-</header>
 
 <main id="main" tabindex="-1">
 
-  <section class="sec problem" aria-labelledby="problem-h">
+  <header class="hero" id="top">
     <div class="wrap">
-      <div class="head rv">
-        <p class="eyebrow mono part"><span>01</span><i>Kennen Sie das?</i></p>
-        <h2 class="h2 part" id="problem-h">Die meisten Websites machen nichts falsch. Und bringen trotzdem nichts.</h2>
+      <div>
+        <p class="eyebrow">Websites für Zaunbau, Hausbau und Ausbau</p>
+        <h1>Anfragen, mit denen Sie direkt ein Angebot schreiben können.</h1>
+        <p class="lede">Wir bauen schnelle Websites mit 3D-Ansicht und Konfigurator für Handwerksbetriebe. Ihre Kunden sehen vorher, was sie bekommen. Sie bekommen Anfragen mit Maßen, Material und Zeitraum und sehen auf einen Blick, welche sich lohnen.</p>
+        <div class="row">
+          <a class="btn" href="#kontakt">Kostenloses Erstgespräch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn ghost" href="#demo">Demo ausprobieren</a>
+        </div>
+        <ul class="facts">
+          <li>Festpreis, schriftlich vor Start</li>
+          <li>Online in 2 bis 4 Wochen</li>
+          <li>Ein fester Ansprechpartner</li>
+        </ul>
       </div>
-      <div class="quotes">
-        <div class="thread" data-thread aria-hidden="true"><i></i></div>
-        <figure class="quote rv" data-lit><span class="node" aria-hidden="true"></span><blockquote class="part">„Unsere Seite ist von 2015.“</blockquote><p class="part">Sie sieht alt aus, und jeder Besucher merkt es in zwei Sekunden.</p></figure>
-        <figure class="quote rv" data-lit><span class="node" aria-hidden="true"></span><blockquote class="part">„Schön, aber es kommen keine Anfragen.“</blockquote><p class="part">Hübsch allein reicht nicht. Jede Seite muss zu einem Anruf führen.</p></figure>
-        <figure class="quote rv" data-lit><span class="node" aria-hidden="true"></span><blockquote class="part">„Die Agentur meldet sich nicht mehr.“</blockquote><p class="part">Für jede kleine Änderung warten Sie Wochen. Oder zahlen extra.</p></figure>
-        <figure class="quote rv" data-lit><span class="node" aria-hidden="true"></span><blockquote class="part">„Die Seite lädt ewig.“</blockquote><p class="part">Alte Plugins, schwere Systeme. Ihre Kunden sind weg, bevor sie etwas sehen.</p></figure>
+      <figure class="inq" aria-label="Beispiel einer Anfrage über einen Konfigurator">
+        <figcaption class="inq-head">Neue Anfrage über die Website <span>Beispiel</span></figcaption>
+        <dl>
+          <div><dt>Gewerk</dt><dd>Zaunbau</dd></div>
+          <div><dt>Zaun</dt><dd>Doppelstabmatte, anthrazit</dd></div>
+          <div><dt>Länge / Höhe</dt><dd>24 m · 1,40 m</dd></div>
+          <div><dt>Tor</dt><dd>Gartentor, 1,00 m</dd></div>
+          <div><dt>PLZ</dt><dd>25421</dd></div>
+          <div><dt>Zeitraum</dt><dd>In den nächsten 3 Monaten</dd></div>
+          <div><dt>Richtpreis</dt><dd>2.600 – 3.300 €</dd></div>
+        </dl>
+        <p class="fit">Passt: im Einzugsgebiet, Start in 3 Monaten</p>
+        <p class="inq-foot">Erfundene Beispieldaten. Welche Felder abgefragt werden, legen wir mit Ihnen fest.</p>
+      </figure>
+    </div>
+  </header>
+
+  <section class="sec" aria-labelledby="problem-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Das Problem</p>
+        <h2 class="h2" id="problem-h">Viele Anfragen. Wenige, die sich lohnen.</h2>
       </div>
-      <div class="answer rv"><h3 class="part">Wir bauen Websites, die man <em>spürt</em>. Und die trotzdem schnell sind.</h3></div>
+      <div class="pains">
+        <div class="pain"><h3>„Was kostet ein Zaun?“</h3><p>Keine Maße, kein Material, kein Ort. Sie rufen zurück, fragen alles ab und hören danach oft nichts mehr.</p></div>
+        <div class="pain"><h3>Besichtigung ohne Auftrag</h3><p>Zwei Stunden mit Anfahrt für ein Angebot, das am Budget scheitert. Das hätte sich vorher klären lassen.</p></div>
+        <div class="pain"><h3>Die Website zeigt nicht, was Sie können</h3><p>Drei Fotos, eine Telefonnummer, auf dem Handy langsam. Wer Ihre Arbeit nicht sieht, vergleicht nur noch den Preis.</p></div>
+      </div>
+      <p class="bottom-line">Eine Website ersetzt kein Beratungsgespräch. Sie sorgt aber dafür, dass Sie es mit den richtigen Kunden führen.</p>
     </div>
   </section>
 
-  <section class="sec services" id="leistungen" aria-labelledby="leistungen-h">
+  <section class="sec" id="demo" aria-labelledby="demo-h">
     <div class="wrap">
-      <div class="top rv">
+      <div class="sec-head">
+        <p class="eyebrow">Live-Demo · Zaunbau</p>
+        <h2 class="h2" id="demo-h">Probieren Sie es aus: ein Zaun-Konfigurator.</h2>
+        <p class="lede">So etwas bauen wir für Ihren Betrieb. Besucher stellen Material, Höhe und Länge ein, sehen den Zaun sofort in 3D und bekommen einen Richtpreis. Bei Ihnen kommt eine Anfrage an, mit der Sie arbeiten können.</p>
+      </div>
+      <div class="demo-grid">
         <div>
-          <p class="eyebrow mono part"><span>02</span><i>Leistungen</i></p>
-          <h2 class="h2 part" id="leistungen-h">Jede Branche. Ein eigener Auftritt.</h2>
-        </div>
-        <p class="lede part">Ob Sie Produkte verkaufen oder Dienstleistungen anbieten: Jede Seite bekommt den Stil Ihrer Branche und wird von Hand gebaut. Ohne Baukasten, ohne Plugins, ohne monatliche Überraschungen.</p>
-      </div>
-      <div class="cards rv">
-        <article class="card part">
-          <div class="img demo demo-film" aria-hidden="true">
-            <div class="laptop"><div class="screen hotel">
-              <svg class="scene" viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
-                <defs><linearGradient id="hsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7E6CF"/><stop offset=".7" stop-color="#EDB98C"/></linearGradient>
-                <linearGradient id="hlake" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3F6178"/><stop offset="1" stop-color="#22394A"/></linearGradient></defs>
-                <rect width="320" height="200" fill="url(#hsky)"/>
-                <g class="ly" data-d="34"><circle cx="214" cy="78" r="17" fill="#F4A259"/><circle cx="214" cy="78" r="28" fill="#F4A259" opacity=".18"/></g>
-                <g class="ly" data-d="8"><path d="M0 118 L48 82 L86 106 L132 70 L176 104 L222 76 L268 100 L320 84 L320 140 L0 140Z" fill="#8193A2"/></g>
-                <g class="ly" data-d="16"><path d="M0 128 L40 108 L92 124 L150 100 L206 122 L262 106 L320 120 L320 150 L0 150Z" fill="#5B7083"/></g>
-                <g class="ly" data-d="24"><rect y="132" width="320" height="80" fill="url(#hlake)"/><g fill="#F7E6CF" opacity=".35"><rect x="190" y="142" width="48" height="1.6" rx=".8"/><rect x="200" y="150" width="30" height="1.6" rx=".8"/><rect x="60" y="160" width="40" height="1.6" rx=".8"/><rect x="206" y="160" width="18" height="1.6" rx=".8"/></g></g>
-                <g class="ly" data-d="44"><path d="M0 200 L0 150 L14 150 L22 118 L30 150 L38 150 L46 112 L56 150 L70 150 L70 200Z M248 200 L256 150 L264 122 L272 150 L282 150 L292 108 L302 150 L320 150 L320 200Z" fill="#1F3442"/></g>
-              </svg>
-              <div class="h-nav"><b>Seeblick</b><span>Zimmer</span><span>Lage</span><i>Anfragen</i></div>
-              <p class="h-head">Ankommen<br>am See.</p>
-            </div><div class="base"></div></div>
-            <span class="demo-hint mono light">Scrollen oder darüberfahren</span>
+          <div class="viewer" id="viewer" role="img" aria-label="3D-Ansicht des konfigurierten Zauns. Zum Drehen ziehen oder Pfeiltasten nutzen.">
+            <svg class="fence-svg" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="250" fill="#E9ECE4"/><path d="M0 188h400v62H0z" fill="#D5DACB"/><g fill="#3B4045"><rect x="38" y="70" width="7" height="122"/><rect x="152" y="70" width="7" height="122"/><rect x="266" y="70" width="7" height="122"/><rect x="380" y="70" width="7" height="122"/></g><g stroke="#3B4045" stroke-width="1.6"><path d="M45 92h107M45 96h107M45 132h107M45 136h107M45 172h107M45 176h107M159 92h107M159 96h107M159 132h107M159 136h107M159 172h107M159 176h107M273 92h107M273 96h107M273 132h107M273 136h107M273 172h107M273 176h107"/></g></svg>
+            <span class="badge badge-demo">Konzept-Demo</span>
+            <span class="vhint" id="vhint">Ziehen zum Drehen</span>
+            <button class="btn small load3d" type="button" hidden>3D-Ansicht laden</button>
           </div>
-          <div class="body"><span class="num mono">01 · Beispiel: Hotel</span><h3>Startseite mit Tiefe</h3><p>Ihre Räume, Ihre Arbeit oder Ihr Produkt als Szene, die sich beim Scrollen bewegt. Als Film oder in Ebenen, wie hier für ein Hotel am See.</p></div>
-        </article>
-        <article class="card part">
-          <div class="img demo demo-3d" id="demo3d" aria-hidden="true"><span class="nova">NOVA<small>Skincare</small></span><span class="demo-hint mono">Ziehen zum Drehen</span></div>
-          <div class="body"><span class="num mono">02 · Beispiel: Kosmetik</span><h3>Interaktive 3D-Modelle</h3><p>Kunden drehen Ihr Produkt, Ihr Bauprojekt oder Ihr Werkstück mit Maus oder Finger. Wie hier bei einer Kosmetikmarke, rund um die Uhr.</p></div>
-        </article>
-        <article class="card part">
-          <div class="img demo demo-ba" id="demo-ba" style="--pos:50%">
-            <div class="ba-old" aria-hidden="true"><div class="o-bar">www.tischlerei-brandt.de/index_neu2.html</div><p class="o-title">Herzlich Willkommen bei der Tischlerei Brandt!!</p><div class="o-row"><div class="o-img">[Bild]</div><ul><li><u>Startseite</u></li><li><u>Über uns</u></li><li><u>Leistungen</u></li><li><u>Kontakt</u></li></ul></div><p class="o-count">Sie sind Besucher Nr. 004213</p></div>
-            <div class="ba-new" aria-hidden="true"><div class="n-nav"><b>BRANDT</b><span>Möbel</span><span>Küchen</span><i>Projekt anfragen</i></div><p class="n-head">Holz,<br>das bleibt.</p><span class="n-btn">Projekt anfragen</span><div class="n-wood"></div></div>
-            <div class="ba-handle" aria-hidden="true"><span></span></div>
-            <span class="ba-tag l mono" aria-hidden="true">Vorher</span><span class="ba-tag r mono" aria-hidden="true">Nachher</span>
-            <input class="sr ba-range" type="range" min="0" max="100" value="50" aria-label="Vorher und Nachher vergleichen">
-          </div>
-          <div class="body"><span class="num mono">03 · Beispiel: Tischlerei</span><h3>Relaunch für Ihre Branche</h3><p>Ihre alte Seite, neu gebaut im Stil Ihres Handwerks. Klare Texte, schnelle Ladezeit, gut auf dem Handy und gut für Google.</p></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec try" id="probieren" aria-labelledby="probieren-h">
-    <div class="wrap grid">
-      <div class="viewer" id="viewer" role="img" aria-label="Das Magie-Studio-Logo als 3D-Objekt. Ziehen, um es zu drehen.">
-        <div class="fallback" aria-hidden="true"><svg viewBox="0 0 64 64" width="260"><path d="M14 50V14h7l11 15 11-15h7v36h-7V27l-11 15-11-15v23z" fill="#6DA227"/><path d="M12 52 54 10" stroke="#ECEEE8" stroke-width="6"/><path d="M13 53 55 11" stroke="#6DA227" stroke-width="2.4" stroke-linecap="round"/></svg></div>
-        <span class="hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h16M8 8l-4 4 4 4M16 8l4 4-4 4"/></svg>Ziehen, in jede Richtung</span>
-      </div>
-      <div class="rv">
-        <p class="eyebrow mono part"><span>03</span><i>Ausprobieren</i></p>
-        <h2 class="h2 part" id="probieren-h">Drehen Sie es einmal ganz herum.</h2>
-        <p class="lede part">So fühlt sich Ihr Angebot auf Ihrer neuen Website an, ob Produkt, Raum oder Werkstück. Kein Video, kein Bild: ein echtes 3D-Objekt, direkt im Browser.</p>
-        <div class="part">
-          <div class="meter" aria-hidden="true"><i></i></div>
-          <p class="meter-label"><span>Einmal herum</span><span class="mono" id="turn-label" aria-live="polite">0°</span></p>
+          <form class="controls" id="cfg" onsubmit="return false" aria-label="Zaun konfigurieren">
+            <fieldset><legend>Material</legend><div class="seg">
+              <label><input type="radio" name="material" value="doppelstab" checked><span>Doppelstabmatte</span></label>
+              <label><input type="radio" name="material" value="holz"><span>Holz-Lamellen</span></label>
+              <label><input type="radio" name="material" value="wpc"><span>WPC-Sichtschutz</span></label>
+            </div></fieldset>
+            <fieldset><legend>Höhe</legend><div class="seg">
+              <label><input type="radio" name="hoehe" value="100"><span>1,00 m</span></label>
+              <label><input type="radio" name="hoehe" value="140" checked><span>1,40 m</span></label>
+              <label><input type="radio" name="hoehe" value="180"><span>1,80 m</span></label>
+            </div></fieldset>
+            <div><label class="l" for="c-len">Länge</label><div class="range-row"><input id="c-len" name="laenge" type="range" min="5" max="60" step="1" value="24"><output for="c-len" id="c-len-out">24 m</output></div></div>
+            <fieldset><legend>Tor</legend><div class="seg">
+              <label><input type="radio" name="tor" value="kein"><span>Kein Tor</span></label>
+              <label><input type="radio" name="tor" value="garten" checked><span>Gartentor</span></label>
+              <label><input type="radio" name="tor" value="einfahrt"><span>Einfahrtstor</span></label>
+            </div></fieldset>
+            <div class="two">
+              <div><label class="l" for="c-plz">PLZ des Grundstücks</label><input id="c-plz" name="plz" type="text" inputmode="numeric" maxlength="5" autocomplete="postal-code" value="25421"></div>
+              <div><label class="l" for="c-when">Wann soll gebaut werden?</label><select id="c-when" name="wann"><option value="3">In den nächsten 3 Monaten</option><option value="6">In 3 bis 6 Monaten</option><option value="info">Nur Preis-Info, noch kein Termin</option></select></div>
+            </div>
+          </form>
         </div>
-        <div class="unlock part">
-          <ul>
-            <li>Lädt mit, ohne die Seite zu bremsen</li>
-            <li>Funktioniert mit Maus und Finger</li>
-            <li>Ihr Logo, Ihr Angebot, Ihre Farben</li>
-          </ul>
-          <p class="won-line">Genau das erleben Ihre Kunden.</p>
+        <div>
+          <div class="price" aria-live="polite"><span>Richtpreis inkl. Montage, unverbindlich</span><b id="c-price">2.600 – 3.300 €</b><span>Beispielpreise für die Demo</span></div>
+          <figure class="inq" aria-label="So käme die Anfrage bei Ihnen an">
+            <figcaption class="inq-head">So kommt die Anfrage bei Ihnen an</figcaption>
+            <dl>
+              <div><dt>Zaun</dt><dd id="o-mat">Doppelstabmatte, anthrazit</dd></div>
+              <div><dt>Länge / Höhe</dt><dd id="o-dim">24 m · 1,40 m</dd></div>
+              <div><dt>Tor</dt><dd id="o-tor">Gartentor, 1,00 m</dd></div>
+              <div><dt>PLZ</dt><dd id="o-plz">25421</dd></div>
+              <div><dt>Zeitraum</dt><dd id="o-when">In den nächsten 3 Monaten</dd></div>
+              <div><dt>Richtpreis</dt><dd id="o-price">2.600 – 3.300 €</dd></div>
+            </dl>
+            <p class="fit" id="o-fit" aria-live="polite">Passt: im Einzugsgebiet, Start in 3 Monaten</p>
+          </figure>
+          <p class="demo-note">Demo mit Beispielpreisen und Beispiel-Einzugsgebiet (PLZ 20000 bis 25999). Bei Ihnen stehen dort Ihre Preise, Ihr Gebiet und die Fragen, die Sie für ein Angebot brauchen. Die Anfrage kommt per E-Mail bei Ihnen an.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="sec process" id="ablauf" aria-labelledby="ablauf-h">
+  <section class="sec" id="arbeiten" aria-labelledby="arbeiten-h">
     <div class="wrap">
-      <div class="head rv">
-        <p class="eyebrow mono part"><span>04</span><i>Ablauf</i></p>
-        <h2 class="h2 part" id="ablauf-h">Vom ersten Anruf bis online. In vier klaren Schritten.</h2>
-        <p class="lede part">Sie wissen immer, was als Nächstes passiert, was es kostet und wann es fertig ist.</p>
+      <div class="sec-head">
+        <p class="eyebrow">Arbeiten</p>
+        <h2 class="h2" id="arbeiten-h">Was wir gebaut haben und was dabei herauskam.</h2>
+        <p class="lede">Wir trennen das klar. Kundenprojekte zeigen wir mit Zahlen, die belegt und vom Kunden freigegeben sind. Konzept-Demos zeigen, was technisch geht, ohne erfundene Ergebnisse.</p>
+      </div>
+      <!-- showcases:start (generated from content/showcases.json, do not edit by hand) -->
+      <div class="cases">
+      <article class="case case-demo" id="arbeit-zaun-konfigurator">
+        <a class="case-media" href="#demo" tabindex="-1" aria-hidden="true"><svg class="fence-svg" viewBox="0 0 400 250" aria-hidden="true"><rect width="400" height="250" fill="#E9ECE4"/><path d="M0 188h400v62H0z" fill="#D5DACB"/><g fill="#3B4045"><rect x="38" y="70" width="7" height="122"/><rect x="152" y="70" width="7" height="122"/><rect x="266" y="70" width="7" height="122"/><rect x="380" y="70" width="7" height="122"/></g><g stroke="#3B4045" stroke-width="1.6"><path d="M45 92h107M45 96h107M45 132h107M45 136h107M45 172h107M45 176h107M159 92h107M159 96h107M159 132h107M159 136h107M159 172h107M159 176h107M273 92h107M273 96h107M273 132h107M273 136h107M273 172h107M273 176h107"/></g><g stroke="#3B4045" stroke-width="1.2" opacity=".85"><path d="M47.0 74V186M53.6 74V186M60.2 74V186M66.8 74V186M73.4 74V186M80.0 74V186M86.6 74V186M93.2 74V186M99.8 74V186M106.4 74V186M113.0 74V186M119.6 74V186M126.2 74V186M132.8 74V186M139.4 74V186M146.0 74V186M152.6 74V186M159.2 74V186M165.8 74V186M172.4 74V186M179.0 74V186M185.6 74V186M192.2 74V186M198.8 74V186M205.4 74V186M212.0 74V186M218.6 74V186M225.2 74V186M238.4 74V186M245.0 74V186M251.6 74V186M258.2 74V186M264.8 74V186M271.4 74V186M278.0 74V186M284.6 74V186M291.2 74V186M297.8 74V186M304.4 74V186M311.0 74V186M317.6 74V186M324.2 74V186M330.8 74V186M337.4 74V186M350.6 74V186M357.2 74V186M363.8 74V186M370.4 74V186M377.0 74V186"/></g></svg></a>
+        <div class="case-body">
+          <p class="case-tag"><span class="badge badge-demo">Konzept-Demo</span><span>Zaunbau</span></p>
+          <h3>Zaun-Konfigurator mit 3D-Ansicht und Richtpreis</h3>
+          
+          <dl>
+            <div><dt>Branche / Gewerk</dt><dd>Zaunbau</dd></div>
+            <div><dt>Ausgangslage</dt><dd>Typisch für Zaunbauer: Die meisten Anfragen kommen per Telefon oder Formular ohne Maße und ohne Material. Für jedes Angebot sind Rückfragen oder eine Besichtigung nötig, auch bei Kunden, deren Budget von Anfang an nicht passt.</dd></div>
+            <div><dt>Was wir gebaut haben</dt><dd><ul><li>3D-Ansicht, die sich bei jeder Einstellung sofort ändert: Material, Höhe, Länge, Tor</li><li>Richtpreis als Spanne, berechnet aus der Preisliste des Betriebs</li><li>Prüfung von Einzugsgebiet und Zeitraum, bevor die Anfrage rausgeht</li><li>Anfrage mit allen Angaben, die man für ein Angebot braucht</li><li>Die 3D-Ansicht lädt erst, wenn jemand hinscrollt. Die Seite bleibt schnell.</li></ul></dd></div>
+            <div><dt>Ergebnis &amp; Zeitraum</dt><dd><p>Das ist eine Demo, es gibt noch keine Kundenzahlen. In einem echten Projekt messen wir ab dem ersten Tag: Anzahl der Anfragen, Anteil mit vollständigen Angaben und wie viele davon zum Auftrag werden.</p><p class="case-proof">Keine Kundenzahlen. Demo.</p></dd></div>
+          </dl>
+          
+          <a class="case-link" href="#demo">Demo ausprobieren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="case case-demo" id="arbeit-relaunch-tischlerei">
+        <div class="case-media"><div class="ba" data-ba style="--pos:50%">
+          <div class="ba-old" aria-hidden="true"><div class="o-bar">www.tischlerei-beispiel.de/index_neu2.html</div><p class="o-title">Herzlich Willkommen bei der Tischlerei Beispiel!!</p><div class="o-row"><div class="o-img">[Bild]</div><ul><li><u>Startseite</u></li><li><u>Über uns</u></li><li><u>Leistungen</u></li><li><u>Kontakt</u></li></ul></div><p class="o-count">Sie sind Besucher Nr. 004213</p></div>
+          <div class="ba-new" aria-hidden="true"><div class="n-nav"><b>BEISPIEL</b><span>Möbel</span><span>Küchen</span><i>Projekt anfragen</i></div><p class="n-head">Holz,<br>das bleibt.</p><span class="n-btn">Projekt anfragen</span><div class="n-wood"></div></div>
+          <div class="ba-handle" aria-hidden="true"><span></span></div>
+          <span class="ba-tag l" aria-hidden="true">Vorher</span><span class="ba-tag r" aria-hidden="true">Nachher</span>
+          <input class="sr ba-range" type="range" min="0" max="100" value="50" aria-label="Vorher und Nachher vergleichen">
+        </div></div>
+        <div class="case-body">
+          <p class="case-tag"><span class="badge badge-demo">Konzept-Demo</span><span>Tischlerei / Innenausbau</span></p>
+          <h3>Relaunch: von der alten Seite zur Anfrage-Seite</h3>
+          
+          <dl>
+            <div><dt>Branche / Gewerk</dt><dd>Tischlerei / Innenausbau</dd></div>
+            <div><dt>Ausgangslage</dt><dd>Typische Ausgangslage: eine Website von vor zehn Jahren, auf dem Handy kaum lesbar, keine aktuellen Projektfotos und kein klarer Weg zur Anfrage.</dd></div>
+            <div><dt>Was wir gebaut haben</dt><dd><ul><li>Neue Seite im Stil des Betriebs, mit echten Projektfotos statt Stockbildern</li><li>Anfrage mit Projektart, Raum, Zeitraum und Budgetrahmen</li><li>Schnell auf dem Handy, saubere Struktur für Google</li></ul></dd></div>
+            <div><dt>Ergebnis &amp; Zeitraum</dt><dd><p>Konzept-Demo mit erfundenem Betrieb, ohne Kundenzahlen. Ziehen Sie den Regler, um Vorher und Nachher zu vergleichen.</p><p class="case-proof">Keine Kundenzahlen. Demo.</p></dd></div>
+          </dl>
+          
+          
+        </div>
+      </article>
+      </div>
+      <p class="cases-note">Kundenprojekte mit Zahlen stehen hier, sobald die Ergebnisse belegt und vom Kunden freigegeben sind. Bis dahin zeigen wir nur, was als Demo gekennzeichnet ist.</p>
+      <!-- showcases:end -->
+    </div>
+  </section>
+
+  <section class="sec" id="leistungen" aria-labelledby="leistungen-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Leistungen</p>
+        <h2 class="h2" id="leistungen-h">Was wir für Ihren Betrieb bauen.</h2>
+      </div>
+      <ol class="svc">
+        <li><span class="n">1</span><h3>3D-Ansicht und Konfigurator</h3><p>Ihr Produkt oder Ihre Leistung zum Einstellen: Zaun, Carport, Terrasse, Dachausbau, Fenster. Auf Wunsch mit Richtpreis aus Ihrer Kalkulation.</p></li>
+        <li><span class="n">2</span><h3>Anfragen, mit denen Sie arbeiten können</h3><p>Das Formular fragt ab, was Sie für ein Angebot brauchen: Maße, Material, PLZ, Zeitraum, Fotos. Anfragen außerhalb Ihres Gebiets oder ohne Termin erkennen Sie sofort.</p></li>
+        <li><span class="n">3</span><h3>Eine schnelle Website, die man findet</h3><p>Referenzen, Leistungen, Einzugsgebiet, Kontakt. Schnell auf dem Handy, sauber aufgebaut für Google. Ihr Google-Unternehmensprofil richten wir auf Wunsch mit ein.</p></li>
+      </ol>
+      <p class="not">Kein Baukasten, keine Plugins, die Sie pflegen müssen. Änderungen schicken Sie uns per Mail, wir setzen sie um.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="rechnung" aria-labelledby="rechnung-h">
+    <div class="wrap roi">
+      <div>
+        <p class="eyebrow">Rechnet sich das?</p>
+        <h2 class="h2" id="rechnung-h">Das hängt von Ihren Zahlen ab. So rechnen wir es mit Ihnen durch.</h2>
+        <p class="lede">Bei Aufträgen ab 2.000 € muss eine Website nicht viele zusätzliche Aufträge bringen, um sich zu bezahlen. Genauso wichtig ist die Zeit, die Sie heute in Anfragen stecken, aus denen nie ein Auftrag wird.</p>
+      </div>
+      <div class="calc">
+        <p class="cap">Rechenbeispiel, keine Zusage</p>
+        <dl>
+          <div><dt>Durchschnittlicher Auftragswert</dt><dd>2.500 €</dd></div>
+          <div><dt>Unpassende Anfragen pro Monat</dt><dd>4</dd></div>
+          <div><dt>Zeit pro Anfrage (Rückruf, Besichtigung, Angebot)</dt><dd>2 bis 3 Std.</dd></div>
+        </dl>
+        <p class="res">Im Beispiel: 8 bis 12 Stunden im Monat für Angebote ohne Chance. Und jeder zusätzliche passende Auftrag bringt 2.500 € Umsatz.</p>
+        <p class="inq-foot">Im Erstgespräch setzen wir Ihre eigenen Zahlen ein.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="ablauf" aria-labelledby="ablauf-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Ablauf</p>
+        <h2 class="h2" id="ablauf-h">Vom ersten Gespräch bis online. In vier Schritten.</h2>
+        <p class="lede">Sie wissen immer, was als Nächstes passiert, was es kostet und wann es fertig ist.</p>
       </div>
       <ol class="steps">
-        <li class="thread" data-thread aria-hidden="true"><i></i></li>
-        <li class="step rv" data-lit><span class="dot" aria-hidden="true">1</span><p class="when mono part">15 Minuten, kostenlos</p><h3 class="part">Erstgespräch</h3><p class="part">Sie erzählen, was Ihr Unternehmen besonders macht. Wir sagen ehrlich, ob 3D für Sie passt.</p></li>
-        <li class="step rv" data-lit><span class="dot" aria-hidden="true">2</span><p class="when mono part">innerhalb von 48 Stunden</p><h3 class="part">Konzept und Festpreis</h3><p class="part">Sie bekommen die Idee für Ihre Seite und einen festen Preis. Schriftlich, ohne Kleingedrucktes.</p></li>
-        <li class="step rv" data-lit><span class="dot" aria-hidden="true">3</span><p class="when mono part">2 bis 4 Wochen</p><h3 class="part">Bau</h3><p class="part">Wir bauen, Sie sehen jeden Zwischenstand. Feedback geben Sie in normalen Worten, per Mail oder Sprachnachricht.</p></li>
-        <li class="step rv" data-lit><span class="dot" aria-hidden="true">4</span><p class="when mono part">ab dem Starttag</p><h3 class="part">Online und betreut</h3><p class="part">Ihre Seite geht live. Änderungen schreiben Sie uns in einem Satz, wir setzen sie um.</p></li>
+        <li class="step"><p class="when">15 Minuten, kostenlos</p><h3>Erstgespräch</h3><p>Sie erzählen, wie Anfragen heute reinkommen und welche Aufträge Sie wollen. Wir sagen ehrlich, ob sich ein Konfigurator lohnt oder ob eine schnelle, einfache Seite reicht.</p></li>
+        <li class="step"><p class="when">innerhalb von 48 Stunden</p><h3>Konzept und Festpreis</h3><p>Sie bekommen schriftlich, was gebaut wird, was es kostet und wann es fertig ist. Ohne Kleingedrucktes.</p></li>
+        <li class="step"><p class="when">2 bis 4 Wochen</p><h3>Bau</h3><p>Wir bauen Ihre Preise, Ihre Fotos und Ihr Einzugsgebiet ein. Sie sehen jeden Zwischenstand und geben Feedback per Mail, Telefon oder Sprachnachricht.</p></li>
+        <li class="step"><p class="when">nach dem Start</p><h3>Online und Auswertung</h3><p>Die Seite geht live. Nach den ersten Wochen schauen wir gemeinsam auf die Anfragen: wie viele, wie vollständig, was angepasst werden sollte.</p></li>
       </ol>
     </div>
   </section>
 
+  <section class="sec" id="fuer-wen" aria-labelledby="fuer-wen-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Für wen</p>
+        <h2 class="h2" id="fuer-wen-h">Wann sich das lohnt. Und wann nicht.</h2>
+      </div>
+      <div class="fitgrid">
+        <div class="fitbox yes"><h3>Passt, wenn</h3><ul>
+          <li>Ihre Aufträge meist bei 2.000 € oder mehr liegen.</li>
+          <li>Sie Anfragen bekommen, aber zu viele davon nicht passen.</li>
+          <li>sich Ihr Angebot in Optionen fassen lässt: Material, Maße, Ausführung.</li>
+          <li>Sie eine Seite wollen, um die Sie sich nicht selbst kümmern müssen.</li>
+        </ul></div>
+        <div class="fitbox no"><h3>Passt eher nicht, wenn</h3><ul>
+          <li>Sie schon mehr passende Anfragen haben, als Sie abarbeiten können.</li>
+          <li>Sie die günstigste Website suchen, die es gibt.</li>
+          <li>jedes Projekt so individuell ist, dass kein Richtpreis möglich ist. Dann reicht oft eine gute Referenzseite ohne Rechner, das sagen wir Ihnen dann auch.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
 
   <section class="sec faq" id="fragen" aria-labelledby="fragen-h">
-    <div class="wrap grid">
-      <div class="side rv">
-        <p class="eyebrow mono part"><span>05</span><i>Fragen</i></p>
-        <h2 class="h2 part" id="fragen-h">Was Kunden uns vorher fragen.</h2>
-        <p class="lede part">Ihre Frage ist nicht dabei? Stellen Sie sie im Erstgespräch.</p>
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Fragen</p>
+        <h2 class="h2" id="fragen-h">Was Betriebe uns vorher fragen.</h2>
+        <p class="lede">Ihre Frage ist nicht dabei? Stellen Sie sie im Erstgespräch.</p>
       </div>
-      <div class="rv">
-        <div class="qa part"><button aria-expanded="false" aria-controls="a1" id="q1">Ist 3D nicht langsam?<span class="pm" aria-hidden="true"></span></button><div class="a" id="a1" role="region" aria-labelledby="q1"><div><p>Nein. Die Seite selbst ist in unter einer Sekunde da, weil sie aus einfachen Dateien besteht. Der Film lädt danach im Hintergrund, und Ihre Besucher können sofort lesen und klicken.</p></div></div></div>
-        <div class="qa part"><button aria-expanded="false" aria-controls="a7" id="q7">Ich verkaufe kein Produkt, sondern eine Dienstleistung. Passt das?<span class="pm" aria-hidden="true"></span></button><div class="a" id="a7" role="region" aria-labelledby="q7"><div><p>Ja. Ob Praxis, Kanzlei, Handwerk, Hotel oder Beratung: Wir zeigen Ihre Räume, Ihre Arbeit und Ihre Ergebnisse so, dass Besucher sofort verstehen, was Sie anbieten. 3D und Film setzen wir dort ein, wo sie Ihr Angebot greifbar machen.</p></div></div></div>
-        <div class="qa part"><button aria-expanded="false" aria-controls="a2" id="q2">Wie sieht das auf dem Handy aus?<span class="pm" aria-hidden="true"></span></button><div class="a" id="a2" role="region" aria-labelledby="q2"><div><p>Genauso wie am Computer: Der Film läuft beim Scrollen mit. Für das Handy bekommt er einen eigenen, schmaleren Schnitt, der schnell lädt und das Datenvolumen Ihrer Kunden schont.</p></div></div></div>
-        <div class="qa part"><button aria-expanded="false" aria-controls="a3" id="q3">Was kostet eine Website bei Ihnen?<span class="pm" aria-hidden="true"></span></button><div class="a" id="a3" role="region" aria-labelledby="q3"><div><p>Das hängt davon ab, was Ihre Seite können soll. Nach dem Erstgespräch bekommen Sie einen Festpreis, schriftlich. Was dort steht, zahlen Sie. Nicht mehr.</p></div></div></div>
-        <div class="qa part"><button aria-expanded="false" aria-controls="a4" id="q4">Wie lange dauert es?<span class="pm" aria-hidden="true"></span></button><div class="a" id="a4" role="region" aria-labelledby="q4"><div><p>Meist zwei bis vier Wochen vom Konzept bis zum Start. Den Termin legen wir am Anfang fest.</p></div></div></div>
-        <div class="qa part"><button aria-expanded="false" aria-controls="a5" id="q5">Werde ich bei Google gefunden?<span class="pm" aria-hidden="true"></span></button><div class="a" id="a5" role="region" aria-labelledby="q5"><div><p>Google mag schnelle Seiten mit klarer Struktur und echten Texten. Genau so bauen wir. Auf Wunsch richten wir auch Ihr Google-Unternehmensprofil mit ein.</p></div></div></div>
-        <div class="qa part"><button aria-expanded="false" aria-controls="a6" id="q6">Und wenn ich später etwas ändern will?<span class="pm" aria-hidden="true"></span></button><div class="a" id="a6" role="region" aria-labelledby="q6"><div><p>Dann schreiben Sie uns, was sich ändern soll, in Ihren eigenen Worten. Wir setzen es um. Sie müssen nie selbst in ein System.</p></div></div></div>
+      <div>
+        <details class="qa"><summary>Muss ich meine Preise öffentlich zeigen?</summary><p>Nein. Der Konfigurator kann einen Richtpreis zeigen, eine grobe Spanne oder gar keinen Preis. Auch ohne Preis bekommen Sie Anfragen mit vollständigen Angaben.</p></details>
+        <details class="qa"><summary>Was, wenn der Richtpreis nicht zum Angebot passt?</summary><p>Der Richtpreis ist als unverbindlich gekennzeichnet und beruht auf Ihrer Kalkulation. Er soll grob einordnen, nicht Ihr Angebot ersetzen. Wie breit die Spanne ist, legen Sie fest.</p></details>
+        <details class="qa"><summary>Ist 3D nicht langsam?</summary><p>Nicht, wenn es richtig gebaut ist. Text, Bilder und Formular laden zuerst. Die 3D-Ansicht lädt erst, wenn ein Besucher dort ankommt, und rechnet nur, wenn sich etwas ändert. Auf dieser Seite können Sie das selbst testen, auch auf dem Handy.</p></details>
+        <details class="qa"><summary>Was kostet das?</summary><p>Das hängt vom Umfang ab. Eine schnelle Website ohne Rechner kostet weniger als eine mit Konfigurator. Nach dem Erstgespräch bekommen Sie einen Festpreis, schriftlich. Was dort steht, zahlen Sie. Nicht mehr.</p></details>
+        <details class="qa"><summary>Wie lange dauert es?</summary><p>Meist zwei bis vier Wochen ab dem Konzept. Den Starttermin legen wir am Anfang fest.</p></details>
+        <details class="qa"><summary>Kann ich später Preise oder Fotos ändern?</summary><p>Ja. Schreiben Sie uns, was sich ändern soll, in einem Satz. Neue Preise, neue Referenzen, neue Fotos: Wir setzen es um. Sie müssen nie selbst in ein System.</p></details>
+        <details class="qa"><summary>Werde ich bei Google gefunden?</summary><p>Google bevorzugt schnelle Seiten mit klarer Struktur und echten Texten. Genau so bauen wir. Wir schreiben Ihre Leistungen und Ihr Einzugsgebiet so, dass Kunden aus Ihrer Region Sie finden.</p></details>
+        <details class="qa"><summary>Warum sind manche Arbeiten als Demo gekennzeichnet?</summary><p>Weil wir nur Ergebnisse zeigen, die belegt und vom Kunden freigegeben sind. Was wir als Demo gebaut haben, steht auch so da. Sie sollen wissen, was echt ist.</p></details>
       </div>
     </div>
   </section>
 
   <section class="sec contact" id="kontakt" aria-labelledby="kontakt-h">
-    <div class="thread" data-thread aria-hidden="true"><i></i></div>
-    <div class="halo" aria-hidden="true"></div>
-    <div class="wrap rv">
-      <div class="ringmark part" aria-hidden="true"></div>
-      <p class="eyebrow mono part"><span>06</span><i>Kontakt</i></p>
-      <h2 class="h2 part" id="kontakt-h">Lassen Sie uns 15 Minuten sprechen.</h2>
-      <p class="lede part">Kostenlos und ohne Verpflichtung. Danach wissen Sie, ob 3D zu Ihrem Unternehmen passt und was es kostet.</p>
-      <form id="form" class="part" novalidate>
-        <div><label for="f-name">Ihr Name</label><input id="f-name" name="name" autocomplete="name" placeholder="Maria Beispiel" required></div>
-        <div><label for="f-firma">Unternehmen</label><input id="f-firma" name="firma" autocomplete="organization" placeholder="Beispiel GmbH"></div>
-        <div class="full"><label for="f-mail">E-Mail</label><input id="f-mail" name="email" type="email" autocomplete="email" placeholder="maria@beispiel.de" required></div>
-        <div class="full"><label for="f-msg">Worum geht es?</label><textarea id="f-msg" name="nachricht" placeholder="Zum Beispiel: Wir sind eine Physiopraxis und möchten zeigen, wie eine Behandlung bei uns abläuft."></textarea></div>
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Kontakt</p>
+        <h2 class="h2" id="kontakt-h">15 Minuten, dann wissen Sie, ob es sich lohnt.</h2>
+        <p class="lede">Kostenlos und unverbindlich. Schreiben Sie kurz, was Sie machen und wie Anfragen heute bei Ihnen ankommen.</p>
+        <ul class="after">
+          <li><b>1.</b>Wir melden uns innerhalb eines Werktags.</li>
+          <li><b>2.</b>Wir sprechen 15 Minuten, am Telefon oder per Video.</li>
+          <li><b>3.</b>Wenn es passt: Konzept und Festpreis innerhalb von 48 Stunden.</li>
+        </ul>
+      </div>
+      <form id="form" novalidate>
+        <div><label for="f-name">Ihr Name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+        <div><label for="f-firma">Betrieb</label><input id="f-firma" name="firma" type="text" autocomplete="organization"></div>
+        <div><label for="f-gewerk">Gewerk</label><select id="f-gewerk" name="gewerk"><option>Zaunbau</option><option>Hausbau / Ausbau</option><option>Garten- und Landschaftsbau</option><option>Tischlerei / Schreinerei</option><option>Fenster, Türen, Montage</option><option>Anderes</option></select></div>
+        <div><label for="f-tel">Telefon <i>(optional)</i></label><input id="f-tel" name="telefon" type="tel" autocomplete="tel"></div>
+        <div class="full"><label for="f-mail">E-Mail</label><input id="f-mail" name="email" type="email" autocomplete="email" required></div>
+        <div class="full"><label for="f-msg">Wie kommen Anfragen heute bei Ihnen an?</label><textarea id="f-msg" name="nachricht" placeholder="Zum Beispiel: Rund 15 Anfragen im Monat über Telefon und Formular, etwa die Hälfte ohne Maße. Aufträge meist 3.000 bis 8.000 €."></textarea></div>
         <div class="formrow"><small>Ihr E-Mail-Programm öffnet sich mit Ihrer Nachricht. Mehr dazu im <a href="datenschutz.html">Datenschutz</a>.</small><button class="btn" type="submit">Erstgespräch anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
-        <p class="sent" role="status">Ihr E-Mail-Programm öffnet sich gleich. Ein Klick auf Senden, und wir melden uns innerhalb eines Werktags.</p>
+        <p class="sent" role="status">Ihr E-Mail-Programm öffnet sich gleich. Ein Klick auf Senden, und wir melden uns innerhalb eines Werktags. Falls sich nichts öffnet: Schreiben Sie direkt an <a href="mailto:info@magie-ki-marketing.de">info@magie-ki-marketing.de</a>.</p>
       </form>
     </div>
   </section>
@@ -602,482 +583,93 @@ body.pinned .thread i{transform:scaleY(1)}
   </div>
 </footer>
 
-<script>
-(() => {
-'use strict';
+<script type="module">
 const STUDIO_EMAIL = 'info@magie-ki-marketing.de';
 const $ = (s, r = document) => r.querySelector(s);
-const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
-const smoothstep = (p, e0, e1) => { const t = clamp((p - e0) / (e1 - e0), 0, 1); return t * t * (3 - 2 * t); };
-const RM = matchMedia('(prefers-reduced-motion: reduce)');
 $('#year').textContent = new Date().getFullYear();
 
-/* ---------- split text (seeded) ---------- */
-function rng(seed){ let s = seed >>> 0; return () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296; }
-$$('.split').forEach((el, i) => {
-  const text = el.textContent.trim();
-  const r = rng(17 + i * 101);
-  const words = text.split(' ');
-  el.textContent = '';
-  const sr = document.createElement('span'); sr.className = 'sr'; sr.textContent = text;
-  const vis = document.createElement('span'); vis.className = 'vis'; vis.setAttribute('aria-hidden', 'true');
-  words.forEach((w, n) => {
-    const ws = document.createElement('span'); ws.className = 'w'; ws.textContent = w;
-    ws.style.setProperty('--th', (n / Math.max(1, words.length) * 0.5 + r() * 0.04).toFixed(3));
-    vis.appendChild(ws);
-    if (n < words.length - 1) vis.appendChild(document.createTextNode(' '));
-  });
-  el.append(sr, vis);
-});
+/* ---------- Zaun-Konfigurator: price, inquiry preview, lazy 3D ---------- */
+// Beispielpreise je laufendem Meter inkl. Montage. Nur für die Demo, kein echtes Angebot.
+const PREIS_M = { doppelstab: { 100: 75, 140: 95, 180: 120 }, holz: { 100: 120, 140: 160, 180: 200 }, wpc: { 100: 170, 140: 220, 180: 270 } };
+const PREIS_TOR = { kein: 0, garten: 650, einfahrt: 1900 };
+const SPANNE = 0.12;
+const GEBIET = plz => /^\d{5}$/.test(plz) && +plz >= 20000 && +plz <= 25999;
+const NAME = { doppelstab: 'Doppelstabmatte, anthrazit', holz: 'Holz-Lamellen, Lärche', wpc: 'WPC-Sichtschutz, graubraun' };
+const TOR = { kein: 'Kein Tor', garten: 'Gartentor, 1,00 m', einfahrt: 'Einfahrtstor, 3,50 m, zweiflügelig' };
+const eur = n => n.toLocaleString('de-DE') + ' €';
+const r50 = n => Math.round(n / 50) * 50;
+const cfg = $('#cfg'), viewer = $('#viewer');
+let view = null;
 
-/* ---------- hero scrub: a pre-loaded frame sequence drawn to canvas (no video seeking, so no lag) ---------- */
-const hero = $('.hero'), stage = $('.stage'), canvas = $('#hero'), ctx2d = canvas.getContext('2d'), ring = $('.ring'), posterLayer = $('.poster');
-// Phones and portrait tablets get a center-cropped, lighter cut of the same film
-const NARROW = matchMedia('(orientation: portrait) and (max-width: 1024px)').matches;
-const FRAME_DIR = NARROW ? 'assets/hero/m/' : 'assets/hero/d/';
-const POSTER_URL = NARROW ? 'assets/hero-poster-mobile.jpg' : 'assets/hero-poster.jpg';
-const FRAMES = 94, START = 4;   // the first frames of the shot barely move, so the scroll starts a little way in
-const frames = new Array(FRAMES).fill(null);
-const bands = $$('.band').map((el, i) => ({ el, i, a: +el.dataset.a, b: +el.dataset.b, ramp: el.dataset.ramp ? +el.dataset.ramp : 0, op: -1, k: -1, on: null }));
-let target = 0, shown = 0, rafId = null, lastTick = 0, heroOnScreen = true, loadK = 0, loadStart = 0, drawn = -1;
+function read(){
+  const f = new FormData(cfg);
+  return { material: f.get('material'), hoehe: +f.get('hoehe'), laenge: +f.get('laenge'), tor: f.get('tor'), plz: String(f.get('plz') || '').trim(), wann: f.get('wann') };
+}
+function update(){
+  const s = read();
+  const total = PREIS_M[s.material][s.hoehe] * s.laenge + PREIS_TOR[s.tor];
+  const price = `${eur(r50(total * (1 - SPANNE)))} – ${eur(r50(total * (1 + SPANNE)))}`;
+  $('#c-len-out').textContent = s.laenge + ' m';
+  $('#vhint').textContent = s.laenge > 14 ? `Ansicht auf 14 m gekürzt · Preis für ${s.laenge} m` : 'Ziehen zum Drehen';
+  $('#c-price').textContent = price; $('#o-price').textContent = price;
+  $('#o-mat').textContent = NAME[s.material];
+  $('#o-dim').textContent = `${s.laenge} m · ${(s.hoehe / 100).toFixed(2).replace('.', ',')} m`;
+  $('#o-tor').textContent = TOR[s.tor];
+  $('#o-plz').textContent = s.plz || '–';
+  $('#o-when').textContent = cfg.elements.wann.selectedOptions[0].textContent;
+  const fit = $('#o-fit'), inArea = GEBIET(s.plz);
+  let msg, ok = false;
+  if (!/^\d{5}$/.test(s.plz)) msg = 'Unvollständig: PLZ fehlt';
+  else if (!inArea) msg = 'Außerhalb des Einzugsgebiets: wird höflich abgesagt oder weitergeleitet';
+  else if (s.wann === 'info') msg = 'Im Gebiet, aber noch kein Termin: Preis-Info per Mail statt Besichtigung';
+  else { ok = true; msg = `Passt: im Einzugsgebiet, Start in ${s.wann === '3' ? '3' : '3 bis 6'} Monaten`; }
+  fit.textContent = msg; fit.classList.toggle('warn', !ok);
+  if (view) view.update(s);
+}
+cfg.addEventListener('input', update);
+cfg.addEventListener('change', update);
+update();
 
-function heroProgress(){
-  const r = hero.getBoundingClientRect();
-  const range = hero.offsetHeight - innerHeight;
-  return range > 0 ? clamp(-r.top / range, 0, 1) : 0;
+function load3d(){
+  if (load3d.started) return; load3d.started = true;
+  import('./assets/js/fence3d.min.js').then(m => { view = m.mount(viewer, read()); }).catch(() => {});
 }
-function updateCaptions(p){
-  for (const b of bands){
-    const len = b.b - b.a, f = Math.min(0.02, len / 3);
-    let op;
-    if (b.i === 0) op = 1 - smoothstep(p, b.b - f, b.b);
-    else if (b.i === bands.length - 1) op = smoothstep(p, b.a, b.a + f);
-    else op = smoothstep(p, b.a, b.a + f) * (1 - smoothstep(p, b.b - f, b.b));
-    let k = clamp((p - b.a) / (b.ramp || Math.min(0.025, len * 0.35)), 0, 1);
-    if (b.i === 0) k = Math.max(k, loadK);
-    if (Math.abs(op - b.op) > 0.004 || (op === 0) !== (b.op === 0) || (op === 1) !== (b.op === 1)){ b.op = op; b.el.style.opacity = op.toFixed(3); }
-    if (Math.abs(k - b.k) > 0.008 || (k === 1 && b.k !== 1) || (k === 0 && b.k !== 0)){ b.k = k; b.el.style.setProperty('--k', k.toFixed(3)); }
-    const on = op > 0.5;
-    if (on !== b.on){ b.on = on; b.el.classList.toggle('on', on); }
-  }
-}
-// canvas sized to the stage, cover-fit like object-fit: cover
-function sizeCanvas(){
-  const dpr = NARROW ? Math.min(1.5, devicePixelRatio || 1) : 1;   // the frames are 1280 / 560 px wide; more canvas pixels only cost time
-  const w = Math.round(stage.clientWidth * dpr), h = Math.round(stage.clientHeight * dpr);
-  if (canvas.width !== w || canvas.height !== h){ canvas.width = w; canvas.height = h; drawn = -1; }
-}
-function nearestLoaded(i){
-  for (let d = 0; d < FRAMES; d++){
-    if (i - d >= 0 && frames[i - d]) return i - d;
-    if (i + d < FRAMES && frames[i + d]) return i + d;
-  }
-  return -1;
-}
-function drawFrame(p){
-  const want = Math.round(START + p * (FRAMES - 1 - START));
-  const i = nearestLoaded(want);
-  if (i < 0 || i === drawn) return;
-  const img = frames[i], cw = canvas.width, ch = canvas.height;
-  const sc = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
-  const w = img.naturalWidth * sc, h = img.naturalHeight * sc;
-  ctx2d.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
-  drawn = i;
-  if (!stage.classList.contains('video-ready')) stage.classList.add('video-ready');
+const saveData = navigator.connection && navigator.connection.saveData;
+if (saveData){
+  const b = $('.load3d'); b.hidden = false; b.addEventListener('click', load3d);
+} else if ('IntersectionObserver' in window){
+  const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)){ io.disconnect(); load3d(); } }, { rootMargin: '400px 0px' });
+  io.observe(viewer);
 }
 
-function tick(now){
-  const dt = Math.min(100, now - (lastTick || now)); lastTick = now;
-  const k = 0.24;   // smoothing per 60fps frame: enough to soften wheel steps, small enough to feel direct
-  shown += (target - shown) * (1 - Math.pow(1 - k, dt / 16.667));
-  let busy = false;
-  if (Math.abs(target - shown) < 0.0005){ shown = target; } else busy = true;
-  if (loadK < 1){ loadK = clamp((now - loadStart) / 1100, 0, 1); loadK = 1 - Math.pow(1 - loadK, 3); busy = true; }
-  drawFrame(shown);
-  updateCaptions(shown);
-  if (busy && scrubOn && heroOnScreen) rafId = requestAnimationFrame(tick);
-  else { rafId = null; lastTick = 0; }
-}
-function kick(){ if (rafId === null && scrubOn && heroOnScreen) rafId = requestAnimationFrame(tick); }
-function onScroll(){ target = heroProgress(); kick(); }
-new IntersectionObserver(es => { heroOnScreen = es[0].isIntersecting; if (heroOnScreen) onScroll(); }, { threshold: 0 }).observe(hero);
-addEventListener('resize', () => { if (scrubOn){ sizeCanvas(); drawFrame(shown); } }, { passive: true });
-
-let heroInit = false;
-function initHeroOnce(){
-  if (heroInit) return; heroInit = true;
-  loadStart = performance.now();
-  posterLayer.style.backgroundImage = `url('${POSTER_URL}')`;
-  sizeCanvas();
-  loadFrames();
-}
-// coarse-to-fine loading: every 16th frame first, then 8th, 4th, 2nd, then the rest,
-// so the scroll works early and only gets finer while the rest streams in
-function loadFrames(){
-  const order = [], seen = new Set();
-  for (const step of [16, 8, 4, 2, 1]) for (let i = START; i < FRAMES; i += step) if (!seen.has(i)){ seen.add(i); order.push(i); }
-  for (let i = 0; i < START; i++) order.push(i);
-  let done = 0, failed = 0, next = 0, lastRing = 0;
-  const pump = () => {
-    if (next >= order.length) return;
-    const i = order[next++], img = new Image();
-    img.decoding = 'async';
-    img.onload = () => {
-      const fin = () => { frames[i] = img; settle(); };
-      img.decode ? img.decode().then(fin, fin) : fin();
-    };
-    img.onerror = () => { failed++; settle(); };
-    img.src = FRAME_DIR + 'f' + String(i + 1).padStart(3, '0') + '.webp';
-  };
-  const settle = () => {
-    done++;
-    const now = performance.now();
-    if (now - lastRing > 100 || done === order.length){ lastRing = now; ring.style.setProperty('--ld', Math.round(126 * (1 - done / order.length))); }
-    if (failed > 8 && !frames.some(Boolean)) return failVideo();
-    drawn = -1; drawFrame(shown);
-    pump();
-  };
-  for (let n = 0; n < 6; n++) pump();   // six requests in flight
-}
-function failVideo(){
-  if (stage.classList.contains('video-failed')) return;
-  stage.classList.add('video-failed');
-  const cue = document.createElement('div'); cue.className = 'cue'; cue.setAttribute('aria-hidden', 'true');
-  cue.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>';
-  ring.replaceWith(cue);
-}
-
-/* ---------- live static-hero gate ---------- */
-const GATES = ['(prefers-reduced-motion: reduce)'];
-let scrubOn = false;
-function enableScrub(){
-  if (scrubOn) return; scrubOn = true;
-  initHeroOnce();
-  addEventListener('scroll', onScroll, { passive: true });
-  addEventListener('resize', onScroll, { passive: true });
-  bands.forEach(b => { b.op = -1; b.k = -1; b.on = null; });
-  unpinFinalStates();
-  updateCaptions(heroProgress());
-  onScroll();
-}
-function disableScrub(){
-  if (!scrubOn) return; scrubOn = false;
-  removeEventListener('scroll', onScroll); removeEventListener('resize', onScroll);
-  if (rafId !== null){ cancelAnimationFrame(rafId); rafId = null; }
-}
-function applyHeroMode(){ if (GATES.some(q => matchMedia(q).matches)) disableScrub(); else enableScrub(); }
-const MQLS = GATES.map(q => matchMedia(q));
-MQLS.forEach(m => m.addEventListener('change', applyHeroMode));
-
-/* ---------- entrances ---------- */
-const io = new IntersectionObserver(es => es.forEach(e => {
-  if (!e.isIntersecting) return;
-  const el = e.target; el.classList.add('in'); io.unobserve(el);
-  setTimeout(() => el.classList.add('done'), 1500);
-}), { threshold: 0.18, rootMargin: '0px 0px -6% 0px' });
-$$('.rv').forEach(el => io.observe(el));
-
-/* ---------- Lichtfaden threads + lit nodes ---------- */
-const threads = $$('[data-thread]').map(t => ({ t, sec: t.parentElement, v: -1 }));
-const litEls = $$('[data-lit]').map(el => ({ el, on: false }));
-let threadRaf = null;
-function drawThreads(){
-  threadRaf = null;
-  if (pinned) return;
-  const vh = innerHeight;
-  for (const o of threads){
-    const r = o.sec.getBoundingClientRect();
-    let v;
-    if (o.sec.classList.contains('contact')) v = clamp((vh * 0.95 - r.top) / (vh * 0.45), 0, 1);
-    else v = clamp((vh * 0.62 - r.top) / r.height, 0, 1);
-    if (Math.abs(v - o.v) > 0.002){ o.v = v; o.t.style.setProperty('--draw', v.toFixed(4)); }
-  }
-  for (const l of litEls){
-    const on = l.el.getBoundingClientRect().top < vh * 0.62;
-    if (on !== l.on){ l.on = on; l.el.classList.toggle('lit', on); }
-  }
-}
-const queueThreads = () => { if (threadRaf === null) threadRaf = requestAnimationFrame(drawThreads); };
-addEventListener('scroll', queueThreads, { passive: true });
-addEventListener('resize', queueThreads, { passive: true });
-
-/* ---------- counters ---------- */
-const counters = $$('[data-count]');
-const cio = new IntersectionObserver(es => es.forEach(e => {
-  if (!e.isIntersecting) return; cio.unobserve(e.target);
-  const el = e.target, to = +el.dataset.count;
-  if (RM.matches || pinned || to <= 1){ el.textContent = to; return; }
-  const t0 = performance.now(), dur = 1400; let last = '';
-  const step = now => {
-    const p = clamp((now - t0) / dur, 0, 1), v = Math.round(to * (1 - Math.pow(1 - p, 3)));
-    const s = String(v); if (s !== last){ last = s; el.textContent = s; }
-    if (p < 1 && !pinned) requestAnimationFrame(step); else el.textContent = to;
-  };
-  el.textContent = '0'; requestAnimationFrame(step);
-}), { threshold: 0.5 });
-counters.forEach(c => cio.observe(c));
-
-
-/* ---------- Leistungen demo 1: a hotel homepage whose scene layers move with depth on scroll or hover ---------- */
-{
-  const card = $('.demo-film'), layers = $$('.hotel .ly').map(el => ({ el, d: +el.dataset.d, v: null }));
-  let hoverP = null, raf = null, vis = false;
-  const drive = () => {
-    raf = null;
-    const r = card.getBoundingClientRect();
-    const p = hoverP !== null ? hoverP : clamp((innerHeight - r.top) / (innerHeight + r.height), 0, 1);
-    for (const l of layers){
-      const y = ((0.5 - p) * l.d).toFixed(1);   // nearer layers travel further: depth through parallax
-      if (y !== l.v){ l.v = y; l.el.style.setProperty('--y', y + 'px'); }
-    }
-  };
-  const queue = () => { if (raf === null && vis && !pinned) raf = requestAnimationFrame(drive); };
-  new IntersectionObserver(es => { vis = es[0].isIntersecting; queue(); }).observe(card);
-  addEventListener('scroll', queue, { passive: true });
-  card.addEventListener('pointermove', e => { if (e.pointerType !== 'mouse') return; const r = card.getBoundingClientRect(); hoverP = clamp((e.clientX - r.left) / r.width, 0, 1); queue(); });
-  card.addEventListener('pointerleave', () => { hoverP = null; queue(); });
-}
-/* ---------- Leistungen demo 3: before / after slider ---------- */
-{
-  const ba = $('#demo-ba'), range = $('.ba-range');
-  let pos = 50, down = false, played = false;
-  const set = v => { pos = clamp(v, 0, 100); ba.style.setProperty('--pos', pos.toFixed(1) + '%'); range.value = Math.round(pos); };
+/* ---------- before / after slider ---------- */
+const ba = $('[data-ba]');
+if (ba){
+  const range = $('.ba-range', ba);
+  let down = false;
+  const set = v => { v = clamp(v, 0, 100); ba.style.setProperty('--pos', v.toFixed(1) + '%'); range.value = Math.round(v); };
   const fromX = x => { const r = ba.getBoundingClientRect(); set((x - r.left) / r.width * 100); };
   ba.addEventListener('pointerdown', e => { down = true; ba.setPointerCapture(e.pointerId); fromX(e.clientX); });
   ba.addEventListener('pointermove', e => { if (down || e.pointerType === 'mouse') fromX(e.clientX); });
-  const up = () => { down = false; };
-  ba.addEventListener('pointerup', up); ba.addEventListener('pointercancel', up);
+  ba.addEventListener('pointerup', () => { down = false; });
+  ba.addEventListener('pointercancel', () => { down = false; });
   range.addEventListener('input', () => set(+range.value));
-  // one gentle sweep the first time it is seen, so visitors know it moves
-  new IntersectionObserver((es, o) => {
-    if (!es[0].isIntersecting || played) return; played = true; o.disconnect();
-    if (RM.matches || pinned) return;
-    const t0 = performance.now(), dur = 1800;
-    const step = now => { if (down) return; const k = clamp((now - t0) / dur, 0, 1); set(50 + Math.sin(k * Math.PI * 2) * 22 * (1 - k)); if (k < 1) requestAnimationFrame(step); };
-    requestAnimationFrame(step);
-  }, { threshold: 0.6 }).observe(ba);
 }
 
-/* ---------- FAQ ---------- */
-$$('.qa button').forEach(btn => btn.addEventListener('click', () => {
-  const qa = btn.parentElement, open = !qa.classList.contains('open');
-  qa.classList.toggle('open', open); btn.setAttribute('aria-expanded', open);
-}));
-
-/* ---------- form (mailto) ---------- */
+/* ---------- contact form (opens the visitor's mail program) ---------- */
 const form = $('#form');
 form.addEventListener('submit', e => {
   e.preventDefault();
+  const v = id => $(id).value.trim();
   const name = $('#f-name'), mail = $('#f-mail');
   if (!name.value.trim()){ name.focus(); return; }
-  if (!mail.checkValidity() || !mail.value.trim()){ mail.focus(); return; }
-  const firma = $('#f-firma').value.trim(), msg = $('#f-msg').value.trim();
-  const subject = `Erstgespräch: ${firma || name.value.trim()}`;
-  const body = `Name: ${name.value.trim()}\nUnternehmen: ${firma || '-'}\nE-Mail: ${mail.value.trim()}\n\n${msg}`;
+  if (!mail.value.trim() || !mail.checkValidity()){ mail.focus(); return; }
+  const subject = `Erstgespräch: ${v('#f-firma') || v('#f-name')} (${v('#f-gewerk')})`;
+  const body = `Name: ${v('#f-name')}\nBetrieb: ${v('#f-firma') || '-'}\nGewerk: ${v('#f-gewerk')}\nTelefon: ${v('#f-tel') || '-'}\nE-Mail: ${v('#f-mail')}\n\nWie kommen Anfragen heute an?\n${v('#f-msg')}`;
   form.classList.add('done');
   location.href = `mailto:${STUDIO_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
-
-/* ---------- light and shadow: the background layers follow the scroll at different depths ---------- */
-{
-  const env = $('.env'); let raf = null, last = -1;
-  const apply = () => {
-    raf = null; if (RM.matches) return;
-    const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
-    const sp = (scrollY / max).toFixed(4);   // 0 at the top, 1 at the bottom: the light stays in view on any page length
-    if (sp !== last){ last = sp; env.style.setProperty('--sp', sp); }
-  };
-  addEventListener('scroll', () => { if (raf === null) raf = requestAnimationFrame(apply); }, { passive: true });
-  apply();
-}
-
-/* ---------- pause on hidden tab ---------- */
-document.addEventListener('visibilitychange', () => document.body.classList.toggle('paused', document.hidden));
-
-/* ---------- reduced motion, live both ways ---------- */
-let pinned = false;
-function pinToFinalStates(){
-  pinned = true; document.body.classList.add('pinned');
-  threads.forEach(o => { o.t.style.setProperty('--draw', 1); o.v = 1; });
-  litEls.forEach(l => { l.on = true; l.el.classList.add('lit'); });
-  counters.forEach(c => { c.textContent = c.dataset.count; });
-  window.dispatchEvent(new CustomEvent('magie:pin'));
-}
-function unpinFinalStates(){
-  if (!pinned) return;
-  pinned = false; document.body.classList.remove('pinned');
-  threads.forEach(o => { o.v = -1; }); litEls.forEach(l => { l.on = !l.on; });
-  drawThreads();
-}
-RM.addEventListener('change', e => { if (e.matches){ pinToFinalStates(); applyHeroMode(); } else applyHeroMode(); });
-if (RM.matches) pinToFinalStates();
-applyHeroMode();
-drawThreads();
-})();
-</script>
-
-<script type="module">
-/* The one interactive moment: the logo as a live 3D object. Turn it a full circle. */
-const viewer = document.getElementById('viewer');
-const section = document.getElementById('probieren');
-const label = document.getElementById('turn-label');
-const meter = section.querySelector('.meter');
-const RM = matchMedia('(prefers-reduced-motion: reduce)');
-let started = false;
-function win(){ section.classList.add('won'); label.textContent = '360°'; meter.style.setProperty('--turn', 1); }
-if (RM.matches) win();
-window.addEventListener('magie:pin', win);
-
-const lazy = new IntersectionObserver(es => { if (es[0].isIntersecting && !started){ started = true; lazy.disconnect(); boot().catch(() => {}); } }, { rootMargin: '300px' });
-lazy.observe(viewer);
-
-let threeP = null;
-const loadThree = () => threeP || (threeP = import('./assets/vendor/three.module.min.js'));
-async function boot(){
-  const THREE = await loadThree();
-  const canvas = document.createElement('canvas');
-  let renderer;
-  try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true }); } catch { return; }
-  viewer.prepend(canvas); viewer.classList.add('gl');
-  renderer.setPixelRatio(Math.min(2, devicePixelRatio));
-  renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
-  camera.position.set(0, 0, 11.5);
-
-  // M outline from the brand mark (64 grid, centered)
-  const P = [[14,50],[14,14],[21,14],[32,29],[43,14],[50,14],[50,50],[43,50],[43,27],[32,42],[21,27],[21,50]];
-  const s = 0.11, shape = new THREE.Shape();
-  P.forEach(([x, y], i) => { const X = (x - 32) * s, Y = (32 - y) * s; i ? shape.lineTo(X, Y) : shape.moveTo(X, Y); });
-  const geo = new THREE.ExtrudeGeometry(shape, { depth: 0.9, bevelEnabled: true, bevelThickness: 0.08, bevelSize: 0.06, bevelSegments: 4, curveSegments: 4 });
-  geo.center();
-  const green = new THREE.MeshPhysicalMaterial({ color: 0x6DA227, roughness: 0.32, metalness: 0.05, clearcoat: 0.8, clearcoatRoughness: 0.25 });
-  const group = new THREE.Group();
-  const m = new THREE.Mesh(geo, green); group.add(m);
-  // the diagonal light beam cutting through the mark
-  const beamLen = 6.6;
-  const beam = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, beamLen, 24), new THREE.MeshStandardMaterial({ color: 0xA6E05C, emissive: 0x6DA227, emissiveIntensity: 1.6, roughness: 0.4 }));
-  beam.rotation.z = -Math.atan2(42, 42); beam.position.z = 0.62; group.add(beam);
-  const glow = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, beamLen, 24, 1, true), new THREE.MeshBasicMaterial({ color: 0x6DA227, transparent: true, opacity: 0.16, depthWrite: false }));
-  glow.rotation.copy(beam.rotation); glow.position.copy(beam.position); group.add(glow);
-  scene.add(group);
-  // floor ring, the hero's resting ring
-  const floor = new THREE.Mesh(new THREE.RingGeometry(1.9, 2.0, 96), new THREE.MeshBasicMaterial({ color: 0x6DA227, transparent: true, opacity: 0.55, side: THREE.DoubleSide }));
-  floor.rotation.x = -Math.PI / 2; floor.position.y = -3.05; scene.add(floor);
-  group.scale.setScalar(0.72);   // small enough to tumble a full 360 in every direction without leaving the frame
-  group.rotation.set(0.12, -0.5, 0);
-
-  scene.add(new THREE.HemisphereLight(0xffffff, 0xC9CEC4, 1.6));
-  const key = new THREE.DirectionalLight(0xffffff, 2.6); key.position.set(4, 6, 6); scene.add(key);
-  const rim = new THREE.DirectionalLight(0xB8F07A, 2.2); rim.position.set(-6, 2, -4); scene.add(rim);
-
-  function size(){ const w = viewer.clientWidth, h = viewer.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); }
-  size(); new ResizeObserver(size).observe(viewer);
-
-  // Trackball: drag turns the object around the screen's axes, so it tumbles freely in every direction
-  const AX = new THREE.Vector3(1, 0, 0), AY = new THREE.Vector3(0, 1, 0), q = new THREE.Quaternion();
-  let vx = 0, vy = 0, dragging = false, lastX = 0, lastY = 0, total = 0, won = section.classList.contains('won'), visible = true, raf = null, lastT = 0, lastLabel = '';
-  const AUTO = 0.0016;
-  function turn(dx, dy){
-    if (dx){ q.setFromAxisAngle(AY, dx); group.quaternion.premultiply(q); }
-    if (dy){ q.setFromAxisAngle(AX, dy); group.quaternion.premultiply(q); }
-    if (!won) total += Math.hypot(dx, dy);
-  }
-  function frame(t){
-    const dt = Math.min(50, t - (lastT || t)); lastT = t;
-    if (!dragging){
-      const decay = Math.pow(0.93, dt / 16.667);
-      vx *= decay; vy *= decay;
-      turn(vx, vy);
-      if (!RM.matches) { q.setFromAxisAngle(AY, AUTO * dt / 16.667); group.quaternion.premultiply(q); }
-    }
-    floor.material.opacity = 0.45 + 0.1 * Math.sin(t / 1600);
-    renderer.render(scene, camera);
-    if (!won){
-      const frac = Math.min(1, total / (Math.PI * 2));
-      meter.style.setProperty('--turn', frac.toFixed(3));
-      const txt = Math.round(frac * 360) + '°';
-      if (txt !== lastLabel){ lastLabel = txt; label.textContent = txt; }
-      if (frac >= 1){ won = true; win(); }
-    }
-    raf = (visible && !document.hidden) ? requestAnimationFrame(frame) : null;
-  }
-  const go = () => { if (raf === null && visible && !document.hidden){ lastT = 0; raf = requestAnimationFrame(frame); } };
-  new IntersectionObserver(es => { visible = es[0].isIntersecting; go(); }).observe(viewer);
-  document.addEventListener('visibilitychange', go);
-
-  viewer.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; lastY = e.clientY; vx = vy = 0; viewer.setPointerCapture(e.pointerId); });
-  viewer.addEventListener('pointermove', e => {
-    if (!dragging) return;
-    const size = Math.min(viewer.clientWidth, viewer.clientHeight);
-    const dx = (e.clientX - lastX) / size * Math.PI * 1.4, dy = (e.clientY - lastY) / size * Math.PI * 1.4;
-    lastX = e.clientX; lastY = e.clientY;
-    turn(dx, dy); vx = dx; vy = dy;
-  });
-  const up = () => { dragging = false; };
-  viewer.addEventListener('pointerup', up); viewer.addEventListener('pointercancel', up);
-  // keyboard: arrow keys turn it in all four directions
-  viewer.tabIndex = 0;
-  viewer.addEventListener('keydown', e => {
-    const k = { ArrowLeft: [-0.35, 0], ArrowRight: [0.35, 0], ArrowUp: [0, -0.35], ArrowDown: [0, 0.35] }[e.key];
-    if (!k) return; e.preventDefault(); turn(k[0], k[1]); vx = k[0] * 0.2; vy = k[1] * 0.2;
-  });
-  go();
-}
-
-/* Leistungen demo 2: a small product turning live in 3D */
-const demo = document.getElementById('demo3d');
-let demoStarted = false;
-const demoLazy = new IntersectionObserver(es => { if (es[0].isIntersecting && !demoStarted){ demoStarted = true; demoLazy.disconnect(); bootDemo().catch(() => {}); } }, { rootMargin: '300px' });
-demoLazy.observe(demo);
-async function bootDemo(){
-  const THREE = await loadThree();
-  const canvas = document.createElement('canvas');
-  let renderer;
-  try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true }); } catch { return; }
-  demo.prepend(canvas);
-  renderer.setPixelRatio(Math.min(2, devicePixelRatio));
-  renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(30, 4 / 3, 0.1, 100);
-  camera.position.set(0, 0.5, 11);
-  camera.lookAt(0, 0.15, 0);
-  // example client: a cosmetics bottle in blush with a gold cap and band
-  const prof = [[0,-1.6],[0.95,-1.6],[1.12,-1.45],[1.18,-1.1],[1.18,0.7],[1.05,1.05],[0.62,1.32],[0.42,1.42],[0.42,1.6],[0,1.6]].map(([x,y]) => new THREE.Vector2(x, y));
-  const product = new THREE.Group();
-  product.add(new THREE.Mesh(new THREE.LatheGeometry(prof, 72), new THREE.MeshPhysicalMaterial({ color: 0xF2D3CA, roughness: 0.3, clearcoat: 0.8, clearcoatRoughness: 0.2 })));
-  const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.46, 0.46, 0.7, 48), new THREE.MeshStandardMaterial({ color: 0xC9A15B, roughness: 0.28, metalness: 0.85 }));
-  cap.position.y = 1.95; product.add(cap);
-  const band = new THREE.Mesh(new THREE.TorusGeometry(1.2, 0.05, 16, 96), new THREE.MeshStandardMaterial({ color: 0xD9B678, roughness: 0.25, metalness: 0.9 }));
-  band.rotation.x = Math.PI / 2; band.position.y = -0.2; product.add(band);
-  product.scale.setScalar(0.8); product.rotation.x = 0.12;
-  scene.add(product);
-  const ring = new THREE.Mesh(new THREE.RingGeometry(1.35, 1.42, 96), new THREE.MeshBasicMaterial({ color: 0xB98F5A, transparent: true, opacity: 0.45, side: THREE.DoubleSide }));
-  ring.rotation.x = -Math.PI / 2; ring.position.y = -1.45; scene.add(ring);
-  scene.add(new THREE.HemisphereLight(0xffffff, 0xC9CEC4, 1.5));
-  const key = new THREE.DirectionalLight(0xffffff, 2.4); key.position.set(4, 5, 6); scene.add(key);
-  const rim = new THREE.DirectionalLight(0xFFD9C2, 2.4); rim.position.set(-6, 2, -4); scene.add(rim);
-  const size = () => { const w = demo.clientWidth, h = demo.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); };
-  size(); new ResizeObserver(size).observe(demo);
-  let vel = 0, dragging = false, lastX = 0, visible = false, raf = null, lastT = 0;
-  const frame = t => {
-    const dt = Math.min(50, t - (lastT || t)); lastT = t;
-    if (!dragging){ vel *= Math.pow(0.93, dt / 16.667); product.rotation.y += vel + (RM.matches ? 0 : 0.006 * dt / 16.667); }
-    renderer.render(scene, camera);
-    raf = (visible && !document.hidden) ? requestAnimationFrame(frame) : null;
-  };
-  const go = () => { if (raf === null && visible && !document.hidden){ lastT = 0; raf = requestAnimationFrame(frame); } };
-  new IntersectionObserver(es => { visible = es[0].isIntersecting; go(); }).observe(demo);
-  document.addEventListener('visibilitychange', go);
-  demo.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; vel = 0; demo.setPointerCapture(e.pointerId); });
-  demo.addEventListener('pointermove', e => { if (!dragging) return; const dx = (e.clientX - lastX) / demo.clientWidth * Math.PI * 1.6; lastX = e.clientX; product.rotation.y += dx; vel = dx; });
-  const up = () => { dragging = false; };
-  demo.addEventListener('pointerup', up); demo.addEventListener('pointercancel', up);
-  go();
-}
 </script>
 </body>
 </html>
